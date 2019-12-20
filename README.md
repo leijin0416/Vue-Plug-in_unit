@@ -1,6 +1,6 @@
 # Vue 个人插件资料整理
 
-工作中用到的实用库。
+- 工作中用到的实用库。
 
 # 1> 超实用 mavonEditor 富文本
 
@@ -86,17 +86,17 @@ export default {
         　　})
         }  
     },
-	//生命周期 - 创建完成（可以访问当前this实例）
-	created: async function() {
+    //生命周期 - 创建完成（可以访问当前this实例）
+    created: async function() {
         let that = this
         let name = getStore('userName')
         that.title = name
         that.Url = 'http://timchains.com/register?user=' + name
-	},
+    },
     mounted () {
         this.draw()
     }
-};
+}
 </script>
 
 <style lang="scss" scoped>
