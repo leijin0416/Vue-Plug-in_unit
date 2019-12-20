@@ -4,7 +4,7 @@
 
 # 1> 超实用 mavonEditor 富文本
 
-![grow-number](https://github.com/hinesboy/mavonEditor/raw/master/img/cn/cn-common.png
+![grow-number](https://github.com/hinesboy/mavonEditor/raw/master/img/cn/cn-common.png)
 
 [Git 地址](https://github.com/hinesboy/mavonEditor)
 
@@ -17,7 +17,7 @@
 ```html
 <template>
     <div class="share">
-        <!-- 默认海报 -->
+        <!-- 素材-默认海报 -->
         <div ref="box" class="ivu-share">
             <img src="@/assets/img/hk/icon-share_bg1.jpg" alt="bg.png">
             <div class="ivu-row">
