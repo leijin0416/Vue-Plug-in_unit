@@ -1,6 +1,6 @@
 # 1> 安装 
 
-`npm install vue-i18n`
+`npm install --s vue-i18n`
 
 # 2> 布局，创建多语言的文件夹和js文件
 
