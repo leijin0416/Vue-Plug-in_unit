@@ -8,7 +8,9 @@
 
 [Git 地址](https://github.com/hinesboy/mavonEditor)
 
-# 2> html2canvas 实现h5海报
+# 2> vue-i18n 语言切换
+
+# 3> html2canvas 实现h5海报
 
 兼容问题：
 
