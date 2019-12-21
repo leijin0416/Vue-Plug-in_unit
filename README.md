@@ -4,11 +4,13 @@
 
 # 1> 超实用 mavonEditor 富文本
 
-![grow-number](https://github.com/hinesboy/mavonEditor/raw/master/img/cn/cn-common.png)
+![mavonEditor](http://120.79.222.255/icon-mavonEditor.png)
 
 [Git 地址](https://github.com/hinesboy/mavonEditor)
 
 # 2> vue-i18n 语言切换
+
+`npm install vue-i18n`
 
 # 3> html2canvas 实现h5海报
 
