@@ -75,7 +75,8 @@ axios.interceptors.response.use( response => {
 
     if (response.data.code === -1) {
         Message.error({
-            content: response.data.msg,
+            content: '系统未检测到您的信息，请登录',
+            background: true,
             duration: 3
         })
         removeStore('hasSessionToken')
