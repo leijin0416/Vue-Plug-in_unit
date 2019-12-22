@@ -16,7 +16,7 @@
 
 `npm install --s html2canvas`
 
-# 4> 3DESq请求接口加密
+# 4> 3DES 请求接口加密
 
 - 需要前后端协同配置Key
 
