@@ -2,7 +2,7 @@
 
 `npm install --s crypto-js`
 
-![CryptoJS](http://120.79.222.255/icon-mavonEditor.png)
+![CryptoJS](http://120.79.222.255/icon-crypto.png)
 
 # 2> 封装公共JS
 
