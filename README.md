@@ -22,3 +22,6 @@
 
 `npm install --s crypto-js`
 
+# 5> v-viewer 点击预览图片
+
+`npm install --s v-viewer`
