@@ -41,3 +41,7 @@ Viewer.setDefaults({
 
 </script>
 ```
+
+# 4> 效果图
+
+![viewer.jpg](http://120.79.222.255/icon-viewer.jpg)
