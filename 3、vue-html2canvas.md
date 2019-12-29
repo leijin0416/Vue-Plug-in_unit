@@ -6,13 +6,37 @@
 
 # 2> 生成模板组件，供调用
 
-#### 思路：
+### 思路：
 
 - 1、template 模板分为两个部分。一个是要展示的素材画面（负极 z-index: -1），一个是用户需要保存的canvas页面（主级 z-index: 999）
 
-#### 问题：
+### 问题：
 
 - 1、不同手机高度：在ios和安卓机型上，不同分辨率下海报显示的高度会不一，需要样式调整
+
+### 由于 canvas 的原因，移动端生成出来的图片比较模糊 的问题
+
+```js
+// 根据需要设置 scaleSize 大小
+const scaleSize = 2;
+const newCanvas = document.createElement("canvas");
+const target = document.querySelector('div');
+const width = parseInt(window.getComputedStyle(target).width);
+const height = parseInt(window.getComputedStyle(target).height);
+newCanvas.width = width * scaleSize;
+newCanvas.height = widthh * scaleSize;
+newCanvas.style.width = width + "px";
+newCanvas.style.height =width + "px";
+const context = newCanvas.getContext("2d");
+context.scale(scaleSize, scaleSize);
+html2canvas(document.querySelector('.demo'), { canvas: newCanvas }).then(function(canvas) {
+    // 简单的通过超链接设置下载功能
+    document.querySelector(".btn").setAttribute('href', canvas.toDataURL());
+}
+```
+---
+
+# 代码
 
 ```html
 <template>
