@@ -12,7 +12,7 @@
 
 `npm install --s vue-i18n`
 
-# 3> html2canvas 实现h5海报
+# 3> html2canvas 实现h5海报，qrCodejs2 生成二维码
 
 `npm install --s html2canvas`
 
