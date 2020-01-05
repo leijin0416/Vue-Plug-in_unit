@@ -2,7 +2,7 @@
 
 `npm install --s echarts`
 
-![官方实例地址](https://www.echartsjs.com/examples/zh/index.html#chart-type-pie)
+[官方实例地址](https://www.echartsjs.com/examples/zh/index.html#chart-type-pie)
 
 # 2> 组件局部引入
 
@@ -86,7 +86,9 @@ export const option = {
 
 - **2、在组件模板中引入JS，并将其挂载到页面上;**
 
-问题： 1、遇到如何解决 echart 宽高自适应的问题。
+`问题： 1、遇到如何解决 echart 宽高自适应的问题？`
+
+解决方案：在 created() 挂载DOM前拿到父节点（echartBox）的宽度，因为还没挂载DOM，此时拿到宽度（offsetWidth）浏览器会报错，所以利用 setTimeout() 延迟去拿宽度，这样浏览器不会报错
 
 ```html
 <template>
@@ -109,23 +111,22 @@ export default {
     data() {
         return {
             chart: {},
-            option: option
+            option: option,
+            echartWidth: ''  // 默认宽度
         }
     },
     created() {
         this.fetchData()
+        setTimeout(() => {
+            let chartBox = document.getElementById('echartBox')
+            this.echartWidth = chartBox.offsetWidth
+            console.log(chartBox.offsetWidth);  // 1920
+        }, 300)
     },
     // 挂载图表函数
     mounted() {
         let that = this
         that.initChart()
-
-        let chartBox = document.getElementById('echartBox')
-        let myChartsize = document.getElementById('gamechart')
-        //  根据窗口大小调整曲线大小
-        window.onresize=function(){  
-            that.chartssize(chartBox, myChartsize)
-        }
     },
     methods: {
         fetchData() {
@@ -145,6 +146,16 @@ export default {
             this.option.series[1].data = this.chart.lastdays
         },
         initChart() {
+            let that = this
+            // 需要缓存 width
+            let myChartsize = document.getElementById('gamechart')
+            let width  = that.echartWidth
+            if (width == 0) {
+                myChartsize.style.width = '1000px'
+            } else {
+                myChartsize.style.width = that.echartWidth + 'px'
+            }
+
             // 将chart初始化的实例绑定到一个DOM
             this.chart = echarts.init(document.getElementById('gamechart'))
             this.chart.setOption(this.option)
@@ -174,7 +185,7 @@ export default {
     height: 500px;
 }
 .chart-container .ivu-echart {
-    width: 1000px;
+    min-width: 100%;
     height: 500px;
 }
 </style>
