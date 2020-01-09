@@ -16,7 +16,7 @@ import echarts from 'echarts'
 - **1、新建JS，引用echarts中具体的实例;**
 
 ```js
-// 饼状图
+// cakechart.js 饼状图
 export const option = {
     // 标题
     title: {
@@ -86,9 +86,11 @@ export const option = {
 
 - **2、在组件模板中引入JS，并将其挂载到页面上;**
 
+- 引入 `cakechart.js` 文件，并在 created() 挂载时加载 fetchData() 数据，防止刷新页面会丢失数据的情况；
+
 `问题： 1、遇到如何解决 echart 宽高自适应的问题？`
 
-解决方案：在 created() `【数据data已经初始化完成，方法也已经可以调用，但是DOM未渲染。】` 在挂载DOM前拿到父节点（echartBox）的宽度，因为还没挂载DOM，此时拿到宽度（offsetWidth）浏览器会报错，所以利用 setTimeout() 延迟去拿宽度，这样浏览器不会报错
+解决方案：在 created() `-【指的是数据 data 已经初始化完成，方法也已经可以调用，但是 DOM未渲染。】` 在挂载DOM前拿到父节点（echartBox）的宽度，因为还没挂载DOM，此时拿到宽度（offsetWidth）浏览器会报错，所以利用 setTimeout() 延迟去拿宽度，这样浏览器不会报错；
 
 ```html
 <template>
@@ -103,7 +105,7 @@ export const option = {
 </template>
 
 <script>
-// 安装echarts后，直接引入
+// 安装 echarts 后，直接引入库
 import echarts from 'echarts'
 import { option } from './cakechart'
 
