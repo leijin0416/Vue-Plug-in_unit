@@ -26,7 +26,11 @@
 
 `npm install --s v-viewer`
 
-# 6> vue-video-player 视频播放
+# 6> vue-echarts 百度图表数据可视化
+
+`npm install --s echarts`
+
+# vue-video-player 视频播放
 
 `npm install --s vue-video-player`
 

@@ -88,7 +88,7 @@ export const option = {
 
 `问题： 1、遇到如何解决 echart 宽高自适应的问题？`
 
-解决方案：在 created() 挂载DOM前拿到父节点（echartBox）的宽度，因为还没挂载DOM，此时拿到宽度（offsetWidth）浏览器会报错，所以利用 setTimeout() 延迟去拿宽度，这样浏览器不会报错
+解决方案：在 created() `【数据data已经初始化完成，方法也已经可以调用，但是DOM未渲染。】` 在挂载DOM前拿到父节点（echartBox）的宽度，因为还没挂载DOM，此时拿到宽度（offsetWidth）浏览器会报错，所以利用 setTimeout() 延迟去拿宽度，这样浏览器不会报错
 
 ```html
 <template>
