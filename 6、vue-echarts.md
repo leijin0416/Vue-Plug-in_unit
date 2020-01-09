@@ -88,7 +88,7 @@ export const option = {
 
 - 引入 `cakechart.js` 文件，并在 created() 挂载时加载 fetchData() 数据，防止刷新页面会丢失数据的情况；
 
-`问题： 1、遇到如何解决 echart 宽高自适应的问题？`
+### `问题： 1、遇到如何解决 echart 宽高自适应的问题？`
 
 **解决方案：**  `-【指的是数据 data 已经初始化完成，方法也已经可以调用，但是 DOM未渲染。】`created()- 在挂载DOM前拿到父节点（echartBox）的宽度，因为还没挂载DOM，此时拿到宽度（offsetWidth）浏览器会报错，所以利用 setTimeout() 延迟去拿宽度，这样浏览器不会报错；
 
