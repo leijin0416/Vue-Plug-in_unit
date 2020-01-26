@@ -1,8 +1,9 @@
+
+[官方实例地址](https://www.echartsjs.com/examples/zh/index.html#chart-type-pie)
+
 # 1> 安装 
 
 `npm install --s echarts`
-
-[官方实例地址](https://www.echartsjs.com/examples/zh/index.html#chart-type-pie)
 
 # 2> 组件局部引入
 
@@ -97,6 +98,8 @@ export const option = {
 
 - **解决方案：**  `-【指的是数据 data 已经初始化完成，方法也已经可以调用，但是 DOM未渲染。】` created()- 在挂载DOM前拿到父节点（echartBox）的宽度，因为还没挂载DOM，此时拿到宽度（offsetWidth）浏览器会报错，所以利用 setTimeout() 延迟去拿宽度，这样浏览器不会报错；
 
+---
+
 - 代码：
 
 ```html
@@ -135,15 +138,15 @@ export default {
     },
     watch: {
         "echartWidth": {
-			handler: function(newer, older) {
-				if (newer == null) {
-					return
-				} else {
+            handler: function(newer, older) {
+                if (newer == null) {
+                    return
+                } else {
                     let that = this
                     console.log(newer);
-				}
-			},
-	　　　　deep: true
+                }
+            },
+        　　　　deep: true
         }
     },
     // 挂载图表函数
