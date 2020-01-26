@@ -13,7 +13,7 @@ import echarts from 'echarts'
 
 # 3> 组件使用方法
 
-- **1、新建JS，引用echarts中具体的实例;**
+- **1、新建JS，引用 echarts官网 中具体的实例;**
 
 ```js
 // cakechart.js 饼状图
@@ -86,7 +86,11 @@ export const option = {
 
 - **2、在组件模板中引入JS，并将其挂载到页面上;**
 
-- 引入 `cakechart.js` 文件，并在 created() 挂载时加载 fetchData() 数据，防止刷新页面会丢失数据的情况；
+- 1、首先引入 `cakechart.js` 文件
+
+- 2、created() 挂载时加载 fetchData() 数据，防止刷新页面会丢失数据的情况
+
+- 3、通过 fetchData() 在拿到后台数据后，执行 initChart() 设置处理在刷新时表格的宽度问题
 
 ### `问题： 1、遇到如何解决 echart 宽高自适应的问题？`
 
@@ -120,17 +124,31 @@ export default {
         }
     },
     created() {
-        this.fetchData()
+        let that = this
+        that.fetchData()
         setTimeout(() => {
             let chartBox = document.getElementById('echartBox')
-            this.echartWidth = chartBox.offsetWidth
+            that.echartWidth = chartBox.offsetWidth
             console.log(chartBox.offsetWidth);  // 1920
         }, 300)
+    },
+    watch: {
+        "echartWidth": {
+			handler: function(newer, older) {
+				if (newer == null) {
+					return
+				} else {
+                    let that = this
+                    console.log(newer);
+				}
+			},
+	　　　　deep: true
+        }
     },
     // 挂载图表函数
     mounted() {
         let that = this
-        that.initChart()
+        // that.initChart()
     },
     methods: {
         fetchData() {
@@ -148,6 +166,8 @@ export default {
             }
             this.option.series[0].data = this.chart.lastday
             this.option.series[1].data = this.chart.lastdays
+            // 获取到数据后再进行渲染，DOM挂载数据
+            that.initChart()
         },
         initChart() {
             let that = this
