@@ -16,7 +16,8 @@ import echarts from 'echarts'
 - **1、新建JS，引用 echarts官网 中具体的实例;**
 
 ```js
-// cakechart.js 饼状图
+/**  新建 cakechart.js 饼状图
+ */
 export const option = {
     // 标题
     title: {
