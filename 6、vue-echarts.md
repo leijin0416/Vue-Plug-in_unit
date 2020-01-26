@@ -146,7 +146,7 @@ export default {
                     console.log(newer);
                 }
             },
-        　　　　deep: true
+        　　deep: true
         }
     },
     // 挂载图表函数
@@ -154,25 +154,33 @@ export default {
         let that = this
         // that.initChart()
     },
+    // 方法
     methods: {
+        /**
+         *  拿后台数据
+         */
         fetchData() {
-            this.chart = {
+            let that = this
+            that.chart = {
                 lastday: [
                     { value: 10, name: '平台用户总人数' },
                     { value: 5, name: '本月新增用户' },
                     { value: 15, name: '今日新增用户' }
                 ],
-                lastdays: [
+                lastdayData: [
                     { value: 10, name: '养分出售总额' },
                     { value: 5, name: '养分回收爱心值' },
                     { value: 15, name: '正使用养分总额' }
                 ]
             }
-            this.option.series[0].data = this.chart.lastday
-            this.option.series[1].data = this.chart.lastdays
+            that.option.series[0].data = that.chart.lastday
+            that.option.series[1].data = that.chart.lastdayData
             // 获取到数据后再进行渲染，DOM挂载数据
             that.initChart()
         },
+        /**
+         *  动态设置宽度
+         */
         initChart() {
             let that = this
             // 需要缓存 width
