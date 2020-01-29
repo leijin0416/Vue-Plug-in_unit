@@ -30,6 +30,10 @@
 
 `npm install --s echarts`
 
+# 7> vue-Excel 导出Excel功能
+
+`npm install -S file-saver xlsx`
+
 # vue-video-player 视频播放
 
 `npm install --s vue-video-player`
