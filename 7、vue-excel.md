@@ -19,11 +19,17 @@ import Export2Excel from './excel/Export2Excel.js'
 # 3> 组件使用
 
 ```html
-<Button type="primary" @click="onExportExcel" icon="md-person-add" style="margin-left: 15px" class="" :loading="loading" > 导出用户</Button>
+<Button type="primary" 
+    @click="onExportExcel" 
+    icon="md-person-add" 
+    style="margin-left: 15px" 
+    class="" 
+    :loading="loading" > 导出用户</Button>
 
 <script>
     data() {
         return {
+            loading: false,
             tableData: [
                 { index: "0", nickName: "我的随笔", name: "小明" },
                 { index: "1", nickName: "我的评论", name: "小红" },
