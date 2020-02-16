@@ -1,16 +1,14 @@
-下载地址： 百度网盘 181
-
 # 1> 安装 
 
 `npm install -S file-saver xlsx（这里其实安装了2个依赖）`
 
 `npm install -D script-loader`
 
-# 2> main.js 全局引入
+# 2> main.js 全局引入 excel
 
 ```js
 /**
- *  需要引入 excel 文件夹
+ *  新建 excel 文件夹，并在 main.js 中引入
  */
 
 import Blob from './excel/Blob.js'
@@ -38,30 +36,25 @@ import Export2Excel from './excel/Export2Excel.js'
     // 方法集合
     methods: {
         /**
-         *  excel 导出
+         *  【 excel 导出 】
+         *  - 1、require() -引入 JS
+         *  - 2、tHeader -excel表格文件标题
+         *  - 2.1、tHeader -设置Excel的表格第一行的标题数据参数属性
+         *  - 3、list -拿到后台数据 tableData
+         *  - 4、export_json_to_excel -导出
          */
         onExportExcel () {
             require.ensure([], () => {
-                /**
-                *  1、require() -引入 JS
-                */
+                // 1
                 const { export_json_to_excel } = require("@/excel/Export2Excel.js");
-                /**
-                *  2、tHeader -excel表格文件标题
-                */
+                // 2
                 const tHeader = ["序号", "姓名", "手机"];
-                /**
-                *  2.1、tHeader -设置Excel的表格第一行的标题数据参数属性
-                */
+                // 2.1
                 const filterVal = ["index", "nickName", "name"];
-                /**
-                *  3、list -拿到后台数据 tableData
-                */
+                // 3
                 const list = this.tableData; 
                 const data = this.formatJson(filterVal, list);
-                /**
-                *  4、export_json_to_excel -导出
-                */
+                // 4
                 export_json_to_excel(tHeader, data, "列表excel");
             });
         },
@@ -76,5 +69,7 @@ import Export2Excel from './excel/Export2Excel.js'
 # 4> 效果图
 
 ![excel.jpg](https://upload-images.jianshu.io/upload_images/15813774-7d154578b42271c4.png?imageMogr2/auto-orient/strip|imageView2/2/w/483/format/webp)
+
+下载地址： 百度网盘 181
 
 [参考文档](https://www.jianshu.com/p/73105a06951e)
