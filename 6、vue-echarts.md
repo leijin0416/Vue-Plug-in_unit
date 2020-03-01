@@ -48,6 +48,9 @@ export const option = {
         top: 'bottom',
         data: ['平台用户总人数', '本月新增用户', '今日新增用户', '养分出售总额', '养分回收爱心值', '正使用养分总额']
     },
+    /**
+     * toolbox -下载按钮   show: true | false
+     */
     toolbox: {
         show: true,
         feature: {
@@ -86,7 +89,7 @@ export const option = {
 }
 ```
 
-- **2、在组件模板中引入JS，并将其挂载到页面上;**
+## 2、在组件模板中引入JS，并将其挂载到页面上
 
 - 1、首先引入 `cakechart.js` 文件
 
@@ -100,9 +103,9 @@ export const option = {
 
 ---
 
-- 代码：
+### 代码：
 
-```html
+```vue
 <template>
     <Row>
         <Col span="24">
@@ -175,11 +178,13 @@ export default {
             }
             that.option.series[0].data = that.chart.lastday
             that.option.series[1].data = that.chart.lastdayData
-            // 获取到数据后再进行渲染，DOM挂载数据
+            /**
+            *  获取到数据后再进行渲染，DOM挂载数据
+            */
             that.initChart()
         },
         /**
-         *  动态设置宽度
+         *  可以动态设置宽度
          */
         initChart() {
             let that = this
@@ -191,24 +196,11 @@ export default {
             } else {
                 myChartsize.style.width = that.echartWidth + 'px'
             }
-
-            // 将chart初始化的实例绑定到一个DOM
+            /**
+            *  挂载 -将chart初始化的实例绑定到一个DOM
+            */
             this.chart = echarts.init(document.getElementById('gamechart'))
             this.chart.setOption(this.option)
-        },
-        // 参数container为图表盒子节点, charts为图表节点 
-        chartssize (container,charts) {
-            function getStyle(el, name) {　　
-                if (window.getComputedStyle) {　　　
-                    return window.getComputedStyle(el, null);　　
-                } else {　　　
-                    return el.currentStyle;　　
-                }　
-            }
-            var wi = getStyle(container, 'width').width;
-            var hi = getStyle(container, 'height').height;
-            charts.style.width = wi
-            // charts.style.height = hi
         }
     }
 }
