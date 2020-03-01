@@ -18,7 +18,7 @@ import { getStore } from '@/common/localUtil'
  *  中英文切换
  */
 const i18n = new VueI18n({
-    locale: getStore('localeCut') || 'zh-CN',    // 语言标识
+    locale: getStore('localeCut') || 'zh-CN',    // 语言标识 
     messages
 })
 
