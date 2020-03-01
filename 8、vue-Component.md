@@ -93,13 +93,15 @@ import global from './components/globalComponent'
 const getComponentMin = (name, component) => () =>
     import(`@/views/${name}/${component}.vue`)
 
-export default {
-    path:'/login',
-    name:'Login',
-    meta: { title: '绿色星球' },
-    component: getComponentMin('logins', 'login'),// 懒加载式引入，当跳转到时才进行引入chunk
-    children: [...]
-}
+export default [
+    {
+        path:'/login',
+        name:'Login',
+        meta: { title: '绿色星球' },
+        component: getComponentMin('logins', 'login'),// 懒加载式引入，当跳转到时才进行引入chunk
+        children: [...]
+    }
+]
 ```
 
 ### 2、总路由管理文件 index.js
@@ -133,3 +135,5 @@ const router = new VueRouter({
 
 export default router
 ```
+
+webpack是根据你文件夹中文件的位置排序的，可以给每个文件夹最上层的路由添加一个sort属性用于排序
