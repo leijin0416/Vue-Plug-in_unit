@@ -1,6 +1,6 @@
 # require.context
 
-一个 webpack 的api，通过执行require.context函数获取一个特定的上下文，**主要用来实现自动化导入模块**。
+一个 webpack 的api，通过执行 `require.context` 函数获取一个特定的上下文，**主要用来实现自动化导入模块**。
 
 官网介绍：https://www.html.cn/doc/webpack2/guides/dependency-management/
 
