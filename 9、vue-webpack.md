@@ -165,7 +165,7 @@ module.exports = {
     },
     // webpack的css的一些loader
     css: {
-		extract: true, //是否使用css分离插件
+        extract: true, //是否使用css分离插件
         loaderOptions: {
             // 支持的 loader:css-loader,postcss-loader,sass-loader,less-loader,stylus-loader
             sass: {
