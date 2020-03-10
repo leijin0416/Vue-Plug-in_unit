@@ -118,8 +118,8 @@ module.exports = {
     chainWebpack: (config) => {
         config.resolve.alias
             .set('@', resolve('src'))
-            .set('assets', resolve('src/assets/img'))
-            .set('components', resolve('src/components'))
+            .set('aset', resolve('src/assets/img'))
+            .set('cpts', resolve('src/components'))
 
         if (process.env.NODE_ENV === 'production') {
             return {
