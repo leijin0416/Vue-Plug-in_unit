@@ -1,5 +1,7 @@
 # webpack
 
+> webpack 会自动地递归解析入口所需要加载的所有资源文件，是一个现代 javascript 应用程序的静态模块打包器，专注构建模块化项目。在 webpack 里一切文件皆模块。这样的好处是可以清楚的了解各模块之间的依赖关系，以便 webpack 进行组合与打包。在打包的过程中：通过 loader 使得 webpack 有能力调用外部的脚本或工具，实现对不同格式的文件的处理，然后再通过 plugins 进行功能的扩展，比如压缩文件、分割文件的处理等，然后进行打包。
+
 （1）、调整webpack配置最简单的方式就是`在vue.config.js中的 configureWebpack 选项提供一个对象`。该对象将会被webpack-merge合并如最终的webpack配置。在configureWebpack里可以配置webpack的loader和plugins等
 
 （2）、Vue CLI 内部的 webpack 配置是通过` webpack-chain `维护的。这个库提供了一个 webpack 原始配置的上层抽象，使其可以定义具名的 loader 规则和具名插件，并有机会在后期进入这些规则并对它们的选项进行修改。
@@ -59,6 +61,14 @@ BundleAnalyzerPlugin 是分析 Webpack 生成的包体组成并且以可视化�
 
 - `校验测试：`mocha-loader、jshint-loader 、eslint-loader等
 
+## CND 优化加速
+
+参考： 
+
+（1）、https://juejin.im/post/5ddc8a6be51d4523275838db#heading-9
+
+（2）、https://segmentfault.com/a/1190000016178566?utm_source=tag-newest
+
 --- 
 
 ```js
@@ -72,16 +82,6 @@ function resolve(dir) {
     return path.join(__dirname, dir)
 }
 
-const isDevBD = {
-    '/api': {
-        target: 'http://192.168.1.131:6100',
-        changeOrigin: true,
-        wx: true,
-        pathRewrite: {
-            "^/api": "/"
-        }
-    }
-}
 const isDevCS = {
     '/api': {
         target: 'http://114.****.165.42:6100',
@@ -163,11 +163,15 @@ module.exports = {
             config.mode = "development";
         }
     },
-    // webpack的css的一些loader
+    /**
+     *  webpack的css的一些loader
+     *  支持的 loader:css-loader,postcss-loader,sass-loader,less-loader,stylus-loader
+     */
     css: {
-        extract: true, //是否使用css分离插件
+        extract: false, //是否使用css分离插件
+        modules: false,
+        sourceMap: process.env.NODE_ENV === "production" ? false : true,
         loaderOptions: {
-            // 支持的 loader:css-loader,postcss-loader,sass-loader,less-loader,stylus-loader
             sass: {
                 data: `
                 @import "@/style/mixin.scss";
