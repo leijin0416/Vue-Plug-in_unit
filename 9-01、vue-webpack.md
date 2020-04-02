@@ -1,6 +1,6 @@
 # webpack
 
-> webpack 会自动地递归解析入口所需要加载的所有资源文件，是一个现代 javascript 应用程序的静态模块打包器，专注构建模块化项目。在 webpack 里一切文件皆模块。这样的好处是可以清楚的了解各模块之间的依赖关系，以便 webpack 进行组合与打包。在打包的过程中：通过 loader 使得 webpack 有能力调用外部的脚本或工具，实现对不同格式的文件的处理，然后再通过 plugins 进行功能的扩展，比如压缩文件、分割文件的处理等，然后进行打包。
+> webpack 会**自动递归解析**入口所需要加载的所有资源文件，是一个现代 javascript 应用程序的静态模块打包器，专注构建模块化项目。在 webpack 里一切文件皆模块。这样的好处是可以清楚的了解各模块之间的依赖关系，以便 webpack 进行组合与打包。在打包的过程中：通过 loader 使得 webpack 有能力调用外部的脚本或工具，实现对不同格式的文件的处理，然后再通过 plugins 进行功能的扩展，比如压缩文件、分割文件的处理等，然后进行打包。
 
 （1）、调整webpack配置最简单的方式就是`在vue.config.js中的 configureWebpack 选项提供一个对象`。该对象将会被webpack-merge合并如最终的webpack配置。在configureWebpack里可以配置webpack的loader和plugins等
 
