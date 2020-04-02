@@ -1,5 +1,7 @@
 # vue-video-player
 
+Props
+
 | 属性 | 描述 |
 | ------ | ------ |
 | autoplay | 如果true,浏览器准备好时开始回放。 |
@@ -14,7 +16,20 @@
 | notSupportedMessage |  允许覆盖Video.js无法播放媒体源时显示的默认信息。 |
 | controlBar.fullscreenToggle | 全屏按钮 |
 
+Method
+
+| 方法 | 描述 |
+| ------ | ------ |
+| play | 播放视频。 |
+| pause | 暂停视频。 |
+| replay | 重播视频。 |
+| seek | 跳转到某个时刻进行播放，time的单位为秒。 |
+| getCurrentTime | 获取当前的播放时刻，返回的单位为秒。 |
+| getDuration | 获取视频总时长，返回的单位为秒。 |
+| getVolume | 获取当前的音量，返回值为0-1的实数ios和部分android会失效。 |
+
 文档：https://github.com/surmon-china/vue-video-player
+踩坑：https://segmentfault.com/a/1190000019623347
 
 ## 1、下载
 
