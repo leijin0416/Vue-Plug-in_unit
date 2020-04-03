@@ -15,8 +15,9 @@ npm install vue-amap --save
 ### 3、在 main.js 文件中引入并配置 vue-amap
 
 ```js
-import VueAMap from 'vue-amap';
-Vue.use(VueAMap);
+import VueAMap from 'vue-amap'
+
+Vue.use(VueAMap)
 VueAMap.initAMapApiLoader({
     key:"高德平台申请的key",
     plugin:['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],   //插件

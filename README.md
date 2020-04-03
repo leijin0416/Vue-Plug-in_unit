@@ -4,7 +4,7 @@
 
 ## 1> 超实用 mavonEditor 富文本
 
-[管方 Git 地址](https://github.com/hinesboy/mavonEditor)
+[文档Git地址](https://github.com/hinesboy/mavonEditor)
 
 ![mavonEditor](http://120.79.222.255/icon-mavonEditor.png)
 
