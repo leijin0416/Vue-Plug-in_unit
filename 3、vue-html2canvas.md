@@ -1,18 +1,18 @@
-# 1> 安装 
+## 1> 安装 
 
 ```php
 npm install html2canvas --save
-// 二维码
-npm install qrcanvas --save 
+
+npm install qrcanvas --save     // 二维码
 ```
 
-# 2> 新建qrCanvasUrl组件，供调用
+## 2> 新建qrCanvasUrl组件，供调用
 
 ### 思路：
 
-- 1、template 模板分为两个部分。一个是要展示的素材画面（负极 z-index: -1），一个是用户需要保存的canvas页面（主级 z-index: 999）
+- 1、template 模板分为两个部分。一个是要展示的背景盒子的素材画面（负极 z-index: -1），一个是用户需要保存的canvas 海报盒子（主级 z-index: 999）；
 
-- 2、利用 `document.documentElement.clientHeight` 来动态获取不同手机的分辨率
+- 2、利用 `document.documentElement.clientHeight` 来动态获取不同手机的分辨率；
 
 ### 问题：
 
@@ -40,7 +40,7 @@ html2canvas(document.querySelector('.demo'), { canvas: newCanvas }).then(functio
 }
 ```
 
-# 代码
+## 代码
 
 ```vue
 <template>
