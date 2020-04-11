@@ -1,24 +1,24 @@
 # 1> 安装 
 
-```js
+```php
 npm install html2canvas --save
 // 二维码
 npm install qrcanvas --save 
 ```
 
-# 2> 生成模板组件，供调用
+# 2> 新建qrCanvasUrl组件，供调用
 
 ### 思路：
 
-- **1、**template 模板分为两个部分。一个是要展示的素材画面（负极 z-index: -1），一个是用户需要保存的canvas页面（主级 z-index: 999）
+- 1、template 模板分为两个部分。一个是要展示的素材画面（负极 z-index: -1），一个是用户需要保存的canvas页面（主级 z-index: 999）
 
-- **2、**利用 `document.documentElement.clientHeight` 来动态获取不同手机的分辨率
+- 2、利用 `document.documentElement.clientHeight` 来动态获取不同手机的分辨率
 
 ### 问题：
 
-- **1、**不同手机高度：在ios和安卓机型上，不同分辨率下海报显示的高度会不一，需要样式调整;
+- 1、不同手机高度：在ios和安卓机型上，不同分辨率下海报显示的高度会不一，需要样式调整（上思路2可解决）;
 
-由于 canvas 的原因，移动端生成出来的图片比较模糊的问题
+- 2、由于 canvas 的原因，移动端生成出来的图片比较模糊的问题；
 
 ```js
 // 根据需要设置 scaleSize 大小
@@ -31,6 +31,7 @@ newCanvas.width = width * scaleSize;
 newCanvas.height = widthh * scaleSize;
 newCanvas.style.width = width + "px";
 newCanvas.style.height =width + "px";
+
 const context = newCanvas.getContext("2d");
 context.scale(scaleSize, scaleSize);
 html2canvas(document.querySelector('.demo'), { canvas: newCanvas }).then(function(canvas) {
@@ -45,12 +46,13 @@ html2canvas(document.querySelector('.demo'), { canvas: newCanvas }).then(functio
 <template>
     <div class="v-share">
         <p class="v-tips-top">{{$t('homePage_071')}}</p>
-        <!-- 背景盒子 -->
+        <!-- 背景盒子 -动态高度 -->
         <div ref="box" 
             class="v-share-box" 
-            :style="{height:fullHeight + 'px', backgroundImage: 'url(' + img + ')'}">
+            :style="{height: fullHeight + 'px', backgroundImage: 'url(' + img + ')'}">
             <div class="v-row">
                 <div class="i-qrcode">
+                    <!-- 二维码 -->
                     <div id="qrcode"></div>
                 </div>
                 <p class="v-text">{{$t('homePage_072')}} {{title}}</p>
@@ -119,7 +121,7 @@ export default {
         }  
     },
 	//生命周期 - 创建完成（可以访问当前this实例）
-	created: async function() {
+    created: async function() {
         let that = this
         let localeCut = getStore('localeCut')
         // 语言
