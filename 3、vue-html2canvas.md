@@ -82,35 +82,35 @@ import { mapState, mapMutations, mapActions, mapGetters } from "vuex"
 import { getStore } from '@/common/localUtil'
 
 export default {
-	components: {
-	},
-	data() {
-		return {
+    components: {
+    },
+    data() {
+        return {
             qrCodeUrl: 'https://youzan.github.io/vant/#/zh-CN/list',
             img: require('@/assets/img/hk/i-logo.png')
-		}
+        }
     },
     computed: {
-		//取
-		...mapGetters("localUser", ["developCode"])
+        //取
+        ...mapGetters("localUser", ["developCode"])
     },
     watch: {
     },
-	//生命周期 - 创建完成
-	created () {
+    //生命周期 - 创建完成
+    created () {
         let _that = this
-	},
-	//页面初始化
-	mounted(){
+    },
+    //页面初始化
+    mounted(){
         let _that = this
         _that.onQrCodeUrl()
-	},
-	methods: {
-		//传
+    },
+    methods: {
+        //传
         ...mapMutations("localUser", ['handleQrCodeUrl']),
         /**
-         *  复制链接
-         */
+            *  复制链接
+            */
         clipBoardClcik(){
             let that = this
             let clipboard = new Clipboard('.ctrlBtn');
@@ -130,7 +130,7 @@ export default {
                 clipboard.destroy()
             });
         },
-	}
+    }
 	
 }
 </script>
