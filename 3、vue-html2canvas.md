@@ -1,4 +1,4 @@
-## 1> 安装 
+## 1> 下载安装npm
 
 ```php
 npm install html2canvas --save
@@ -38,6 +38,106 @@ html2canvas(document.querySelector('.demo'), { canvas: newCanvas }).then(functio
     // 简单的通过超链接设置下载功能
     document.querySelector(".btn").setAttribute('href', canvas.toDataURL());
 }
+```
+
+## 3> 处理按钮复制功能
+
+1、下载安装npm
+
+```js
+npm install clipboard --save
+
+```
+
+2、div中操作
+
+```vue
+<template>
+    <div class="v-page">
+        <div class="weui-flex">
+            <div class="weui-cell-bd">
+                <p>{{$t('homePage_068')}}</p>
+                <!-- 复制的内容 -->
+                <p>{{qrCodeUrl}}</p>
+            </div>
+            <div class="weui-cell-ft">
+                <!-- 按钮复制 -->
+                <van-button 
+                    :data-clipboard-text="qrCodeUrl"
+                    @click="clipBoardClcik" 
+                    type="default" 
+                    size="small" 
+                    class="v-backgcolor ctrlBtn" >{{$t('homePage_069')}}</van-button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import md5 from 'js-md5'
+import Clipboard from "clipboard"
+
+import { regExpZF, regExpEM, regExpPhone, regExpZS} from '@/filters/regExps'
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex"
+import { getStore } from '@/common/localUtil'
+
+export default {
+	components: {
+	},
+	data() {
+		return {
+            qrCodeUrl: 'https://youzan.github.io/vant/#/zh-CN/list',
+            img: require('@/assets/img/hk/i-logo.png')
+		}
+    },
+    computed: {
+		//取
+		...mapGetters("localUser", ["developCode"])
+    },
+    watch: {
+    },
+	//生命周期 - 创建完成
+	created () {
+        let _that = this
+	},
+	//页面初始化
+	mounted(){
+        let _that = this
+        _that.onQrCodeUrl()
+	},
+	methods: {
+		//传
+        ...mapMutations("localUser", ['handleQrCodeUrl']),
+        /**
+         *  复制链接
+         */
+        clipBoardClcik(){
+            let that = this
+            let clipboard = new Clipboard('.ctrlBtn');
+            clipboard.on('success', function(e) {
+                that.$toast({
+                    duration: 2000, 
+                    message: '复制成功'
+                });
+                e.clearSelection();
+                // 释放内存  
+                clipboard.destroy()  
+            });
+            // 失败回调
+            clipboard.on('error', function(e) {
+                console.log('error');
+                // 释放内存  
+                clipboard.destroy()
+            });
+        },
+	}
+	
+}
+</script>
+
+<style lang="scss" scoped>
+</style>
+
 ```
 
 ## 代码
