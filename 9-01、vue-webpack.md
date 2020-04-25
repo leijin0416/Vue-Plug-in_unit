@@ -61,31 +61,33 @@ BundleAnalyzerPlugin 是分析 Webpack 生成的包体组成并且以可视化�
 
 - `校验测试：`mocha-loader、jshint-loader 、eslint-loader等
 
-## CND 优化加速
+### CND 优化加速
 
-参考： 
+参考：
 
 （1）、https://juejin.im/post/5ddc8a6be51d4523275838db#heading-9
 
 （2）、https://segmentfault.com/a/1190000016178566?utm_source=tag-newest
 
---- 
+---
+
+### 构建：
 
 ```js
 const path = require('path')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-// 开启压缩gzip
-const CompressionPlugin = require("compression-webpack-plugin")
+const CompressionPlugin = require("compression-webpack-plugin")  // 开启压缩gzip
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-function resolve(dir) {
-    return path.join(__dirname, dir)
-}
+function resolve(dir) { return path.join(__dirname, dir)}
+
+const isDev = process.env.NODE_ENV;  //当前的环境
+const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
 
 const isDevCS = {
     '/api': {
         target: 'http://114.****.165.42:6100',
-        changeOrigin: true,
+        changeOrigin: isDev === 'development' ? true : false,
         wx: true,
         pathRewrite: {
             "^/api": "/"
@@ -96,7 +98,7 @@ const isDevCS = {
 const isDevXQ = {
     '/api': {
         target: 'http://39.****.227.64:6100',
-        changeOrigin: true,
+        changeOrigin: isDev === 'development' ? true : false,
         wx: true,
         pathRewrite: {
             "^/api": "/"
@@ -114,32 +116,33 @@ module.exports = {
         proxy: isDevCS
     },
     transpileDependencies: [],
-    // 链式操作：允许对内部的webpack配置进行更细粒度的修改
+    /*
+     * 链式操作：
+     * - 允许对内部的webpack配置进行更细粒度的修改
+     */
     chainWebpack: (config) => {
         config.resolve.alias
             .set('@', resolve('src'))
             .set('aset', resolve('src/assets/img'))
             .set('cpts', resolve('src/components'))
 
-        if (process.env.NODE_ENV === 'production') {
+        if (isDev === 'production') {
             return {
                 plugins: [
-                    // 压缩代码
-                    new CompressionPlugin({
-                        algorithm: 'gzip',
-                        test: /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i,    // 匹配文件名
-                        threshold: 10240,                // 对超过10k的数据压缩
-                        minRatio: 0.8,
-                        deleteOriginalAssets: false     // true 不删除源文件 false 删除源文件
-                    })
-                ],
+                    // 移除 prefetch 插件
+                    config.plugins.delete('prefetch')
+                    // 移除 preload 插件
+                    config.plugins.delete('preload');
+                ]
             }
         }
     },
-    // 简单配置 loader和plugins
+    /*
+     * 简单配置 loader和plugins
+     * - 生产环境打包分析体积
+     */
     configureWebpack: config => {
-        if (process.env.NODE_ENV === 'production') {
-            // 生产环境打包分析体积
+        if (isDev === 'production') {
             config.mode = "production";
             config.plugins.push(
                 new UglifyJsPlugin({
@@ -147,7 +150,7 @@ module.exports = {
                     uglifyOptions: {
                         compress: {
                             drop_debugger: true,
-                            drop_console: true,  //生产环境自动删除console
+                            drop_console: true,
                             pure_funcs: ['console.log']
                         },
                         warnings: false,
@@ -155,9 +158,18 @@ module.exports = {
                     sourceMap: false,
                     parallel: true, // 多进程并行来提高构建速度
                 }),
-                // 压缩提示
+                // 压缩代码
+                new CompressionPlugin({
+                    algorithm: 'gzip',
+                    filename: '[path].gz[query]',
+                    test: productionGzipExtensions,
+                    threshold: 10240,
+                    minRatio: 0.8,
+                    deleteOriginalAssets: false   // 是否删除源文件
+                }),
+                // 压缩分析提示
                 new BundleAnalyzerPlugin()
-            );
+            )
         } else {
             // 为开发环境修改配置...
             config.mode = "development";
@@ -165,7 +177,8 @@ module.exports = {
     },
     /**
      *  webpack的css的一些loader
-     *  支持的 loader:css-loader,postcss-loader,sass-loader,less-loader,stylus-loader
+     *  - 支持的 loader:
+     *  css-loader, postcss-loader, sass-loader, less-loader, stylus-loader
      */
     css: {
         extract: false, //是否使用css分离插件
@@ -183,7 +196,7 @@ module.exports = {
             }
         }
     },
-	// 第三方插件的选项
+    // 第三方插件的选项
     pluginOptions: {}
 };
 

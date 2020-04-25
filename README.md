@@ -34,7 +34,6 @@
 
 `npm install -S file-saver xlsx`
 
-## 8> webpack -require.context() 路由分区
+## 8> vue-video-player 视频播放
 
-## 10> vue-video-player 视频播放
-
+## 9> webpack -require.context() 路由分区
