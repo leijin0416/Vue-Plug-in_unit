@@ -85,7 +85,7 @@ Vue.use(VueWechatTitle); //title
 
 ---
 
-### 第2种：
+## 第2种：
 
 externals 即为 webpack 所依赖的外部资源声明，键名为 webpack 给外部资源所定义的内部别名 alias，键值为外部资源所 export 暴露到全局的对象名称；
 
@@ -166,11 +166,11 @@ module.exports = {
 
 ---
 
-### main.js
+### （2）、main.js
 
 - 需要屏蔽掉相关的 **“ import 引用 ”**；
 
-- ui 可以单独保留引用样式 css，然后在html中可以只引用js文件；
+- ui 可以单独保留引用样式 css，然后在 index.html 中可以只引用 js 文件了；
 
 ```js
 import Vue from 'vue'
@@ -197,11 +197,12 @@ require('video.js/dist/video-js.css');
 require('vue-video-player/src/custom-theme.css');
 Vue.use(VideoPlayer);
 
-Vue.use(VueWechatTitle);
-Vue.use(DrawerLayout);
 //Vue.use(iView);
 //Vue.use(animated);
 //Vue.prototype.$video = Video;
+
+Vue.use(VueWechatTitle);
+Vue.use(DrawerLayout);
 
 Vue.config.productionTip = false;
 
@@ -222,7 +223,7 @@ new Vue({
 
 ---
 
-### index.html，引入 cdn 文件
+### （3）、index.html，引入 cdn 文件
 
 ```html
 <!DOCTYPE html>
