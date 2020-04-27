@@ -18,7 +18,7 @@
 
 - gzipped：这是通过gzip压缩运行解析的包/模块的大小。
 
-### 2、开启压缩gzip
+## 2、开启压缩gzip
 
 ```js
 npm install -D compression-webpack-plugin
@@ -27,7 +27,7 @@ npm install -D compression-webpack-plugin
 const CompressionPlugin = require("compression-webpack-plugin")
 ```
 
-### 3、代码优化 uglifyjs-webpack-plugin 压缩
+## 3、代码优化 uglifyjs-webpack-plugin 压缩
 
 减少打包体积
 
@@ -37,21 +37,21 @@ npm install -D uglifyjs-webpack-plugin
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 ```
 
-### 4、externals 配置选项
+## 4、externals 配置选项
 
 将指定的内容排除在构建的vendor中，但是，指定的内容需要出现在用户环境中。
 
-### 5、Dllplugin & DllReferencePlugin 分包插件,提取公共库
+## 5、Dllplugin & DllReferencePlugin 分包插件,提取公共库
 
 预编译资源模块，加快打包速度
 
 https://blog.csdn.net/qq_15253407/article/details/90077207
 
-### 6、webpack-bundle-analyzer
+## 6、webpack-bundle-analyzer
 
 BundleAnalyzerPlugin 是分析 Webpack 生成的包体组成并且以可视化的方式反馈给开发者的插件
 
-### 7、webpack常用的loader
+## 7、webpack常用的loader
 
 - `样式：`style-loader、css-loader、less-loader、sass-loader等
 
@@ -61,13 +61,50 @@ BundleAnalyzerPlugin 是分析 Webpack 生成的包体组成并且以可视化�
 
 - `校验测试：`mocha-loader、jshint-loader 、eslint-loader等
 
-### CND 优化加速
+## 9、CND 优化加速 [【CDN案例】](https://github.com/leijin0416/Vue-Plug-in_unit/blob/master/9-01%E3%80%81webpack-CDN.md)
 
 参考：
 
 （1）、https://juejin.im/post/5ddc8a6be51d4523275838db#heading-9
 
 （2）、https://segmentfault.com/a/1190000016178566?utm_source=tag-newest
+
+## 10、ParallelUglifyPlugin优化压缩
+
+arallelUglifyPlugin 插件则会开启多个子进程，把对多个文件压缩的工作分别给多个子进程去完成，但是每个子进程还是通过UglifyJS去压缩代码。无非就是变成了并行处理该压缩了，并行处理多个子任务，效率会更加的提高。
+
+[blogs 参考文档](https://www.cnblogs.com/tugenhua0707/p/9569762.html)
+
+```js
+// 引入 ParallelUglifyPlugin 插件
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+
+{
+    configureWebpack: config => {
+        // 生产环境打包分析体积
+        if (isDev === 'production') {
+            config.plugins.push(
+                new ParallelUglifyPlugin({
+                    uglifyJS: {
+                        output: {
+                            beautify: false,
+                            comments: false
+                        },
+                        warnings: false,
+                        compress: {
+                            reduce_vars: true,
+                            drop_debugger: true,
+                            drop_console: true
+                        }
+                    },
+                    test: /.js$/g,
+                    sourceMap: false // 是否为压缩后的代码生成对应的Source Map
+                })
+            )
+        }
+    },
+}
+```
 
 ---
 

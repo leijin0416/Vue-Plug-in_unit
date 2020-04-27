@@ -187,7 +187,7 @@ import DrawerLayout from 'vue-drawer-layout'
 // import animated from 'animate.css'
 // import iView from 'iview'
 
-import 'iview/dist/styles/iview.css'
+import 'iview/dist/styles/iview.css'  // cdn引入css
 import "./style/reset.scss"
 import "./style/common.scss"
 
@@ -228,34 +228,34 @@ new Vue({
 ```html
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<!-- 启用360浏览器的极速模式(webkit) -->
-		<meta name="renderer" content="webkit">
-		<!-- 避免IE使用兼容模式 -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="MobileOptimized" content="width">
-        <meta name="HandheldFriendly" content="true">
-        <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-        <!-- 使用CDN的CSS文件 -->
-        <% for (var i in htmlWebpackPlugin.options.cdn &&
-                  htmlWebpackPlugin.options.cdn.css) { %>
-            <link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="stylesheet" />
-        <% } %>
-        <!-- 使用CDN的CSS文件 -->
-        <title>Green Planet</title>
-	</head>
-	<body>
-		<div id="app"></div>
-        <!-- built files will be auto injected -->
-        <!-- 使用CDN的JS文件 -->
-        <% for (var i in htmlWebpackPlugin.options.cdn &&
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!-- 使用CDN的CSS文件 -->
+    <% for (var i in htmlWebpackPlugin.options.cdn &&
+        htmlWebpackPlugin.options.cdn.css) { %>
+        <link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="stylesheet" />
+    <% } %>
+    <!-- 使用CDN的CSS文件 -->
+    <title>Green Planet</title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <!-- 使用CDN的JS文件 -->
+    <% for (var i in htmlWebpackPlugin.options.cdn &&
         htmlWebpackPlugin.options.cdn.js) { %>
-            <script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
-        <% } %>
-        <!-- 使用CDN的JS文件 -->
-	</body>
+        <script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
+    <% } %>
+    <!-- 使用CDN的JS文件 -->
+</body>
 </html>
 ```
