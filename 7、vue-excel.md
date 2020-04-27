@@ -6,19 +6,20 @@ npm install -S file-saver xlsx // 这里安装了2个依赖
 npm install -D script-loader
 ```
 
-## 2> main.js 全局引入 excel
+## 2> 构建导出文件 js
 
 ```js
 /**
- *  新建 excel 文件夹，并在 main.js 中引入
+ *  新建 excel 文件夹，置入两个js
  */
 
-import Blob from './excel/Blob.js'
-import Export2Excel from './excel/Export2Excel.js'
+'./excel/Blob.js'
+
+'./excel/Export2Excel.js'
 
 ```
 
-## 3> 组件封装使用
+## 3> 组件封装使用 exportExcels
 
 - 利用 props ，父组件向子组件传递所需要导出相关数据参数
 
