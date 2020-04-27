@@ -69,9 +69,13 @@ BundleAnalyzerPlugin 是分析 Webpack 生成的包体组成并且以可视化�
 
 （2）、https://segmentfault.com/a/1190000016178566?utm_source=tag-newest
 
-## 10、ParallelUglifyPlugin优化压缩
+## 10、ParallelUglifyPlugin优化压缩，加快构建速度
 
-arallelUglifyPlugin 插件则会开启多个子进程，把对多个文件压缩的工作分别给多个子进程去完成，但是每个子进程还是通过UglifyJS去压缩代码。无非就是变成了并行处理该压缩了，并行处理多个子任务，效率会更加的提高。
+ParallelUglifyPlugin 插件则会开启多个子进程，把对多个文件压缩的工作分别给多个子进程去完成，但是每个子进程还是通过UglifyJS去压缩代码。无非就是变成了并行处理该压缩了，并行处理多个子任务，效率会更加的提高。
+
+- 把在 HappyPack 中的多进程并行处理的思想也引入到代码压缩中；
+
+- 使用 ParallelUglifyPlugin 也非常简单，把原来Webpack配置文件中内置的 UglifyJsPlugin 去掉后，再替换成 ParallelUglifyPlugin；
 
 [blogs 参考文档](https://www.cnblogs.com/tugenhua0707/p/9569762.html)
 
@@ -85,9 +89,12 @@ const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
         if (isDev === 'production') {
             config.plugins.push(
                 new ParallelUglifyPlugin({
+                    // 传递给 UglifyJS 的参数
                     uglifyJS: {
                         output: {
+                            // 最紧凑的输出
                             beautify: false,
+                            // 删除所有的注释
                             comments: false
                         },
                         warnings: false,

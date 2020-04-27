@@ -93,7 +93,7 @@ externals 即为 webpack 所依赖的外部资源声明，键名为 webpack 给�
 
 - 比如 cdn 引入的 vue 暴露的是 Vue object，vue-router 暴露的是 VueRouter 对象，vuex 暴露的是 Vuex 对象；
 
-- 在 dev 代码时，import Vue from 'vue' 会优先加载本地模块，**但当我们打包 prod 代码时，webpack 便会提升 externals 的优先级，引用 CDN 资源，而忽略本地安装的模块。**
+- 在 dev 代码时，import Vue from 'vue' 会优先加载本地模块，**但当我们打包 prod 代码时，webpack 便会提升 externals 的优先级，引用 CDN 资源，而忽略本地安装的模块；**
 
 - devNeedCdn -控制本地环境和开发环境时的配载问题；
 
@@ -166,7 +166,7 @@ module.exports = {
 
 ---
 
-### （2）、main.js
+## （2）、main.js 入口
 
 - 需要屏蔽掉相关的 **“ import 引用 ”**；
 
@@ -223,7 +223,7 @@ new Vue({
 
 ---
 
-### （3）、index.html，引入 cdn 文件
+## （3）、index.html，引入 cdn 文件；
 
 ```html
 <!DOCTYPE html>
