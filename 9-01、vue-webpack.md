@@ -77,7 +77,7 @@ ParallelUglifyPlugin 插件则会开启多个子进程，把对多个文件压�
 
 - 使用 ParallelUglifyPlugin 也非常简单，把原来Webpack配置文件中内置的 UglifyJsPlugin 去掉后，再替换成 ParallelUglifyPlugin；
 
-[blogs 参考文档](https://www.cnblogs.com/tugenhua0707/p/9569762.html)
+[构建优化 -ParallelUglifyPlugin](https://www.cnblogs.com/tugenhua0707/p/9569762.html) | [构建优化 -使用 HappyPack](https://www.jianshu.com/p/2487e3c5421e)
 
 ```js
 // 引入 ParallelUglifyPlugin 插件
