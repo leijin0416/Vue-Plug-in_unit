@@ -85,7 +85,7 @@ Vue.use(VueWechatTitle); //title
 
 ---
 
-## 第2种：
+## 第 2 种：
 
 externals 即为 webpack 所依赖的外部资源声明，键名为 webpack 给外部资源所定义的内部别名 alias，键值为外部资源所 export 暴露到全局的对象名称；
 
@@ -105,7 +105,7 @@ const isProduction = process.env.NODE_ENV !== 'development';
  *  本地环境是否需要使用cdn
  *  － 打包时切换成 false
  */
-const devNeedCdn = false;
+const devNeedCdn = isDev === 'production' ? false : true;
 // cdn链接
 const cdn = {
     // cdn：模块名称和模块作用域命名（对应window里面挂载的变量名称）
@@ -173,21 +173,25 @@ module.exports = {
 - ui 可以单独保留引用样式 css，然后在 index.html 中可以只引用 js 文件了；
 
 ```js
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import i18n from './locale'
-import filters from './filters'
-import VueWechatTitle from 'vue-wechat-title'  
-import DrawerLayout from 'vue-drawer-layout'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import i18n from './locale';
+import filters from './filters';
+import VueWechatTitle from 'vue-wechat-title';
+import DrawerLayout from 'vue-drawer-layout';
+
+/**
+ * 需要屏蔽掉其他的引入
+ */
 
 // import Video from 'video.js'
 // import 'video.js/dist/video-js.css'
 // import animated from 'animate.css'
 // import iView from 'iview'
 
-import 'iview/dist/styles/iview.css'  // cdn引入css
+import 'iview/dist/styles/iview.css'  // cdn 需单独引入css
 import "./style/reset.scss"
 import "./style/common.scss"
 
