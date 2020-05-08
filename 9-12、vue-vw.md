@@ -1,7 +1,9 @@
-## 1> 下载安装npm
+## 1> 下载安装npm依赖
 
 ```js
-npm install postcss-import postcss-loader postcss-px-to-viewport --s
+
+npm install postcss-import postcss-loader postcss-px-to-viewport postcss-viewport-units cssnano cssnano-preset-advanced --save-dev
+
 ```
 
 ## 2> 在 vue.config.js 中
@@ -24,20 +26,35 @@ npm install postcss-import postcss-loader postcss-px-to-viewport --s
 | mediaQuery | 是否转换媒体查询中的像素 |
 
 ```js
+/**
+ *  vw 表示当前视口宽度的百分之一。
+ *  设计图以6s为标准，2倍尺寸，宽度750px，而你设置根元素字体大小为 16px，那么计算出的 vw 就是 2.13333vw
+ *
+ *  设计图标准根元素字体 / 设计图标准宽度 * 100 || const vw = 16 / 750 * 100
+ */
 module.exports = {
     css: {
         loaderOptions: {
             postcss: {
                 plugins: [
                     require('postcss-px-to-viewport')({
-                        viewportWidth: 750,
-                        viewportHeight: 1080,  
+                        viewportWidth: 750,     // 视窗的宽度
+                        viewportHeight: 1080,   // 视窗的高度
                         unitPrecision: 3,
                         viewportUnit: 'vw',
                         minPixelValue: 1,
                         mediaQuery: false,
-                        exclude: /(node_module)/,
-                        selectorBlackList: ['.ignore', '.hairlines']
+                        exclude: /(\/|\\)(node_modules)(\/|\\)/,
+                        selectorBlackList: ['.ignore', '.hairlines']    // 指定不转换为视窗单位的类
+                    }),
+                    require('postcss-viewport-units')({
+                        // content 属性
+                        filterRule: rule => rule.nodes.findIndex(i => i.prop === 'content') === -1
+                    }),
+                    require('cssnano')({
+                        preset: 'advanced',
+                        autoprefixer: false,
+                        'postcss-zindex': false
                     })
                 ]
             }
@@ -52,9 +69,21 @@ module.exports = {
 
 一般情况下，我们可以通过下述标签使得移动端在理想视口下布局：
 
-```js
+```html
 <meta id="viewport" name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1; user-scalable=no;">
+
+<!-- 处理兼容性 -->
+<script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
+<script>
+    window.onload = function () {
+        window.viewportUnitsBuggyfill.init({
+            hacks: window.viewportUnitsBuggyfillHacks
+        });
+    }
+</script>
 ```
+
+---
 
 物理像素线（也就是普通屏幕下 1px ，高清屏幕下 0.5px 的情况）采用 transform 属性 scale 实现：
 
