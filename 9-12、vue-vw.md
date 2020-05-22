@@ -87,7 +87,7 @@ module.exports = {
 
 ---
 
-##### 物理像素线（也就是普通屏幕下 1px ，高清屏幕下 0.5px 的情况）采用 transform 属性 scale 实现：
+#### 物理像素线（也就是普通屏幕下 1px ，高清屏幕下 0.5px 的情况）采用 transform 属性 scale 实现：
 
 ```scss
 .mod_grid {
