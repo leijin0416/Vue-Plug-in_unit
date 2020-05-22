@@ -25,6 +25,8 @@ npm install postcss-import postcss-loader postcss-px-to-viewport postcss-viewpor
 | minPixelValue | 最小像素值，大于等于这个值才会转换 |
 | mediaQuery | 是否转换媒体查询中的像素 |
 
+- 计算公式：**16px*2** 因为设计图纸是按照 750 的尺寸进行设计
+
 ```js
 /**
  *  vw 表示当前视口宽度的百分之一。
@@ -65,7 +67,7 @@ module.exports = {
 
 [postcss-px-to-viewport 文档](https://github.com/evrone/postcss-px-to-viewport/blob/master/README_CN.md) | [vw/vh 单位的兼容性](https://caniuse.com/) | [分析 VW布局](https://www.cnblogs.com/imwtr/p/9648233.html) | [分析2 VW布局](https://www.cnblogs.com/imwtr/p/9648233.html#top)
 
-![viewport](https://segmentfault.com/img/bVbtNML?w=2506&h=860)
+![vw.png](https://images2017.cnblogs.com/blog/1210235/201709/1210235-20170918164258259-1200967116.png)
 
 一般情况下，我们可以通过下述标签使得移动端在理想视口下布局：
 
@@ -85,7 +87,7 @@ module.exports = {
 
 ---
 
-物理像素线（也就是普通屏幕下 1px ，高清屏幕下 0.5px 的情况）采用 transform 属性 scale 实现：
+##### 物理像素线（也就是普通屏幕下 1px ，高清屏幕下 0.5px 的情况）采用 transform 属性 scale 实现：
 
 ```scss
 .mod_grid {
