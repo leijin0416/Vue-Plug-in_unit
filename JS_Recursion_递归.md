@@ -151,7 +151,11 @@ recursiveFunction();
 
 ----------------------------------------
 
-// 递归遍历实现
+/**
+ * 递归遍历实现 多个异步结果的依次输出
+ *
+ * @param {Object}   在setTimeout里面输出了之后，再开始下一个1s的输出。
+ */
 var recursiveTest = function(){
     console.time("递归时间");     // 开始
     const test = function (i) {
@@ -176,22 +180,60 @@ recursiveTest()    // 每隔一秒输出1,2,3,4,5
 
 ```js
 function clone(o){
-
     var temp = {};
-    for(var key in o){
+    for (var key in o) {
 
         if (typeof o[key] == 'object') {
 
-            temp[key] = clone(o[key]);
+            temp[key] = clone(o[key]);   // 递归遍历
 
         } else {
 
-            temp[key] = o[key];
+            temp[key] = o[key];   // 值就返回
 
         }
 
     }
-
     return temp;
 }
+
+
+/**
+ * 递归遍历实现 多个异步结果的依次输出
+ *
+ * @param {Object}   在setTimeout里面输出了之后，再开始下一个1s的输出。
+ */
+var obj = {
+    a: {
+        name: "maoguotao",
+        age: 18,
+        sex: 'M', },
+    b: {
+        name: "maoshuqin",
+        age: 18,
+        sex: 'M', },
+    c: {
+        name: "MGT360124",
+        age: 18,
+        sex: 'M',
+        title: {
+            job:"班长"
+        }, },
+};
+
+//递归遍历对象
+var arr = [];
+
+function f(obj) {
+    for( var i in obj ) {
+        if ( typeof obj[i] === "object" ) {   // 如果子级还是一个Object对象，则继续递归遍历直到不是 -else
+            f (obj[i]);
+        }else{
+            arr.push(obj[i]);
+        }
+    }
+}
+
+f(obj);
+console.log(arr);//["maoguotao", 18, "M", "maoshuqin", 18, "M", "MGT360124", 18, "M", "班长"]
 ```
