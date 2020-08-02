@@ -1,6 +1,6 @@
 # 递归
 
-**概念：** 在程序中函数 “直接” 或 “间接” 调用自己。换个意思就是函数自己调用自己本身，或者在自己函数调用的下级函数中调用自己。
+**概念：** 在程序中函数 “直接” 或 “间接” 的自己调用自己。换个意思就是函数自己调用自己本身，或者在自己函数调用的下级函数中调用自己。
 
 [多叉树原理-用到递归来实现数据格式化](https://segmentfault.com/a/1190000015813977?utm_source=tag-newest)
 
@@ -59,7 +59,9 @@ function getLeafCountTree(array, uid, newData) {
 
 - 2\ 查看这个子节点是否还有子节点，如果没有直接存储到数组中，如果有就继续递归。
 
-例子： [无限层级树形数据结构](https://blog.csdn.net/Mr_JavaScript/article/details/82817177)
+**例子：**
+
+[无限层级树形数据结构](https://blog.csdn.net/Mr_JavaScript/article/details/82817177)
 
 ```js
 let source = [
@@ -93,11 +95,79 @@ function setTreeData(source){
 }
 console.log(setTreeData(source), '-END-')   // 树形数据
 
-// data.splice(index, 1);
+// data.splice(index, 1);   删除
 data.forEach(function (item) {
     delete item.children;
 });
 
+```
+
+**例子：**
+
+[递归遍历方法 -简书](https://www.jianshu.com/p/e1c0faeca43c) -|- [数组递归遍历 -concat合并](https://segmentfault.com/q/1010000002681517)
+
+```js
+var data = [
+ {
+     name: "所有物品",
+     children: [
+         {
+             name: "水果",
+             children: [{name: "苹果", children: [{name: '青苹果'}, {name: '红苹果'}]}]
+         },
+         {
+             name: '主食',
+             children: [
+                 {name: "米饭", children: [{name: '北方米饭'}, {name: '南方米饭'}]}
+             ]
+         },
+         {
+             name: '生活用品',
+             children: [
+                 {name: "电脑类", children: [{name: '联想电脑'}, {name: '苹果电脑'}]},
+                 {name: "工具类", children: [{name: "锄头"}, {name: "锤子"}]},
+                 {name: "生活用品", children: [{name: "洗发水"}, {name: "沐浴露"}]}
+             ]
+         }
+  ]
+}]
+
+var recursiveFunction = function(){
+    var str = '';
+    const getStr = function(list) {
+        list.forEach(function(row) {
+            // 通过判断是否还有children，没有就代表是最后一级了，有就继续把 children 这个 list 传给函数继续遍历
+            if (row.children) {
+                getStr(row.children);
+            } else {
+                str += row.name + ";";
+            }
+        })
+    }
+    getStr(data);
+    console.log(str); // 青苹果;红苹果;北方米饭;南方米饭;联想电脑;苹果电脑;锄头;锤子;洗发水;沐浴露;
+}
+recursiveFunction();
+
+----------------------------------------
+
+// 递归遍历实现
+var recursiveTest = function(){
+    console.time("递归时间");     // 开始
+    const test = function (i) {
+        setTimeout(function () {
+            i = i + 1
+            console.log('递归输出：' + i);
+            if (i < 5) {
+                test(i)
+            } else {
+                console.timeEnd("递归时间");   // 结束
+            }
+        }, 1000)
+    }
+    test(0)
+}
+recursiveTest()    // 每隔一秒输出1,2,3,4,5
 ```
 
 ---
