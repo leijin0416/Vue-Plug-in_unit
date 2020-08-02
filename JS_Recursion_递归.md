@@ -181,9 +181,9 @@ recursiveTest()    // 每隔一秒输出1,2,3,4,5
 ```js
 function clone(o){
     var temp = {};
-    for (var key in o) {
+    for ( var key in o ) {
 
-        if (typeof o[key] == 'object') {
+        if ( typeof o[key] === 'object' ) {
 
             temp[key] = clone(o[key]);   // 递归遍历
 
@@ -228,7 +228,7 @@ function f(obj) {
     for( var i in obj ) {
         if ( typeof obj[i] === "object" ) {   // 如果子级还是一个Object对象，则继续递归遍历直到不是 -else
             f (obj[i]);
-        }else{
+        } else {
             arr.push(obj[i]);
         }
     }
