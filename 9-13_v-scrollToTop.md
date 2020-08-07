@@ -1,10 +1,10 @@
 # 点击图标回到顶部
 
-[顶部方法](https://www.jianshu.com/p/90ccd4b503ac)
+[顶部方法](https://www.jianshu.com/p/90ccd4b503ac) --|-- [顶部方法2](https://blog.csdn.net/weixin_43421652/article/details/91425869)
 
 ```vue
 <template>
-    <div class="page">
+    <div class="page-min">
         <div v-if="btnTopFlag" class="v-go-top">
             <p @click="backTop()"><van-icon name="arrow-up" size="20" color="#fff" /></p>
         </div>
@@ -35,7 +35,7 @@ export default {
     // 方法集合
     methods: {
         /**
-         * 点击图标回到顶部方法，加计时器是为了缓慢回到顶部
+         * 点击图标回到顶部方法，加计时器是为了缓慢回到顶部 | 30 -滚动时间
          *
          * 回到顶部功能实现过程：
          *  1. 获取页面当前距离顶部的滚动距离（虽然IE不常用了，但还是需要考虑一下兼容性的）
@@ -53,11 +53,11 @@ export default {
                 if(osTop === 0){
                     clearInterval(timer);
                 }
-            }, 100);
+            }, 30);
         },
         /**  
-         * 显示回到顶部按钮  https://blog.csdn.net/weixin_43421652/article/details/91425869
-         *
+         * 初始加载
+         * 显示回到顶部按钮
          */
         scrollToTop(){
             let _that = this;
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page {
+.page-min {
     .v-go-top {
         z-index: 9999;
         position: fixed;
