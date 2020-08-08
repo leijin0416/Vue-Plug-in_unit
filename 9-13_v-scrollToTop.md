@@ -2,6 +2,8 @@
 
 [顶部方法](https://www.jianshu.com/p/90ccd4b503ac) --|-- [顶部方法2](https://blog.csdn.net/weixin_43421652/article/details/91425869)
 
+## scrollToTop 组件
+
 ```vue
 <template>
     <div class="page-min">
@@ -35,7 +37,7 @@ export default {
     // 方法集合
     methods: {
         /**
-         * 点击图标回到顶部方法，加计时器是为了缓慢回到顶部 | 30 -滚动时间
+         * 点击图标回到顶部方法，加计时器是为了缓慢回到顶部 | 30 -滚动时间，加计时器是为了缓慢回到顶部
          *
          * 回到顶部功能实现过程：
          *  1. 获取页面当前距离顶部的滚动距离（虽然IE不常用了，但还是需要考虑一下兼容性的）
@@ -45,14 +47,15 @@ export default {
          */
         backTop () {
             let _that = this;
-            let timer = setInterval(function(){
+            let timer = setInterval( function() {
                 let osTop = document.documentElement.scrollTop || document.body.scrollTop;
                 let ispeed = Math.floor(-osTop / 5);
                 document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
-                _that.isTop = true;
-                if(osTop === 0){
+                // _that.isTop = true;
+                if(osTop === 0) {
                     clearInterval(timer);
                 }
+
             }, 30);
         },
         /**  
