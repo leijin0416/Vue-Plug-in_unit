@@ -101,7 +101,7 @@ export default {
     watch: {
         /**
          *  监听 list 聊天数组的变化
-         *  作用：如果数组长度 newer, newer 不相等，说明有新的聊天记录，则改变 scrollHeight 状态，触发 scrollBottm() 事件
+         *  作用：如果数组长度 newer, older 不相等，说明有新的聊天记录，则改变 scrollHeight 状态，触发 scrollBottm() 事件
          */
         "list": {
             handler: function(newer, older) {
@@ -187,8 +187,8 @@ export default {
             }
         },
         /**
-         *  页面加载完成，滚动条到底部
-         *  判断组件值是否有变化
+         *  初始化页面加载完成，滚动条到底部
+         *  - 判断组件值是否有变化
          */
         scrollBottm() {
             let _that = this;
@@ -254,6 +254,7 @@ export default {
             // console.log(params);
 
             _this.ws.send(JSON.stringify(params)); //调用WebSocket send()发送信息的方法
+
             _this.contentText = "";
             _this.getOrderInfoClick();
             setTimeout(() => {
@@ -265,7 +266,7 @@ export default {
          */
         connection() {
             let _this = this;
-            let CHAT_WS = 'ws://192.55.165.42:9995/ws'
+            let CHAT_WS = 'ws://192.55.165.42:9995/ws';
             let url = CHAT_WS;
             // 判断页面有没有存在websocket连接
             if (window.WebSocket) {
