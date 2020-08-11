@@ -1,39 +1,39 @@
-# Vue 个人插件资料整理
+# Vue 资料整理
 
-工作中用到的实用库。概览
+[Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/)
 
-## 1> 超实用 mavonEditor 富文本
+## 递归拷贝
 
-[文档Git地址](https://github.com/hinesboy/mavonEditor)
+[JS高频手写实用方法](https://www.cnblogs.com/chenwenhao/p/11294541.html)
 
-![mavonEditor](http://120.79.222.255/icon-mavonEditor.png)
+- **`deepClone(obj[i])`** -执行递归
 
-## 2> vue-i18n 语言切换
+```js
+let obj = {a: 1, b: {x: 3}}
 
-`npm install --s vue-i18n`
+function deepClone(obj) {
+    let copy = obj instanceof Array ? [] : {}
+    for (let i in obj) {
+        if (obj.hasOwnProperty(i)) {
+            copy[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i]    // 判断是否需要递归
+        }
+    }
+    return copy
+}
+```
 
-## 3> html2canvas 实现h5海报，qrCodejs2 生成二维码
+## sort 排序
 
-`npm install --s html2canvas`
+根据数组中的对象的多个属性值排序，多条件排序；
 
-## 4> 3DES 请求接口加密
-
-- 需要前后端协同配置Key
-
-`npm install --s crypto-js`
-
-## 5> v-viewer 点击预览图片
-
-`npm install --s v-viewer`
-
-## 6> vue-echarts 百度图表数据可视化
-
-`npm install --s echarts`
-
-## 7> vue-Excel 导出Excel功能
-
-`npm install -S file-saver xlsx`
-
-## 8> vue-video-player 视频播放
-
-## 9> webpack -require.context() 路由分区
+```js
+let arr6 = [{id:10,age:2},{id:5,age:4},{id:6,age:10},{id:9,age:6},{id:2,age:8},{id:10,age:9}];
+let arr7 = arr6.sort( (a,b) => {
+　　if (a.id === b.id) {  // 如果id相同，按照age的降序
+　　　　return b.age - a.age
+　　} else {
+　　　　return a.id - b.id
+　　}
+}).map(item => item)
+console.log(arr7);
+```
