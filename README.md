@@ -88,7 +88,11 @@ var res = str.toUpperCase(); // ABCDEFG123456
 
 ## splice 删除
 
-splice具有删除，插入，替换的功能
+splice具有删除，插入，替换的功能。`splice(index, howmany, item1,....., itemX)`
+
+- index 必需。  整数，规定 **添加/删除** 项目的位置，使用负数可从数组结尾处规定位置。
+- howmany       必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+- item1, ..., itemX     可选。向数组添加的新项目。
 
 ```js
 // 1\查找指定元素的索引
