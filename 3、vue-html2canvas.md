@@ -48,6 +48,8 @@ html2canvas(document.querySelector('.demo'), { canvas: newCanvas }).then(functio
 
 **`.replace(/^(http)[s]*(\:\/\/)/, 'https://images.weserv.nl/?url=')`** -处理图片报403的问题
 
+[参考链接1](https://segmentfault.com/a/1190000007356836) --|-- [参考链接2](https://blog.csdn.net/feizhong_web/article/details/77067009?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param)
+
 ```vue
 <template>
     <!-- 海报 -->
@@ -89,16 +91,16 @@ export default {
         }
     },
     props: {
-		payImgUrls: {
-			type: String,
-			default: ""
-		}
+        payImgUrls: {
+            type: String,
+            default: ""
+        }
     },
-	// 创建完成（访问当前this实例）
-	created: async function() {
+    // 创建完成（访问当前this实例）
+    created: async function() {
         let _that = this;
         _that.payImgUrl = '';
-        let url = sessionData('get', 'setpayImgUrl');
+        let url = sessionData('get', 'setpayImgUrl');  // 图片地址
         if (url) {
             // 'https://images.weserv.nl/?url=' + url;
             // .replace(/^(http)[s]*(\:\/\/)/, 'https://images.weserv.nl/?url=')
@@ -107,7 +109,7 @@ export default {
             _that.drawUrl();
         }
         // console.log(url);
-	},
+    },
     mounted () {
     },
     methods:{  
@@ -142,13 +144,6 @@ export default {
 
             }, 1000);
         },
-        /** 
-         *  https://segmentfault.com/a/1190000007356836
-         *  https://blog.csdn.net/feizhong_web/article/details/77067009?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param
-         */
-        copy(){
-            document.querySelector(".copy").appendChild(pic);
-        }
     },
 };
 </script>
@@ -221,7 +216,6 @@ export default {
 
 ```js
 npm install clipboard --save
-
 ```
 
 2、div中操作
@@ -232,66 +226,66 @@ npm install clipboard --save
         <div class="weui-flex">
             <div class="weui-cell-bd">
                 <p>{{$t('homePage_068')}}</p>
-                <!-- 复制的内容 -->
+                <!-- 需要复制的内容 -->
                 <p>{{qrCodeUrl}}</p>
             </div>
             <div class="weui-cell-ft">
                 <!-- 按钮复制 -->
-                <van-button 
+                <van-button
                     :data-clipboard-text="qrCodeUrl"
-                    @click="clipBoardClcik" 
-                    type="default" 
-                    size="small" 
-                    class="v-backgcolor ctrlBtn" >{{$t('homePage_069')}}</van-button>
+                    @click="clipBoardClcik"
+                    type="default"
+                    size="small"
+                    class="v-backgcolor ctrlBtn" >复制</van-button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import md5 from 'js-md5'
-import Clipboard from "clipboard"
+import md5 from 'js-md5';
+import Clipboard from "clipboard";
 
-import { regExpZF, regExpEM, regExpPhone, regExpZS} from '@/filters/regExps'
-import { mapState, mapMutations, mapActions, mapGetters } from "vuex"
-import { getStore } from '@/common/localUtil'
+import { regExpZF, regExpEM, regExpPhone, regExpZS} from '@/filters/regExps';
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+import { getStore } from '@/common/localUtil';
 
 export default {
-    components: {
-    },
     data() {
         return {
             qrCodeUrl: 'https://youzan.github.io/vant/#/zh-CN/list',
             img: require('@/assets/img/hk/i-logo.png')
         }
     },
+    components: {
+    },
     computed: {
-        //取
+        // 取
         ...mapGetters("localUser", ["developCode"])
     },
     watch: {
     },
-    //生命周期 - 创建完成
+    // 生命周期 - 创建完成
     created () {
-        let _that = this
+        let _that = this;
     },
-    //页面初始化
+    // 页面初始化
     mounted(){
-        let _that = this
-        _that.onQrCodeUrl()
+        let _that = this;
+        _that.onQrCodeUrl();
     },
     methods: {
-        //传
+        // 传
         ...mapMutations("localUser", ['handleQrCodeUrl']),
         /**
-            *  复制链接
-            */
+         * 复制链接
+         */
         clipBoardClcik(){
-            let that = this
-            let clipboard = new Clipboard('.ctrlBtn');
+            let that = this;
+            let clipboard = new Clipboard('.ctrlBtn');  // 按钮
             clipboard.on('success', function(e) {
                 that.$toast({
-                    duration: 2000, 
+                    duration: 2000,
                     message: '复制成功'
                 });
                 e.clearSelection();
@@ -305,12 +299,11 @@ export default {
                 clipboard.destroy()
             });
         },
-    }
-	
+    },
 }
 </script>
 
 <style lang="scss" scoped>
-</style>
 
+</style>
 ```
