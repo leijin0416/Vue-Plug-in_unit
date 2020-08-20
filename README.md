@@ -1,6 +1,6 @@
 # Vue 资料整理
 
-[Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) --|-- [查API兼容](https://www.caniuse.com/#search=CSS%20Variables)
+[Vue执行流程分析](https://juejin.im/post/6860430490302677006) --|-- [Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) --|-- [查API兼容](https://www.caniuse.com/#search=CSS%20Variables)
 
 ## 递归拷贝
 
@@ -45,13 +45,22 @@ function uniq(array){
     return temp;
 }
 
-var aa = [1,2,2,3,5,3,6,5];  // 只适用于数组项为字符串, 数字的一维数组
+var aa = [1, 2, 2, 3, 5, 3, 6, 5];  // 只适用于数组项为字符串, 数字的一维数组
 console.log(uniq(aa));
 
 ----------------------------------------
 
 // 二维数组的排重 -递归大法
-
+var arr = [["aa","bb","cc"],["aa","bb","cc"],["b","b","v"]];  
+var hash = {};  
+var result = [];  
+for(var i = 0, len = arr.length; i < len; i++){  
+    if(!hash[arr[i]]){  
+        result.push(arr[i]);  
+        hash[arr[i]] = true;  
+    }  
+}
+console.log(result);
 ```
 
 ## sort 排序
