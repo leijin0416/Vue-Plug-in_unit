@@ -4,21 +4,23 @@ html2canvas + clipboard
 
 ## 1> 下载安装npm
 
-```php
+```js
+
 npm install html2canvas --save
 
 npm install qrcanvas --save     // 二维码
+
 ```
 
 ## 2> 新建qrCanvasUrl组件，供调用
 
-### 思路
+### 【思路】
 
 - 1、template 模板分为两个部分。一个是要展示的背景盒子的素材画面（负极 z-index: -1），一个是用户需要保存的canvas 海报盒子（主级 z-index: 999）；
 
 - 2、利用 `document.documentElement.clientHeight` 来动态获取不同手机的分辨率；
 
-### 问题
+### 【问题】
 
 - 1、不同手机高度：在ios和安卓机型上，不同分辨率下海报显示的高度会不一，需要样式调整（上思路2可解决）;
 
@@ -46,7 +48,7 @@ html2canvas(document.querySelector('.demo'), { canvas: newCanvas }).then(functio
 
 ## qrHtmlCanvas.vue
 
-**`.replace(/^(http)[s]*(\:\/\/)/, 'https://images.weserv.nl/?url=')`** -处理图片报403的问题
+**`.replace(/^(http)[s]*(\:\/\/)/, 'https://images.weserv.nl/?url=')`** -处理图片报 403 的问题
 
 [参考链接1](https://segmentfault.com/a/1190000007356836) --|-- [参考链接2](https://blog.csdn.net/feizhong_web/article/details/77067009?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param)
 
