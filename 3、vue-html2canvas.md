@@ -54,7 +54,7 @@ html2canvas(document.querySelector('.demo'), { canvas: newCanvas }).then(functio
 
 ```vue
 <template>
-    <!-- 海报 -->
+    <!-- 海报  -->
     <div class="v-share">
         <!-- 背景盒子 -->
         <div ref="box" class="v-share-box">
