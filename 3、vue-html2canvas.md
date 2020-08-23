@@ -65,7 +65,7 @@ html2canvas(document.querySelector('.demo'), { canvas: newCanvas }).then(functio
             </div>
         </div>
         <!-- 海报盒子 -遮罩层 -->
-        <img :src="imgUrl" 
+        <img :src="imgUrl"
             ref="imgBg"
             alt="share_bg"
             class="v-share-top" v-if="imgUrl" >
@@ -83,13 +83,12 @@ import { getStore } from '@/common/localUtil';
 export default {
     data() {
         return{
-            fullHeight: 'auto',  // 计算处理手机高度
-            img: require('@/assets/img/hk/i-share_bg_cn.png'),
+            imgBg: require('@/assets/img/hk/i-share_bg_cn.png'),
+            fullHeight: 'auto',         // 计算处理手机高度
             localeCut: 'zh_CN',
-            title: '12',  // ID
-            imgUrl:'',  // 海报
-            qrCodeUrl: '',
-            payImgUrl: '',   // 背景
+            imgUrl:'',                  // 背景海报
+            qrCodeUrl: '',              // 生成二维码
+            payImgUrl: '',              // 需要保存的背景海报
         }
     },
     props: {
@@ -104,10 +103,10 @@ export default {
         _that.payImgUrl = '';
         let url = sessionData('get', 'setpayImgUrl');  // 图片地址
         if (url) {
-            // 'https://images.weserv.nl/?url=' + url;
-            // .replace(/^(http)[s]*(\:\/\/)/, 'https://images.weserv.nl/?url=')
+            // 处理图片403
             let replaceUrl = url.replace(/^(http)[s]*(\:\/\/)/, 'https://images.weserv.nl/?url=');
             _that.payImgUrl = replaceUrl;
+            // 挂载
             _that.drawUrl();
         }
         // console.log(url);
@@ -184,11 +183,6 @@ export default {
                     left: 40px;
                     font-size: 20px;
                     text-align: left;
-                    .v-title {
-                        padding-bottom: 20px;
-                        font-size: 36px;
-                        font-weight: bold;
-                    }
                     .v-text {
                         color: #666;
                     }
@@ -211,6 +205,8 @@ export default {
 }
 </style>
 ```
+
+---
 
 ## 3> 处理按钮复制功能
 
@@ -256,7 +252,7 @@ export default {
     data() {
         return {
             qrCodeUrl: 'https://youzan.github.io/vant/#/zh-CN/list',
-            img: require('@/assets/img/hk/i-logo.png')
+            imgBg: require('@/assets/img/hk/i-logo.png')
         }
     },
     components: {

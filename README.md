@@ -24,7 +24,7 @@ function deepClone(obj) {
 
 ## 数组去重
 
-[几种常见方法](https://blog.csdn.net/m0_37885651/article/details/79738780)
+[JavaScript数组去重的几种方法](https://blog.csdn.net/m0_37885651/article/details/79738780) --|-- [JavaScript 数组去重的几种方法-2](http://www.nowamagic.net/javascript/js_RemoveRepeatElement.php)
 
 ```js
 function uniq(array){
@@ -54,8 +54,9 @@ console.log(uniq(aa));
 var arr = [["aa","bb","cc"],["aa","bb","cc"],["b","b","v"]];  
 var hash = {};  
 var result = [];  
-for(var i = 0, len = arr.length; i < len; i++){  
-    if(!hash[arr[i]]){  
+for(var i = 0, len = arr.length; i < len; i++) {
+    // 判断当前项是否遍历过，否存入hash以作对照
+    if(!hash[arr[i]]) {  
         result.push(arr[i]);  
         hash[arr[i]] = true;  
     }  
