@@ -2,6 +2,18 @@
 
 [Vue执行流程分析](https://juejin.im/post/6860430490302677006) --|-- [Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) --|-- [查API兼容](https://www.caniuse.com/#search=CSS%20Variables)
 
+```js
+// 模板文本
+const db = 'http://' + host + ':' + port + '/' + database;
+// 简化后
+const db = `http://${host}:${port}/${database}`;
+
+-------------------- END --------------------
+
+// 解构赋值
+const { store, form, loading, errors, entity } = this.props;
+```
+
 ## 递归拷贝
 
 [JS高频手写实用方法](https://www.cnblogs.com/chenwenhao/p/11294541.html)
@@ -99,6 +111,43 @@ for(var i = 0, len = arr.length; i < len; i++) {
 console.log(result);
 ```
 
+## "Array.find()" -es6
+
+- 该方法主要应用于查找第一个符合条件的数组元素。它的参数是一个回调函数。
+
+- 在回调函数中可以写你要查找元素的条件，当条件成立为 true时，【**返回该元素**】。如果没有符合条件的元素，返回值为 undefined。
+
+- 应用于数组去重。如：**find()、findIndex() 与 filter()**。findIndex() IE兼容不行
+
+[es6数组方法find()](https://www.jianshu.com/p/1c15be16a85a)
+
+```js
+const pets = [
+    { type: 'Dog', name: 'Max'},
+    { type: 'Cat', name: 'Karl'},
+    { type: 'Dog', name: 'Tommy'},
+]
+
+function findDog(name) {
+    for(let i = 0; i < pets.length; ++i) {
+        if(pets[i].type === 'Dog' && pets[i].name === name) {
+            return pets[i];
+        }
+    }
+}
+
+-------------------- END --------------------
+
+// 简化
+const pet = pets.find(pet => pet.type ==='Dog' && pet.name === 'Tommy');
+console.log(pet); // { type: 'Dog', name: 'Tommy' }，只返回第一个满足条件的元素
+// 又或者
+const pet = pets.filter(pet => pet.type ==='Dog' && pet.name === 'Tommy');
+console.log(pet); // [{ type: 'Dog', name: 'Tommy' }]，返回的是数组
+```
+
+[Array.filter()的妙用详解](https://www.jb51.net/article/99038.htm)
+
 ## "sort" 排序
 
 [sort()排序用法](https://www.cnblogs.com/hao-1234-1234/p/11156272.html)
@@ -145,7 +194,7 @@ splice具有删除，插入，替换的功能。 **`splice(index, howmany, item1
 - item1, ..., itemX     -可选。向数组添加的新项目。
 
 ```js
-// 1\查找指定元素的索引
+// 1\ 查找指定元素的索引
 function arrIndex(val, arr){
     for (var i = 0; i < arr.length; i++) {
         if (arr[i] == val) return i;
@@ -153,14 +202,14 @@ function arrIndex(val, arr){
     // 表示返回一个代数值，一般用在子函数结尾。
     return -1
 }
-// 2\删除索引元素
+// 2\ 删除索引元素
 function removeCurEle(val, arr){
     var index = arrIndex(val, arr);  // 拿到下标 index
     if (index > -1) {
         arr.splice(index, 1);
     }
 }
-//测试一下
+// 测试一下
 var testArr = ['a','b','c','d','e','f','g'];
 removeCurEle('c', testArr);
 console.log(testArr);   // ["a", "b", "d", "e", "f", "g"]
