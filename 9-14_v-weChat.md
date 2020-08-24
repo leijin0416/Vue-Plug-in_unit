@@ -10,9 +10,11 @@ Websocket 其实是一个新协议，跟HTTP协议基本没有关系，只是为
 
 ## 应用场景
 
+[关于对其理解介绍](https://www.zhihu.com/question/20215561)
+
 **理解：** Websocket 约定了一个通信的规范，通过一个握手的机制，客户端和服务器之间能建立一个类似 tcp 的连接，从而方便它们之间的通信。在websocket出现之前，web交互一般是基于http协议的短连接或者长连接。websocket是一种全新的协议，不属于http无状态协议，协议名为"ws"。
 
-[对其理解](https://www.zhihu.com/question/20215561)
+场景：
 
 ```html
 客户端：啦啦啦，我要建立Websocket协议，需要的服务：chat，Websocket协议版本：17（HTTP Request）
