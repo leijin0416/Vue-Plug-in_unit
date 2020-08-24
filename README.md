@@ -6,7 +6,7 @@
 
 [JS高频手写实用方法](https://www.cnblogs.com/chenwenhao/p/11294541.html)
 
-- **`deepClone(obj[i])`** -执行递归
+- **deepClone(obj[i])** -执行递归
 
 - **hasOwnProperty()** -表示是否有自己的属性。这个方法会查找一个对象是否有某个属性，但是不会去查找它的原型链。
 
