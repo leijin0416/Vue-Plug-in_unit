@@ -8,18 +8,53 @@
 
 - **`deepClone(obj[i])`** -执行递归
 
-```js
-let obj = {a: 1, b: {x: 3}}
+- **hasOwnProperty()** -表示是否有自己的属性。这个方法会查找一个对象是否有某个属性，但是不会去查找它的原型链。
 
+```js
+// 由于 for in 总是要遍历整个原型链，因此如果一个对象的继承层次太深的话会影响性能。所以使用了 hasOwnProperty 来过滤
+let obj = {a: 1, b: {x: 3}};
 function deepClone(obj) {
-    let copy = obj instanceof Array ? [] : {}
+    let copy = obj instanceof Array ? [] : {};
     for (let i in obj) {
+        // 判断属性,过滤
         if (obj.hasOwnProperty(i)) {
-            copy[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i]    // 判断是否需要递归
+            // 判断是否需要递归
+            copy[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i];
         }
     }
     return copy
 }
+
+-------------------- END --------------------
+
+// 深度克隆
+let copy = {a: 1, b: {x: 3}};
+function deepClone(obj) {
+    let objClone = obj instanceof Array ? [] : {};
+    // 如果他是空的话, 因为 null,object,array 也是'object';
+    if (obj === null) {
+        objClone = null;
+    }
+    if (obj && typeof(obj) === 'object') {
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if (obj[key] && typeof(obj[key]) === 'object') {
+
+                    objClone[key] = deepClone(obj[key]);
+                    console.log('object');
+                } else {
+
+                    objClone[key] = obj[key];
+                    console.log('Array');
+                }
+            }
+        }
+    }
+    return objClone
+}
+
+let objCopy = this.deepClone(copy);
+console.log(copy);
 ```
 
 ## 数组去重
@@ -42,13 +77,13 @@ function uniq(array){
         index.push(i);
     }
     console.log(index);
-    return temp;
+
+    return temp
 }
+var array = [1, 2, 2, 3, 5, 3, 6, 5];  // 只适用于数组项为字符串, 数字的一维数组
+console.log(uniq(array));
 
-var aa = [1, 2, 2, 3, 5, 3, 6, 5];  // 只适用于数组项为字符串, 数字的一维数组
-console.log(uniq(aa));
-
-----------------------------------------
+-------------------- END --------------------
 
 // 二维数组的排重 -递归大法
 var arr = [["aa","bb","cc"],["aa","bb","cc"],["b","b","v"]];  
@@ -64,7 +99,7 @@ for(var i = 0, len = arr.length; i < len; i++) {
 console.log(result);
 ```
 
-## sort 排序
+## "sort" 排序
 
 [sort()排序用法](https://www.cnblogs.com/hao-1234-1234/p/11156272.html)
 
@@ -81,14 +116,14 @@ let arr7 = arr6.sort( (a,b) => {
 }).map(item => item)
 console.log(arr7);
 
----------------------
+-------------------- END --------------------
 
 // 不传参数，将不会按照数值大小排序，【按照字符编码】的顺序进行排序；
 var arr = ['General','Tom','Bob','John','Army'];
 var resArr = arr.sort();
 console.log(resArr);//输出 ["Army", "Bob", "General", "John", "Tom"]
 
----------------------
+-------------------- END --------------------
 
 // 截取子串
 var str = "abcdefg123456";
@@ -101,13 +136,13 @@ var str = "ABCDefg123456";
 var res = str.toUpperCase(); // ABCDEFG123456
 ```
 
-## splice 删除
+## "splice" 删除
 
-splice具有删除，插入，替换的功能。`splice(index, howmany, item1,....., itemX)`
+splice具有删除，插入，替换的功能。 **`splice(index, howmany, item1,....., itemX)`**
 
-- index 必需。  整数，规定 **添加/删除** 项目的位置，使用负数可从数组结尾处规定位置。
-- howmany       必需。要删除的项目数量。如果设置为 0，则不会删除项目。
-- item1, ..., itemX     可选。向数组添加的新项目。
+- **index**     -必需。  整数，规定 **添加/删除** 项目的位置，使用负数可从数组结尾处规定位置。
+- **howmany**   -必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+- item1, ..., itemX     -可选。向数组添加的新项目。
 
 ```js
 // 1\查找指定元素的索引
