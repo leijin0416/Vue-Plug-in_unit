@@ -32,7 +32,7 @@ let obj = {a: 1, b: {x: 3}};
 function deepClone(obj) {
     let copy = obj instanceof Array ? [] : {};
     for (let i in obj) {
-        // 判断属性,过滤
+        // 判断自有属性，过滤
         if (obj.hasOwnProperty(i)) {
             // 判断是否需要递归
             copy[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i];
@@ -53,6 +53,7 @@ function deepClone(obj) {
     }
     if (obj && typeof(obj) === 'object') {
         for (key in obj) {
+            // 判断对象里是否含有非继承属性 key，判断一个对象是否为空方法
             if (obj.hasOwnProperty(key)) {
                 if (obj[key] && typeof(obj[key]) === 'object') {
 
@@ -74,13 +75,21 @@ console.log(copy);
 
 -------------------- END --------------------
 
+// JSON.stringify(this.man) === '{}'   -将json对象转化为json字符串，再判断该字符串是否为"{}"
 var man = {
     legs:2,
     hands:2,
     heads:1
 }
-man.hasOwnProperty("heads") // 返回 true，检测对象
+man.hasOwnProperty("heads") // 返回 true，检测对象。判断 heads 的名称是不是 man对象 的一个属性或对象。
+
+// ES6的Object.keys()方法
+var data = {};
+var arr = Object.keys(data);
+alert(arr.length == 0);   // true
 ```
+
+[Object.keys -返回索引](https://www.jianshu.com/p/da7ccf54e7f9) --|-- [Object.keys -兼容](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
 
 #### Object 的 `hasOwnProperty()` 方法返回一个【布尔值】，检测对象是否包含特定的自身（非继承）属性
 
