@@ -14,6 +14,8 @@ const db = `http://${host}:${port}/${database}`;
 const { store, form, loading, errors, entity } = this.props;
 ```
 
+[对于JS简写](https://zhuanlan.zhihu.com/p/111457373)
+
 ## 递归拷贝
 
 [JS高频手写实用方法](https://www.cnblogs.com/chenwenhao/p/11294541.html)
@@ -21,6 +23,8 @@ const { store, form, loading, errors, entity } = this.props;
 - **deepClone(obj[i])** -执行递归
 
 - **hasOwnProperty()** -表示是否有自己的属性。这个方法会查找一个对象是否有某个属性，但是不会去查找它的原型链。
+
+### 技巧
 
 ```js
 // 由于 for in 总是要遍历整个原型链，因此如果一个对象的继承层次太深的话会影响性能。所以使用了 hasOwnProperty 来过滤
@@ -67,7 +71,18 @@ function deepClone(obj) {
 
 let objCopy = this.deepClone(copy);
 console.log(copy);
+
+-------------------- END --------------------
+
+var man = {
+    legs:2,
+    hands:2,
+    heads:1
+}
+man.hasOwnProperty("heads") // 返回 true，检测对象
 ```
+
+#### Object 的 `hasOwnProperty()` 方法返回一个【布尔值】，检测对象是否包含特定的自身（非继承）属性
 
 ## 数组去重
 
@@ -117,7 +132,7 @@ console.log(result);
 
 - 在回调函数中可以写你要查找元素的条件，当条件成立为 true时，【**返回该元素**】。如果没有符合条件的元素，返回值为 undefined。
 
-- 应用于数组去重。如：**find()、findIndex() 与 filter()**。findIndex() IE兼容不行
+- 应用于【**数组去重**】。如：**find()、findIndex() 与 filter()**。findIndex() -IE兼容不行
 
 [es6数组方法find()](https://www.jianshu.com/p/1c15be16a85a)
 
