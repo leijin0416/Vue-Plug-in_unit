@@ -133,7 +133,27 @@ for(var i = 0, len = arr.length; i < len; i++) {
     }  
 }
 console.log(result);
+
+/**
+ * 数组去重 -声明一个新数组
+ * 遍历数组（可以用for循环，也可以用forEach）
+ * check新数组中是否有这个元素，
+ * 如果没有，就添加进去；如果有，就跳过。
+ *
+ */
+function removeDuplicate(arr) {
+    var resultArr = [];
+    for(var i = 0; i < arr.length; i++) {
+        var item = arr[i];
+        if (resultArr.indexOf(item) < 0) {
+            resultArr.push(item);
+        }
+    }
+    return resultArr;
+}
 ```
+
+[hashtable -hash去重](https://www.cnblogs.com/sosoft/archive/2013/12/08/3463830.html)
 
 ## "Array.find()" -es6
 
