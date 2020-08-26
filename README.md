@@ -1,6 +1,8 @@
 # Vue 资料整理
 
-[Vue执行流程分析](https://juejin.im/post/6860430490302677006) --|-- [Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) --|-- [查API兼容](https://www.caniuse.com/#search=CSS%20Variables)
+[Vue执行流程分析](https://juejin.im/post/6860430490302677006) --|-- [Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) --|-- [九种 Vue 组件间通讯](https://juejin.im/post/6861547167358648327)
+
+[查API兼容](https://www.caniuse.com/#search=CSS%20Variables) --|-- [闭包，this指向问题](https://juejin.im/post/6864378349512065038) --|-- [TypeScript时遇到的一些有趣的代码](https://github.com/sl1673495?tab=repositories)
 
 ```js
 // 模板文本
