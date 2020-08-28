@@ -18,6 +18,8 @@ const { store, form, loading, errors, entity } = this.props;
 
 [对于JS简写](https://zhuanlan.zhihu.com/p/111457373)
 
+---
+
 ## 递归拷贝
 
 [JS高频手写实用方法](https://www.cnblogs.com/chenwenhao/p/11294541.html)
