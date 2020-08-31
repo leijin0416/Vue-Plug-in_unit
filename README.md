@@ -1,8 +1,8 @@
 # Vue 资料整理
 
-[Vue执行流程分析](https://juejin.im/post/6860430490302677006) --|-- [Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) --|-- [九种 Vue 组件间通讯](https://juejin.im/post/6861547167358648327)
+[0824/Vue执行流程分析](https://juejin.im/post/6860430490302677006) --|-- [0824/Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) --|-- [0830/九种 Vue 组件间通讯](https://juejin.im/post/6861547167358648327) --|-- [0830/创建自己的Vue3文档](https://github.com/natee/build-your-own-vue-next)
 
-[查API兼容](https://www.caniuse.com/#search=CSS%20Variables) --|-- [闭包，this指向问题](https://juejin.im/post/6864378349512065038) --|-- [TypeScript时遇到的一些有趣的代码](https://github.com/sl1673495?tab=repositories)
+[查API兼容](https://www.caniuse.com/#search=CSS%20Variables) --|-- [0824/闭包_this指向问题](https://juejin.im/post/6864378349512065038) --|-- [0830/TypeScript时遇到的一些有趣的代码1](https://github.com/sl1673495?tab=repositories) --|-- [0830/VUE3时遇到的一些有趣的代码2](https://github.com/sl1673495/vue-bookshelf)
 
 ```js
 // 模板文本

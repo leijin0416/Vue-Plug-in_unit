@@ -1,18 +1,21 @@
+# Echart
 
-[官方实例地址](https://www.echartsjs.com/examples/zh/index.html#chart-type-pie)
+- 用法：_that.$chart.lineChina('chart', newArr);
 
-# 1> 安装 
+[介绍](https://www.jianshu.com/p/8cac22daca98) --|-- [详细](https://www.cnblogs.com/1ming/p/9547947.html) --|-- [官方实例地址](https://www.echartsjs.com/examples/zh/index.html#chart-type-pie)
+
+## 1> 安装
 
 `npm install --s echarts`
 
-# 2> 组件局部引入
+## 2> 组件局部引入
 
 ```js
 import echarts from 'echarts'
 
 ```
 
-# 3> 组件使用方法
+## 3> 组件使用方法
 
 - **1、新建JS，引用 echarts官网 中具体的实例;**
 
@@ -29,7 +32,7 @@ export const option = {
             fontSize: 16,
             color: '#333'
         }
-    },    
+    },
     // 设置图表边距
     grid:{
         left: 0,
@@ -103,7 +106,7 @@ export const option = {
 
 ---
 
-### 代码：
+### 代码
 
 ```vue
 <template>
