@@ -10,10 +10,17 @@ const db = 'http://' + host + ':' + port + '/' + database;
 // 简化后
 const db = `http://${host}:${port}/${database}`;
 
--------------------- END --------------------
+/**-------------------- END --------------------*/
 
 // 解构赋值
 const { store, form, loading, errors, entity } = this.props;
+
+/**-------------------- END --------------------*/
+
+// substr 获取第一个字符
+var str = "哈哈，我是一个字符串";
+var text = str.substr(0, 1);
+console.log("text:",text);  // 打印结果：哈
 ```
 
 [对于JS简写](https://zhuanlan.zhihu.com/p/111457373)
@@ -45,7 +52,7 @@ function deepClone(obj) {
     return copy
 }
 
--------------------- END --------------------
+/**-------------------- END --------------------*/
 
 // 深度克隆
 let copy = {a: 1, b: {x: 3}};
@@ -77,7 +84,7 @@ function deepClone(obj) {
 let objCopy = this.deepClone(copy);
 console.log(copy);
 
--------------------- END --------------------
+/**-------------------- END --------------------*/
 
 // JSON.stringify(this.man) === '{}'   -将json对象转化为json字符串，再判断该字符串是否为"{}"
 var man = {
