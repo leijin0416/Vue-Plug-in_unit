@@ -10,7 +10,7 @@
 
 构建流程：https://fed.taobao.org/blog/2016/09/10/webpack-flow/
 
-### 1、treemap sizes：
+## 1、treemap sizes
 
 - stat：文件的“输入”大小，在任何转换（如缩小）之前，它被称为“stat-size”，因为它是从Webpack的stats对象获得的。
 
@@ -18,16 +18,16 @@
 
 - gzipped：这是通过gzip压缩运行解析的包/模块的大小。
 
-## 2、开启压缩gzip
+## 【2】开启压缩gzip
 
 ```js
 npm install -D compression-webpack-plugin
 
 // 引入
-const CompressionPlugin = require("compression-webpack-plugin")
+const CompressionPlugin = require("compression-webpack-plugin");
 ```
 
-## 3、代码优化 uglifyjs-webpack-plugin 压缩
+## 【3】代码优化 uglifyjs-webpack-plugin 压缩
 
 减少打包体积
 
@@ -37,21 +37,21 @@ npm install -D uglifyjs-webpack-plugin
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 ```
 
-## 4、externals 配置选项
+## 【4】externals 配置选项
 
 将指定的内容排除在构建的vendor中，但是，指定的内容需要出现在用户环境中。
 
-## 5、Dllplugin & DllReferencePlugin 分包插件,提取公共库
+## 【5】Dllplugin & DllReferencePlugin 分包插件,提取公共库
 
 预编译资源模块，加快打包速度
 
 https://blog.csdn.net/qq_15253407/article/details/90077207
 
-## 6、webpack-bundle-analyzer
+## 【6】webpack-bundle-analyzer
 
 BundleAnalyzerPlugin 是分析 Webpack 生成的包体组成并且以可视化的方式反馈给开发者的插件
 
-## 7、webpack常用的loader
+## 【7】webpack常用的loader
 
 - `样式：`style-loader、css-loader、less-loader、sass-loader等
 
@@ -61,7 +61,7 @@ BundleAnalyzerPlugin 是分析 Webpack 生成的包体组成并且以可视化�
 
 - `校验测试：`mocha-loader、jshint-loader 、eslint-loader等
 
-## 9、CND 优化加速 [【CDN案例】](https://github.com/leijin0416/Vue-Plug-in_unit/blob/master/9-01%E3%80%81webpack-CDN.md)
+## 【9】CND 优化加速 [【CDN案例】](https://github.com/leijin0416/Vue-Plug-in_unit/blob/master/9-01%E3%80%81webpack-CDN.md)
 
 参考：
 
@@ -69,7 +69,7 @@ BundleAnalyzerPlugin 是分析 Webpack 生成的包体组成并且以可视化�
 
 （2）、https://segmentfault.com/a/1190000016178566?utm_source=tag-newest
 
-## 10、ParallelUglifyPlugin优化压缩，加快构建速度
+## 【10】ParallelUglifyPlugin 优化压缩，加快构建速度
 
 ParallelUglifyPlugin 插件则会开启多个子进程，把对多个文件压缩的工作分别给多个子进程去完成，但是每个子进程还是通过UglifyJS去压缩代码。无非就是变成了并行处理该压缩了，并行处理多个子任务，效率会更加的提高。
 
@@ -115,7 +115,7 @@ const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 
 ---
 
-### 构建：
+### 构建
 
 ```js
 const path = require('path')
