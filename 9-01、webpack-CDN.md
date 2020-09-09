@@ -1,15 +1,16 @@
-## CDN
+# CDN 文档
 
 - CDN 又叫内容分发网络，通过把资源部署到世界各地，用户在访问时按照就近原则从离用户最近的服务器获取资源，从而加速资源的获取速度。
 
 - CDN 其实是通过优化物理链路层传输过程中的网速有限、丢包等问题来提升网速的。
 
-[75CDN 官网-比较稳定](https://cdn.baomitu.com/) | [jsdelivr CDN官网-收录比较新](http://www.jsdelivr.com/) | [v2ex反馈](https://www.v2ex.com/t/475746)
+[75CDN 官网-比较稳定](https://cdn.baomitu.com/) --|-- [jsdelivr CDN官网-收录比较新](http://www.jsdelivr.com/) --|-- [v2ex反馈](https://www.v2ex.com/t/475746)
 
-[git 参考1](https://github.com/zhouyupeng/vue-cli3-H5/blob/master/vue.config.js) | 
-[git 参考2](https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js)
+[git 参考1](https://github.com/zhouyupeng/vue-cli3-H5/blob/master/vue.config.js)
 
-### 1、vue.config.js 修改
+---
+
+## 1、vue.config.js 修改
 
 ```js
 const isProduction = process.env.NODE_ENV === 'production';
@@ -31,7 +32,7 @@ module.exports = {
 }
 ```
 
-### 2、main.js 取消相关的引入
+## 2、main.js 取消相关的引入
 
 主要是删掉 ui 框架的引入和其他。vue 可以保留
 
@@ -85,7 +86,7 @@ Vue.use(VueWechatTitle); //title
 
 ---
 
-## 第 2 种：
+## 第【2】种
 
 externals 即为 webpack 所依赖的外部资源声明，键名为 webpack 给外部资源所定义的内部别名 alias，键值为外部资源所 export 暴露到全局的对象名称；
 

@@ -8,9 +8,9 @@
 
 它允许我们更细粒度的控制其内部配置。
 
-构建流程：https://fed.taobao.org/blog/2016/09/10/webpack-flow/
+[使用流程](https://fed.taobao.org/blog/2016/09/10/webpack-flow/)
 
-## 1、treemap sizes
+## treemap sizes
 
 - stat：文件的“输入”大小，在任何转换（如缩小）之前，它被称为“stat-size”，因为它是从Webpack的stats对象获得的。
 
@@ -18,23 +18,75 @@
 
 - gzipped：这是通过gzip压缩运行解析的包/模块的大小。
 
+---
+
 ## 【2】开启压缩gzip
 
 ```js
 npm install -D compression-webpack-plugin
 
 // 引入
-const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
 ```
 
-## 【3】代码优化 uglifyjs-webpack-plugin 压缩
+## 【2.1】开启 babel-polyfill
 
-减少打包体积
+解决ie11兼容ES6，但同时会增加打包体积
 
 ```js
-npm install -D uglifyjs-webpack-plugin
+npm install -D babel-polyfill
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// 引入
+chainWebpack: config => {
+  // ============解决ie11兼容ES6 start==========
+  config.entry('main').add('babel-polyfill')
+  // ============解决ie11兼容ES6 end============
+}
+```
+
+## 【3】代码优化 webpack-parallel-uglify-plugin 压缩
+
+减少打包体积。
+
+```js
+npm install -D webpack-parallel-uglify-plugin
+
+// 引入
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+configureWebpack: config => {
+    if (isDev === "production") {
+        config.plugins.push(
+            // 压缩代码
+            new CompressionWebpackPlugin({
+                algorithm: "gzip",
+                filename: "[path].gz[query]",
+                test: productionGzips,
+                threshold: 10240, // 只有大小大于该值的资源会被处理
+                minRatio: 0.8, // 只有压缩率小于这个值的资源才会被处理
+                deleteOriginalAssets: false // 删除原文件
+            }),
+            // 添加自定义代码压缩配置
+            new ParallelUglifyPlugin({
+                uglifyJS: {
+                    output: {
+                        beautify: false,
+                        comments: false
+                    },
+                    warnings: false,
+                    compress: {
+                        reduce_vars: true,
+                        drop_debugger: true,
+                        drop_console: true
+                    }
+                },
+                test: /.ts$/g,
+                sourceMap: false
+            }),
+            // 体积压缩提示
+            new BundleAnalyzerPlugin(),
+        )
+    }
+}
 ```
 
 ## 【4】externals 配置选项
