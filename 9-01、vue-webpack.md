@@ -79,7 +79,7 @@ configureWebpack: config => {
                         drop_console: true
                     }
                 },
-                test: /.ts$/g,
+                test: /.js$/g,  // 默认
                 sourceMap: false
             }),
             // 体积压缩提示
