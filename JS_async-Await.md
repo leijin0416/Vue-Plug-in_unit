@@ -10,17 +10,17 @@
 
 ```js
 async function fn() {
-    try {
-        await new Promise((resolve, reject) => {
-            setTimeout(() => {
-                reject('err3');
-            }, 1000);
-        });
-    } catch (err){
-        alert(err);
-    }
+  try {
+    await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject('err3')
+      }, 1000)
+    })
+  } catch (err){
+    alert(err)
+  }
 }
-fn();
+fn()
 
 /**-------------------- END --------------------*/
 
@@ -29,29 +29,29 @@ let v1, v2;
 promise1()
   .then(v => {v1=v; return promise2(v1)})
   .then(v => {v2=v; return promise3(v1,v2)})
-  .then(v3 => { /*..v1,v2,v3...*/ });
+  .then(v3 => { /*..v1,v2,v3...*/ })
 
 /**-------------------- END --------------------*/
 
 //  es6 async/await version:
 async function asyn_run(){
-  let v1 = await promise1();
-  let v2 = await promise2(v1);
-  let v3 = await promise3(v1, v2);
+  let v1 = await promise1()
+  let v2 = await promise2(v1)
+  let v3 = await promise3(v1, v2)
   /*... v1, v2, v3 ... */
 }
-async_run();  // actually non-blocking 同步代码
+async_run()  // actually non-blocking 同步代码
 
 /**-------------------- END --------------------*/
 
 function timeout(ms) {
   return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
+    setTimeout(resolve, ms)
+  })
 }
 async function asyncPrint(value, ms) {
-  await timeout(ms);
-  console.log(value);
+  await timeout(ms)
+  console.log(value)
 }
-asyncPrint('hello world', 50);  // 50毫秒以后，输出hello world
+asyncPrint('hello world', 50)  // 50毫秒以后，输出hello world
 ```
