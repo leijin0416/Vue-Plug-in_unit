@@ -209,7 +209,7 @@ const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 
 ---
 
-### 构建
+### 实际构建
 
 ```js
 const path = require('path')
@@ -224,7 +224,7 @@ const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
 
 const isDevCS = {
   '/api': {
-    target: 'http://114.****.165.42:6100',
+    target: 'http://114.5200.165.42:6100',
     changeOrigin: isDev === 'development' ? true : false,
     wx: true,
     pathRewrite: {
@@ -244,9 +244,9 @@ module.exports = {
   },
   transpileDependencies: [],
   /*
-    * 链式操作：
-    * - 允许对内部的webpack配置进行更细粒度的修改
-    */
+   * 链式操作：
+   * - 允许对内部的webpack配置进行更细粒度的修改
+   */
   chainWebpack: (config) => {
     config.resolve.alias
       .set('@', resolve('src'))
@@ -265,9 +265,9 @@ module.exports = {
     }
   },
   /*
-    * 简单配置 loader和plugins
-    * - 生产环境打包分析体积
-    */
+   * 简单配置 loader和plugins
+   * - 生产环境打包分析体积
+   */
   configureWebpack: config => {
     if (isDev === 'production') {
       config.mode = "production";
@@ -303,10 +303,10 @@ module.exports = {
     }
   },
   /**
-    *  webpack的css的一些loader
-    *  - 支持的 loader:
-    *  css-loader, postcss-loader, sass-loader, less-loader, stylus-loader
-    */
+   *  webpack的css的一些loader
+   *  - 支持的 loader:
+   *  css-loader, postcss-loader, sass-loader, less-loader, stylus-loader
+   */
   css: {
     extract: false, //是否使用css分离插件
     modules: false,
@@ -318,7 +318,7 @@ module.exports = {
         @import "@/style/_var.scss";
         `
       },
-      // 这里的选项会传递给 postcss-loader
+      // 传递给 postcss-loader
       postcss : {
       }
     }
