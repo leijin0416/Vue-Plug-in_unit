@@ -1,15 +1,15 @@
 # 分享海报和内容复制按钮
 
-html2canvas + clipboard
+html2canvas + clipboard npm插件
+
+[html2canvas 使用概述](https://segmentfault.com/a/1190000007356836) --|-- [html2canvas 图片跨域问题](https://blog.csdn.net/feizhong_web/article/details/77067009?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param)
 
 ## 1> 下载安装npm
 
 ```js
-
 npm install html2canvas --save
 
 npm install qrcanvas --save     // 二维码
-
 ```
 
 ## 2> 新建qrCanvasUrl组件，供调用
@@ -48,9 +48,7 @@ html2canvas(document.querySelector('.demo'), { canvas: newCanvas }).then(functio
 
 ## qrHtmlCanvas.vue
 
-**`.replace(/^(http)[s]*(\:\/\/)/, 'https://images.weserv.nl/?url=')`** -处理图片报 403 的问题
-
-[参考链接1](https://segmentfault.com/a/1190000007356836) --|-- [参考链接2](https://blog.csdn.net/feizhong_web/article/details/77067009?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param)
+**`.replace(/^(http)[s]*(\:\/\/)/, 'https://images.weserv.nl/?url=')`** -处理图片 403 的问题
 
 ```vue
 <template>
@@ -216,7 +214,7 @@ export default {
 npm install clipboard --save
 ```
 
-2、div中操作
+2、实际操作
 
 ```vue
 <template>
@@ -231,7 +229,7 @@ npm install clipboard --save
                 <!-- 按钮复制 -->
                 <van-button
                     :data-clipboard-text="qrCodeUrl"
-                    @click="clipBoardClcik"
+                    @click="onClipBoardClcik"
                     type="default"
                     size="small"
                     class="v-backgcolor ctrlBtn" >复制</van-button>
@@ -241,18 +239,12 @@ npm install clipboard --save
 </template>
 
 <script>
-import md5 from 'js-md5';
 import Clipboard from "clipboard";
-
-import { regExpZF, regExpEM, regExpPhone, regExpZS} from '@/filters/regExps';
-import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
-import { getStore } from '@/common/localUtil';
 
 export default {
     data() {
         return {
             qrCodeUrl: 'https://youzan.github.io/vant/#/zh-CN/list',
-            imgBg: require('@/assets/img/hk/i-logo.png')
         }
     },
     components: {
@@ -266,19 +258,18 @@ export default {
     // 生命周期 - 创建完成
     created () {
         let _that = this;
+        _that.onQrCodeUrl();
     },
     // 页面初始化
     mounted(){
-        let _that = this;
-        _that.onQrCodeUrl();
     },
     methods: {
-        // 传
-        ...mapMutations("localUser", ['handleQrCodeUrl']),
         /**
          * 复制链接
+         * - .ctrlBtn：            复制内容的位置class
+         * - data-clipboard-text： 复制的内容
          */
-        clipBoardClcik(){
+        onClipBoardClcik(){
             let that = this;
             let clipboard = new Clipboard('.ctrlBtn');  // 按钮
             clipboard.on('success', function(e) {
@@ -301,7 +292,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
 ```
