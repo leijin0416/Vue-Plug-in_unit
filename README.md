@@ -264,8 +264,17 @@ function removeCurEle(val, arr){
         arr.splice(index, 1);
     }
 }
-// 测试一下
+// 测试
 var testArr = ['a','b','c','d','e','f','g'];
 removeCurEle('c', testArr);
-console.log(testArr);   // ["a", "b", "d", "e", "f", "g"]
+console.log(testArr);      // ["a", "b", "d", "e", "f", "g"]
+
+-------------------- END --------------------
+
+/**
+ * vue3删除   -testArr 当前选中的删除数据
+ */
+function removeTodo(testArr) {
+    state.testArr.splice(state.testArr.indexop(testArr), 1)
+}
 ```
