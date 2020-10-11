@@ -20,7 +20,7 @@ const { store, form, loading, errors, entity } = this.props;
 // substr 获取第一个字符
 var str = "哈哈，我是一个字符串";
 var text = str.substr(0, 1);
-console.log("text:",text);  // 打印结果：哈
+console.log("text:", text);  // 打印结果：哈
 ```
 
 [对于JS简写](https://zhuanlan.zhihu.com/p/111457373)
