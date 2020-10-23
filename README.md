@@ -1,8 +1,10 @@
 # Vue 资料整理
 
-[0824/Vue执行流程分析](https://juejin.im/post/6860430490302677006) --|-- [0824/Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) --|-- [0830/九种 Vue 组件间通讯](https://juejin.im/post/6861547167358648327) --|-- [0830/创建自己的Vue3文档](https://github.com/natee/build-your-own-vue-next)
-
-[查API兼容](https://www.caniuse.com/#search=CSS%20Variables) --|-- [0824/闭包_this指向问题](https://juejin.im/post/6864378349512065038) --|-- [0830/TypeScript时遇到的一些有趣的代码1](https://github.com/sl1673495?tab=repositories) --|-- [0830/VUE3时遇到的一些有趣的代码2](https://github.com/sl1673495/vue-bookshelf)
+标签|内容
+:-|:-:
+0824 | [0824/Vue执行流程分析](https://juejin.im/post/6860430490302677006) ---- [0824/Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) ---- [0824/闭包_this指向问题](https://juejin.im/post/6864378349512065038)
+0830 | [0830/TypeScript时遇到的一些有趣的代码1](https://github.com/sl1673495?tab=repositories) ---- [0830/VUE3时遇到的一些有趣的代码2](https://github.com/sl1673495/vue-bookshelf) ---- [0830/九种 Vue 组件间通讯](https://juejin.im/post/6861547167358648327) ---- [0830/创建自己的Vue3文档](https://github.com/natee/build-your-own-vue-next)
+0807 | [查API兼容](https://www.caniuse.com/#search=CSS%20Variables)
 
 ```js
 // 模板文本
@@ -27,7 +29,7 @@ console.log("text:", text);  // 打印结果：哈
 
 ---
 
-## 递归拷贝
+## 【1】递归拷贝
 
 [JS高频手写实用方法](https://www.cnblogs.com/chenwenhao/p/11294541.html)
 
@@ -35,10 +37,11 @@ console.log("text:", text);  // 打印结果：哈
 
 - **hasOwnProperty()** -表示是否有自己的属性。这个方法会查找一个对象是否有某个属性，但是不会去查找它的原型链。
 
-### 技巧
+### 技巧方法
 
 ```js
-// 由于 for in 总是要遍历整个原型链，因此如果一个对象的继承层次太深的话会影响性能。所以使用了 hasOwnProperty 来过滤
+// 由于 for in 总是要遍历整个原型链，因此如果一个对象的继承层次太深的话会影响性能。
+// 所以使用了 hasOwnProperty 来过滤
 let obj = {a: 1, b: {x: 3}};
 function deepClone(obj) {
     let copy = obj instanceof Array ? [] : {};
@@ -53,8 +56,7 @@ function deepClone(obj) {
 }
 
 /**-------------------- END --------------------*/
-
-// 深度克隆
+// 深度克隆/拷贝
 let copy = {a: 1, b: {x: 3}};
 function deepClone(obj) {
     let objClone = obj instanceof Array ? [] : {};
@@ -67,13 +69,13 @@ function deepClone(obj) {
             // 判断对象里是否含有非继承属性 key，判断一个对象是否为空方法
             if (obj.hasOwnProperty(key)) {
                 if (obj[key] && typeof(obj[key]) === 'object') {
-
                     objClone[key] = deepClone(obj[key]);
                     console.log('object');
-                } else {
 
+                } else {
                     objClone[key] = obj[key];
                     console.log('Array');
+
                 }
             }
         }
@@ -85,8 +87,8 @@ let objCopy = this.deepClone(copy);
 console.log(copy);
 
 /**-------------------- END --------------------*/
-
-// JSON.stringify(this.man) === '{}'   -将json对象转化为json字符串，再判断该字符串是否为"{}"
+// JSON.stringify(this.man) === '{}'
+// -将json对象转化为json字符串，再判断该字符串是否为"{}"
 var man = {
     legs:2,
     hands:2,
@@ -104,7 +106,7 @@ alert(arr.length == 0);   // true
 
 #### Object 的 `hasOwnProperty()` 方法返回一个【布尔值】，检测对象是否包含特定的自身（非继承）属性
 
-## 数组去重
+## 【2】数组去重
 
 [JavaScript数组去重的几种方法](https://blog.csdn.net/m0_37885651/article/details/79738780) --|-- [JavaScript 数组去重的几种方法-2](http://www.nowamagic.net/javascript/js_RemoveRepeatElement.php)
 
@@ -130,8 +132,7 @@ function uniq(array){
 var array = [1, 2, 2, 3, 5, 3, 6, 5];  // 只适用于数组项为字符串, 数字的一维数组
 console.log(uniq(array));
 
--------------------- END --------------------
-
+/**-------------------- END --------------------*/
 // 二维数组的排重 -递归大法
 var arr = [["aa","bb","cc"],["aa","bb","cc"],["b","b","v"]];  
 var hash = {};  
@@ -166,7 +167,7 @@ function removeDuplicate(arr) {
 
 [hashtable -hash去重](https://www.cnblogs.com/sosoft/archive/2013/12/08/3463830.html)
 
-## "Array.find()" -es6
+## 【3】"Array.find()" -es6
 
 - 该方法主要应用于查找第一个符合条件的数组元素。它的参数是一个回调函数。
 
@@ -191,8 +192,7 @@ function findDog(name) {
     }
 }
 
--------------------- END --------------------
-
+/**-------------------- END --------------------*/
 // 简化
 const pet = pets.find(pet => pet.type ==='Dog' && pet.name === 'Tommy');
 console.log(pet); // { type: 'Dog', name: 'Tommy' }，只返回第一个满足条件的元素
@@ -203,7 +203,7 @@ console.log(pet); // [{ type: 'Dog', name: 'Tommy' }]，返回的是数组
 
 [Array.filter()的妙用详解](https://www.jb51.net/article/99038.htm)
 
-## "sort" 排序
+## 【4】"sort" 排序
 
 [sort()排序用法](https://www.cnblogs.com/hao-1234-1234/p/11156272.html)
 
@@ -211,7 +211,7 @@ console.log(pet); // [{ type: 'Dog', name: 'Tommy' }]，返回的是数组
 
 ```js
 let arr6 = [{id:10,age:2},{id:5,age:4},{id:6,age:10},{id:9,age:6},{id:2,age:8},{id:10,age:9}];
-let arr7 = arr6.sort( (a,b) => {
+let arr7 = arr6.sort( (a, b) => {
 　　if (a.id === b.id) {  // 如果id相同，按照age的降序
 　　　　return b.age - a.age
 　　} else {
@@ -220,15 +220,13 @@ let arr7 = arr6.sort( (a,b) => {
 }).map(item => item)
 console.log(arr7);
 
--------------------- END --------------------
-
+/**-------------------- END --------------------*/
 // 不传参数，将不会按照数值大小排序，【按照字符编码】的顺序进行排序；
 var arr = ['General','Tom','Bob','John','Army'];
 var resArr = arr.sort();
 console.log(resArr);//输出 ["Army", "Bob", "General", "John", "Tom"]
 
--------------------- END --------------------
-
+/**-------------------- END --------------------*/
 // 截取子串
 var str = "abcdefg123456";
 var res1 = str.substring(3);   // defg123456
@@ -240,7 +238,7 @@ var str = "ABCDefg123456";
 var res = str.toUpperCase(); // ABCDEFG123456
 ```
 
-## "splice" 删除
+## 【5】"splice" 删除
 
 splice具有删除，插入，替换的功能。 **`splice(index, howmany, item1,....., itemX)`**
 
@@ -269,8 +267,7 @@ var testArr = ['a','b','c','d','e','f','g'];
 removeCurEle('c', testArr);
 console.log(testArr);      // ["a", "b", "d", "e", "f", "g"]
 
--------------------- END --------------------
-
+/**-------------------- END --------------------*/
 /**
  * vue3删除   -testArr 当前选中的删除数据
  */
