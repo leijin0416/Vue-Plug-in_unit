@@ -59,7 +59,7 @@
                 size="medium"
                 type="success"
                 @close="closeTag('success')" >
-                为营造良好环境，请文明聊天0
+                为营造良好环境，请文明聊天
             </van-tag>
         </div>
     </div>
