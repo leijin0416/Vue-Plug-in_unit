@@ -106,6 +106,8 @@ alert(arr.length == 0);   // true
 
 #### Object 的 `hasOwnProperty()` 方法返回一个【布尔值】，检测对象是否包含特定的自身（非继承）属性
 
+---
+
 ## 【2】数组去重
 
 [JavaScript数组去重的几种方法](https://blog.csdn.net/m0_37885651/article/details/79738780) --|-- [JavaScript 数组去重的几种方法-2](http://www.nowamagic.net/javascript/js_RemoveRepeatElement.php)
@@ -167,6 +169,8 @@ function removeDuplicate(arr) {
 
 [hashtable -hash去重](https://www.cnblogs.com/sosoft/archive/2013/12/08/3463830.html)
 
+---
+
 ## 【3】"Array.find()" -es6
 
 - 该方法主要应用于查找第一个符合条件的数组元素。它的参数是一个回调函数。
@@ -183,7 +187,6 @@ const pets = [
     { type: 'Cat', name: 'Karl'},
     { type: 'Dog', name: 'Tommy'},
 ]
-
 function findDog(name) {
     for(let i = 0; i < pets.length; ++i) {
         if(pets[i].type === 'Dog' && pets[i].name === name) {
@@ -192,7 +195,6 @@ function findDog(name) {
     }
 }
 
-/**-------------------- END --------------------*/
 // 简化
 const pet = pets.find(pet => pet.type ==='Dog' && pet.name === 'Tommy');
 console.log(pet); // { type: 'Dog', name: 'Tommy' }，只返回第一个满足条件的元素
@@ -202,6 +204,8 @@ console.log(pet); // [{ type: 'Dog', name: 'Tommy' }]，返回的是数组
 ```
 
 [Array.filter()的妙用详解](https://www.jb51.net/article/99038.htm)
+
+---
 
 ## 【4】"sort" 排序
 
@@ -237,6 +241,8 @@ var res = str.toLowerCase(); // abcdefg123456
 var str = "ABCDefg123456";
 var res = str.toUpperCase(); // ABCDEFG123456
 ```
+
+---
 
 ## 【5】"splice" 删除
 
