@@ -13,3 +13,46 @@
 **函数节流：** 使得一定时间内只触发一次函数。原理是通过判断是否到达一定时间来触发函数。
 
 **区别：** 函数节流 不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，而 函数防抖 只是在最后一次事件后才触发一次函数。 比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次 Ajax 请求，而不是在用户停下滚动页面操作时才去请求数据。这样的场景，就适合用 节流技术 来实现。
+
+```js
+/*
+ *  description: 在vue中使用的节流函数
+ *  param fnName {String}  函数名
+ *  param time {Number}    延迟时间
+ *  return: 处理后的执行函数
+ */
+function throttle(fn, time) {
+    let _arguments = arguments;
+    let canRun = true;
+
+    return function () {
+        if (!canRun) return
+        canRun = false
+        setTimeout(() => {
+            fn.call(this, _arguments)
+            canRun = true
+        }, time);
+    }
+}
+
+/*
+ *  description: 在vue中使用的防抖函数
+ *  param fnName {String}  函数名
+ *  param time {Number}    延迟时间
+ *  return: 处理后的执行函数
+ */
+function VueDebounce(fnName, time) {
+    let debounceTime = time;
+    let timeout = null;
+
+    return function() {
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => {
+            this[fnName]();
+        }, debounceTime);
+        // debounceTime = 1;  // 再次赋值时间
+    };
+}
+```
