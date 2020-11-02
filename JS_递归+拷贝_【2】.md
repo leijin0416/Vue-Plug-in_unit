@@ -3,12 +3,11 @@
 **概念：** 在程序中函数 “直接” 或 “间接” 的自己调用自己。换个意思就是函数自己调用自己本身，或者在自己函数调用的下级函数中调用自己。
 标签|内容
 :-|:-:
-[多叉树原理-用到递归来实现数据格式化](https://segmentfault.com/a/1190000015813977?utm_source=tag-newest) | ——
+[【segmentfault】多叉树原理-用到递归来实现数据格式化](https://segmentfault.com/a/1190000015813977?utm_source=tag-newest) | ——
 —— |
-[【掘金】 理解递归](https://juejin.im/post/6844903699584647176) | [【详细】JS树结构操作:查找、遍历](https://wintc.top/article/20) +++ [递归权限思路](https://segmentfault.com/q/1010000021248164)
+[【掘金】 理解递归](https://juejin.im/post/6844903699584647176) | [【wintc博主】JS树结构操作:查找、遍历](https://wintc.top/article/20) +++ [【segmentfault】递归权限思路](https://segmentfault.com/q/1010000021248164)
 
 ```js
-
 let tree = [
   {
     id: '1',
@@ -32,10 +31,10 @@ let tree = [
         id: '2-1',
         title: '节点2-1',
         children: [
-            {
-                id: '2-1-1',
-                title: '节点2-1-1'
-            }
+          {
+            id: '2-1-1',
+            title: '节点2-1-1'
+          }
         ]
       }
     ]
@@ -45,8 +44,8 @@ let tree = [
 function treeForeach (tree, func) {
   if (!tree) return []
   tree.forEach(data => {
-    func(data)
-    data.children && treeForeach(data.children, func) // 遍历子树
+    if(data.children) data.children && treeForeach(data.children, func) // 遍历子树
+    else func(data)
   })
 }
 
@@ -208,7 +207,7 @@ recursiveFunction();
  * @param {Object}   在setTimeout里面输出了之后，再开始下一个1s的输出。
  */
 var recursiveTest = function(){
-    console.time("递归时间");     // 开始
+    console.time("递归时间START");     // 开始
     const test = function (i) {
         setTimeout(function () {
             i = i + 1
@@ -216,7 +215,7 @@ var recursiveTest = function(){
             if (i < 5) {
                 test(i)
             } else {
-                console.timeEnd("递归时间");   // 结束
+                console.timeEnd("递归时间END");   // 结束
             }
         }, 1000)
     }
@@ -233,21 +232,15 @@ recursiveTest()    // 每隔一秒输出1,2,3,4,5
 function clone(o){
     var temp = {};
     for ( var key in o ) {
-
         if ( typeof o[key] === 'object' ) {
-
             temp[key] = clone(o[key]);   // 递归遍历
 
         } else {
-
             temp[key] = o[key];   // 值就返回
-
         }
-
     }
     return temp;
 }
-
 
 /**
  * 递归遍历实现 多个异步结果的依次输出
@@ -256,33 +249,33 @@ function clone(o){
  */
 var obj = {
     a: {
-        name: "maoguotao",
-        age: 18,
-        sex: 'M', },
+      name: "maoguotao",
+      age: 18,
+      sex: 'M', },
     b: {
-        name: "maoshuqin",
-        age: 18,
-        sex: 'M', },
+      name: "maoshuqin",
+      age: 18,
+      sex: 'M', },
     c: {
-        name: "MGT360124",
-        age: 18,
-        sex: 'M',
-        title: {
-            job:"班长"
-        }, },
+      name: "MGT360124",
+      age: 18,
+      sex: 'M',
+      title: {
+        job:"班长"
+      },
+    },
 };
 
 //递归遍历对象
 var arr = [];
-
 function f(obj) {
-    for( var i in obj ) {
-        if ( typeof obj[i] === "object" ) {   // 如果子级还是一个Object对象，则继续递归遍历直到不是 -else
-            f (obj[i]);
-        } else {
-            arr.push(obj[i]);
-        }
+  for( var i in obj ) {
+    if ( typeof obj[i] === "object" ) {   // 如果子级还是一个Object对象，则继续递归遍历直到不是 -else
+      f(obj[i]);
+    } else {
+      arr.push(obj[i]);
     }
+  }
 }
 
 f(obj);
