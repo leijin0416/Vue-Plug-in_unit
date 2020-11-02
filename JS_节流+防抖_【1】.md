@@ -21,7 +21,7 @@
  *  param time {Number}    延迟时间
  *  return: 处理后的执行函数
  */
-function throttle(fn, time) {
+function vueThrottle(fn, time) {
     let _arguments = arguments;
     let canRun = true;
 
@@ -41,7 +41,7 @@ function throttle(fn, time) {
  *  param time {Number}    延迟时间
  *  return: 处理后的执行函数
  */
-function VueDebounce(fnName, time) {
+function vueDebounce(fnName, time) {
     let debounceTime = time;
     let timeout = null;
 
@@ -56,3 +56,5 @@ function VueDebounce(fnName, time) {
     };
 }
 ```
+
+### 实例

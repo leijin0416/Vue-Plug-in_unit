@@ -1,8 +1,59 @@
 # 递归
 
 **概念：** 在程序中函数 “直接” 或 “间接” 的自己调用自己。换个意思就是函数自己调用自己本身，或者在自己函数调用的下级函数中调用自己。
+标签|内容
+:-|:-:
+[多叉树原理-用到递归来实现数据格式化](https://segmentfault.com/a/1190000015813977?utm_source=tag-newest) | ——
+—— |
+[【掘金】 理解递归](https://juejin.im/post/6844903699584647176) | [【详细】JS树结构操作:查找、遍历](https://wintc.top/article/20) +++ [递归权限思路](https://segmentfault.com/q/1010000021248164)
 
-[多叉树原理-用到递归来实现数据格式化](https://segmentfault.com/a/1190000015813977?utm_source=tag-newest)
+```js
+
+let tree = [
+  {
+    id: '1',
+    title: '节点1',
+    children: [
+      {
+        id: '1-1',
+        title: '节点1-1'
+      },
+      {
+        id: '1-2',
+        title: '节点1-2'
+      }
+    ]
+  },
+  {
+    id: '2',
+    title: '节点2',
+    children: [
+      {
+        id: '2-1',
+        title: '节点2-1',
+        children: [
+            {
+                id: '2-1-1',
+                title: '节点2-1-1'
+            }
+        ]
+      }
+    ]
+  }
+]
+
+function treeForeach (tree, func) {
+  if (!tree) return []
+  tree.forEach(data => {
+    func(data)
+    data.children && treeForeach(data.children, func) // 遍历子树
+  })
+}
+
+treeForeach(tree, node => { console.log(node.title) })
+```
+
+---
 
 树状图-获取节点的所有叶子节点？ 递归代码如下：
 
@@ -86,7 +137,7 @@ let source = [
  *      father.id == child.parentId -判断 父级id和子级parentId 是否相等，以此知道是否有下级。
  */
 function setTreeData(source){
-    let cloneData = JSON.parse(JSON.stringify(source))      // 对源数据深度克隆
+    let cloneData = JSON.parse(JSON.stringify(source))       // 对源数据深度克隆
     return cloneData.filter(father => {                      // 循环所有项，并添加children属性
         let branchArr = cloneData.filter(child => father.id == child.parentId);       // 返回每一项的子级数组
             branchArr.length > 0 ? father.children = branchArr : ''   //给父级添加一个children属性，并赋值
