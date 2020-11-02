@@ -48,7 +48,6 @@ function treeForeach (tree, func) {
     else func(data)
   })
 }
-
 treeForeach(tree, node => { console.log(node.title) })
 ```
 
