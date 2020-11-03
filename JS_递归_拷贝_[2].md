@@ -1,6 +1,27 @@
 # 递归
 
-**概念：** 在程序中函数 “直接” 或 “间接” 的自己调用自己。换个意思就是函数自己调用自己本身，或者在自己函数调用的下级函数中调用自己。
+深浅拷贝
+
+## 概念
+
+在程序中函数 “直接” 或 “间接” 的自己调用自己。换个意思就是函数自己调用自己本身，或者在自己函数调用的下级函数中调用自己。则是发生了递归.” 说起来简单
+
+### 递归函数
+
+[jb51 介绍](https://www.jb51.net/article/191487.htm) +++ [csdn 介绍](https://blog.csdn.net/qms888888/article/details/107279692/)
+
+- #### 递归函数：是指函数直接或间接调用函数本身，则称该函数为递归函数。 |
+
+- #### 在使用递归时，要注意对递归函数的参数类型的检查，一定要保证有一个终止处理或计算的出口。否则很容易演变为死循环，从而造成内存溢出，因为这个递归函数没有停止处理或运算的出口，因此这个递归函数就演变为一个死循环。 |
+
+### 深浅拷贝
+
+深拷贝能够实现真正意义上的对象的拷贝，实现方法就是【 递归调用“浅拷贝” 】。深拷贝会创造一个一模一样的对象，其内容地址是自助分配的，拷贝结束之后，内存中的值是完全相同的，但是内存地址是不一样的，目标对象跟源对象不共享内存，修改任何一方的值，不会对另外一方造成影响。
+
+**在拷贝对象是纯数组(不包含对象)的情况下，slice() 和 concat() 可以完成深拷贝!**
+
+[【segmentfault】 深浅拷贝分析](https://segmentfault.com/a/1190000017469386?utm_source=sf-related)
+
 标签|内容
 :-|:-:
 [【segmentfault】多叉树原理-用到递归来实现数据格式化](https://segmentfault.com/a/1190000015813977?utm_source=tag-newest) | ——
@@ -49,6 +70,40 @@ function treeForeach (tree, func) {
   })
 }
 treeForeach(tree, node => { console.log(node.title) })
+
+---
+
+// 递归
+function treeForeach (tree, func) {
+  if (!tree || typeof tree !== 'object') return []
+  tree.forEach(data => {
+    if (typeof data.children === 'object') {
+      treeForeach(data.children, func);   // 函数调用函数自身
+    } else {
+      func(data);                         // 递归出口
+    }
+  })
+}
+
+---
+
+// 拷贝
+function deepCopyValue(obj) {
+  // 1 创造新盒子
+  let newObjValue = Array.isArray(obj) ? [] : {};
+  if (obj || typeof obj === 'object') {
+    // 遍历数组或者对象的属性，会将原型中新增的属性和方法遍历出来
+    for (let key in obj) {
+      // 2 剥离原型链数据，hasOwnProperty 判断某个对象是否含有指定的属性，会忽略掉那些从原型链上继承到的属性
+      if (obj.hasOwnProperty(key)) {
+        if (obj[key] && typeof obj[key] === 'object') newObjValue[key] = deepCopy(obj[key])  // 3 判断元素类型是否为对象，是则递归复制
+        else newObjValue[key] = obj[key];  // 4 否则直接复制
+      }
+      console.log(key+':'+ obj[key]);
+    }
+  }
+  return newObjValue;
+}
 ```
 
 ---
