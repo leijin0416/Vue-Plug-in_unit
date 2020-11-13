@@ -6,13 +6,110 @@
 防抖： | 重复执行操作，只执行最后一次。例如：在进行搜索的时候，当用户停止输入后调用方法，节约请求资源
 节流： | 像玩射击游戏, 并不是你鼠标点的越快，射击的越快。节流和这一样，规定的时间内只执行一次
 
-## 总结
+## 关于： /
 
 **函数防抖：** 将几次操作合并为一此操作进行。原理是维护一个计时器，规定在delay时间后触发函数，但是在delay时间内再次触发的话，就会取消之前的计时器而重新设置。这样一来，只有最后一次操作能被触发。
 
 **函数节流：** 使得一定时间内只触发一次函数。原理是通过判断是否到达一定时间来触发函数。
 
 **区别：** 函数节流 不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，而 函数防抖 只是在最后一次事件后才触发一次函数。 比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次 Ajax 请求，而不是在用户停下滚动页面操作时才去请求数据。这样的场景，就适合用 节流技术 来实现。
+
+### 总结 ·防抖和 ·节流的区别： /
+
+**防抖** 是将多次执行变为最后一次执行，**节流** 是将多次执行变为每隔一段时间执行。
+
+[【segmentfault】 介绍 全](https://segmentfault.com/a/1190000018428170)
+
+### js 函数节流 event 对象如何传递问题？ /
+
+[【segmentfault】 问题 概括](https://segmentfault.com/q/1010000011036337) --/-- [【知乎】 例子 方法](https://zhuanlan.zhihu.com/p/51608574)
+
+1、传给 throttle 函数的 event 参数为当前全局的事件对象（可能为 undefined，也可能是其他事件，取决于你调用的环境），所以造成传给 keydownHandler 的 event 也始终是全局的事件对象。
+
+2、当你触发键盘事件的时候，如果之前传递的全局事件对象为 undefined，则 keydownHandler 内部始终通过 window.event 来获取事件对象，而由于 setTimeout 的异步效果，当函数被调用的时候，事件对象已经被回收，所以获取 keyCode 属性会显示异常。
+
+3、如果之前传递的全局事件对象为确实存在，则在 keydownHandler 内打印 event 得到的就是之前传递过来的全局事件对象。
+
+### 解决：/
+
+`fnName.call(null, event)` || `fnName.apply(null, event)`
+
+```js
+// 事件绑定，键盘事件    每3秒执行一次
+window.addEventListener('keydown', throttle(keydownHandler, 3000));
+
+// 函数节流
+function throttle(fun, delay) {
+  let last, deferTimer
+  return function (args) {
+    let that = this;
+    let _args = arguments;
+
+    let now = +new Date();
+    if (last && now < last + delay) {
+      clearTimeout(deferTimer);
+      deferTimer = setTimeout(function () {
+        last = now;
+        fun.apply(that, _args);
+      }, delay)
+    } else {
+      last = now;
+      fun.apply(that, _args);
+      // fun.call(null, args);
+    }
+  }
+}
+
+// 获取键盘事件
+function keydownHandler(event) {
+  let e = event || window.event,
+    keyCode = e.keyCode || e.which;
+  console.log(event);
+}
+
+----
+
+/*
+ *  description: 在vue中使用的防抖函数
+ *  param fnName {String}  函数名
+ *  param time {Number}    延迟时间
+ *  return: 处理后的执行函数
+ */
+function VueDebounce(fnName, debounceTimes) {
+  let timeout = null;
+  let time = debounceTimes;   // 初次随机
+  console.log(`初次随机时间: ${time}`);
+  
+  // 闭包
+  return function(args) {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      fun.call(this, args);
+    }, time);
+    // 再次随机
+    time = DebounceTimeArr();
+    console.log(`再次随机时间: ${time}`);
+  }
+}
+
+// 随机时间
+function DebounceTimeArr() {
+  let timeArr = parseInt(Math.random() * 60 + 1) * 1000;
+  return timeArr
+}
+
+previewTimeDebounce: VueDebounce(onOtcBuysSubmitClick, otcTimeArr()),
+```
+
+### 问题总结：/
+
+**throttle函数 在` 绑定 keydown事件 `的时候` 被调用 `，这个事件绑定发生在` window.onload `的事件处理程序中，此时全局 event对象 就是 type 为 load的事件对象，所以传入 throttle函数 的event 就是 type 为 load的事件对象。**
+
+---
+
+### 实例
 
 ```js
 /*
@@ -22,17 +119,17 @@
  *  return: 处理后的执行函数
  */
 function vueThrottle(fn, time) {
-    let _arguments = arguments;
-    let canRun = true;
+  let _arguments = arguments;
+  let canRun = true;
 
-    return function () {
-        if (!canRun) return
-        canRun = false
-        setTimeout(() => {
-            fn.call(this, _arguments)
-            canRun = true
-        }, time);
-    }
+  return function () {
+    if (!canRun) return
+    canRun = false
+    setTimeout(() => {
+      fn.call(this, _arguments)
+      canRun = true
+    }, time);
+  }
 }
 
 /*
@@ -42,19 +139,17 @@ function vueThrottle(fn, time) {
  *  return: 处理后的执行函数
  */
 function vueDebounce(fnName, time) {
-    let debounceTime = time;
-    let timeout = null;
+  let debounceTime = time;
+  let timeout = null;
 
-    return function() {
-        if (timeout) {
-            clearTimeout(timeout);
-        }
-        timeout = setTimeout(() => {
-            this[fnName]();
-        }, debounceTime);
-        // debounceTime = 1;  // 再次赋值时间
-    };
+  return function() {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      this[fnName]();
+    }, debounceTime);
+    // debounceTime = 1;  // 再次赋值时间
+  };
 }
 ```
-
-### 实例
