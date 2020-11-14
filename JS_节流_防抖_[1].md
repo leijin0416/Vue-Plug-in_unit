@@ -34,28 +34,32 @@
 
 `fnName.call(null, event)` || `fnName.apply(null, event)`
 
+[【张生荣】 博客](https://www.zhangshengrong.com/p/OgN5nvQOXn/) --/-- [【微信】 防抖节流 案例](https://mp.weixin.qq.com/s/RK1xYN4yb7l2sCv6sIOvcQ) --/-- [【掘金】 案例](https://juejin.im/post/6844904080540729357)
+
 ```js
-// 事件绑定，键盘事件    每3秒执行一次
+// 事件绑定，键盘事件  每3秒执行一次 keydownHandler()方法，直到停止点击  适合输入框
 window.addEventListener('keydown', throttle(keydownHandler, 3000));
 
-// 函数节流
+// 时间戳版本实现防抖 + 节流 操作
 function throttle(fun, delay) {
   let last, deferTimer
-  return function (args) {
+  return function () {
     let that = this;
     let _args = arguments;
 
+    // 当前时间戳
     let now = +new Date();
+    // 比较时间戳
     if (last && now < last + delay) {
       clearTimeout(deferTimer);
       deferTimer = setTimeout(function () {
+        // 将旧时间更新
         last = now;
-        fun.apply(that, _args);
+        fun.apply(that, _args); // 修正this指向问题
       }, delay)
     } else {
       last = now;
-      fun.apply(that, _args);
-      // fun.call(null, args);
+      fun.apply(that, _args);  // 返回响应
     }
   }
 }
@@ -68,6 +72,32 @@ function keydownHandler(event) {
 }
 
 ----
+
+// 不管 “移入移出” 多少次， 不限点击次数（delay时间会叠加），每2秒内只会执行一次 myEvent()方法   适合提交按钮
+<p id="mydiv" style="width: 100px; height: 100px;border: 1px solid #ddd;">尝试移入移出 div。</p>
+
+// 执行防抖
+function debounce(fn,delay) {
+  let timeout = null;
+  return function () {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      fn.apply(this, arguments);
+    }, delay);
+  }
+}
+var mydiv = document.getElementById('mydiv');
+let count = 0;
+function myEvent() {
+  console.log(`执行时间：${new Date()}`);
+  console.log(this);  // document
+  mydiv.innerText = count++;
+}
+mydiv.addEventListener('mouseover', debounce(myEvent,2000));
+
+---
 
 /*
  *  description: 在vue中使用的防抖函数
@@ -86,7 +116,7 @@ function VueDebounce(fnName, debounceTimes) {
       clearTimeout(timeout);
     }
     timeout = setTimeout(() => {
-      fun.call(this, args);
+      fnName.call(this, args);
     }, time);
     // 再次随机
     time = DebounceTimeArr();
@@ -102,6 +132,11 @@ function DebounceTimeArr() {
 
 previewTimeDebounce: VueDebounce(onOtcBuysSubmitClick, otcTimeArr()),
 ```
+
+1.throttle 函数的执行环境具有全局性，内部 this 通常是指向 window 的，然后返回一个匿名函数。
+2.返回的匿名函数绑定了事件，this 指向监听的元素（document）。
+3.fun 其实与上面返回匿名函数形成了闭包，且 fun 也其实是一个匿名函数，匿名函数的执行具有全局性，fun 内部this应该指向window。
+4.这里用 apply 修正 this 指向，使 fun 内部的t his 重新指向 document。
 
 ### 问题总结：/
 
