@@ -20,6 +20,49 @@
 
 ---
 
+## vue-cli3/4 直接引入terser-webpack-plugin
+
+解决 uglifyjs-webpack-plugin 不兼容es6问题
+
+```js
+const TerserPlugin = require("terser-webpack-plugin");
+module.exports = {
+  // 加密压缩(terser)
+  configureWebpack: config => {
+    const optimization: {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              warnings: false,
+              drop_console: true,
+              drop_debugger: true,
+              pure_funcs: ['console.log', 'console.error']
+            },
+          },
+        }),
+      ],
+    }
+    // 将optimization的所有属性合并到config里
+    Object.assign(config, {
+      optimization
+    })
+  }
+}
+
+---
+
+const resolve = dir => path.join(__dirname, dir)
+module.exports = {
+  configureWebpack: (config) => {
+    if (process.env.NODE_ENV === 'production') {
+      config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
+      config.optimization.minimizer[0].options.terserOptions.compress.pure_funcs = ['console.log']
+    }
+  }
+}
+```
+
 ## 【2】开启压缩gzip
 
 npm install -D compression-webpack-plugin
