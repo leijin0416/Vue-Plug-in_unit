@@ -41,7 +41,7 @@ const deWeightThree = (tree: any) => {
 }
 ```
 
-## ES6的set去重数组
+## 【3】ES6的set去重数组
 
 - Set数据结构，它类似于数组，其成员的值都是唯一的。
 
@@ -61,7 +61,7 @@ let resultarr = [...new Set(arr)];
 console.log(resultarr); //[1,2,3]
 ```
 
-## filter() + hasOwnProperty() + JSON.stringify() -可以去掉NaN和复杂数据类型
+## 【4】filter() + hasOwnProperty() + JSON.stringify() -可以去掉NaN和复杂数据类型
 
 ```js
 function deWeightMap(array) {
@@ -72,7 +72,7 @@ function deWeightMap(array) {
 }
 ```
 
-## indexOf() 数组下标去重
+## 【5】indexOf() 数组下标去重
 
 **方法一：**
 
