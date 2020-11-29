@@ -1,6 +1,9 @@
 # ES6 去重
 
-[去重1](https://blog.csdn.net/ZYS10000/article/details/109955135) ---||--- [去重2](http://blog.sina.com.cn/s/blog_be2200300102wvvq.html)
+标签|内容
+:-|:-:
+[csdn 去重介绍](https://blog.csdn.net/ZYS10000/article/details/109955135) ---||--- [sina 去重介绍](http://blog.sina.com.cn/s/blog_be2200300102wvvq.html) |
+| [indexOf 模糊查询方法](https://www.jianshu.com/p/4cd4f74a0b20)
 
 ## 【1】ES5冒泡排序法，去重arr
 
@@ -104,6 +107,8 @@ function deWeightMap(arr) {
 
 **方法二：**
 
+[参考地址](https://www.cnblogs.com/ltb6w/p/10994571.html)
+
 - filter() 就是一个数组过滤器，参数接收一个函数，数组的每一项经过函数过滤，返回一个符合过滤条件的新数组。
 
 - indexOf() 在JS中有着重要的作用，**可以判断一个元素是否在数组中存在**，或者判断一个字符是否在字符串中存在，**如果存在返回该元素或字符第一次出现的位置的索引**，不存在返回-1。用 indexOf 来判断 NaN 始终会返回 -1。
@@ -111,6 +116,11 @@ function deWeightMap(arr) {
 ```js
 let arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 2, 3, 4, 5, 6, 7]
 
+/** filter
+ *  -item （当前遍历的数组项）
+ *  -i    （当前项索引）
+ *  -self （调用filter数组本身）
+ */
 let newArr = arr1.filter(function(item, i, self) {
     let a = self.indexOf(item)
     console.log(`item----${item},self.indexOf(item)---${a},i----${i}`)
