@@ -8,6 +8,8 @@
  | ——
 [- Postbird博主 -let和const区别](http://www.ptbird.cn/es6-let-const-variable.html) <br> [- CSDN -PDD面试](https://blog.csdn.net/callmeCassie/article/details/103005686)
 
+## 解构
+
 ```js
 // 模板文本
 const db = 'http://' + host + ':' + port + '/' + database;
