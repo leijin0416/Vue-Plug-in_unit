@@ -54,19 +54,23 @@ app.say.call(banana); // My color is yellow  操作
 app.say.apply(banana); // My color is yellow  操作
 ```
 
-### 数组之间追加
+### 相关问题
 
-让 array1 具备 Array的push 方法;
+让 array1 具备 Array 的 push 方法;
 
 ```js
-// 数组的扩充
+// 【1】数组的扩充
 var array1 = [12 , "foo" , {name "Joe"} , -2458];
 var array2 = ["Doe" , 555 , 100];
-
 Array.prototype.push.apply(array1, array2); // array1 值为 [12 , "foo" , {name "Joe"} , -2458 , "Doe" , 555 , 100]
 
 ---
+// 【2】找出数组中的最大数
+var a = [2, 4, 5, 7, 8, 10];
+console.log(Math.max.apply(null, a)); //10
+console.log(Math.max.call(null, 2, 4, 5, 7, 8, 10)); //10
 
+---
 // 当传入参数的个数是不确定时
 function log(){
   console.log.apply(console, arguments);
@@ -74,3 +78,62 @@ function log(){
 log(1); // 1
 log(1,2); // 1 2
 ```
+
+### 如何利用 call、apply 来做继承，或者 多继承
+
+**构造函数法:** 它用构造函数模拟"类"，在其内部用 this关键字 指代 "实例对象"。而类的属性和方法，还可以定义在 构造函数的 prototype对象之上。
+
+Object.create()生成实例，不需要用到new。 IE9+
+
+[阮一峰的网络日志 -构造函数法](http://www.ruanyifeng.com/blog/2012/07/three_ways_to_define_a_javascript_class.html)
+
+```js
+// 继承
+function Animal(name){      
+  this.name = name;      
+  this.showName = function(){      
+    console.log(this.name);      
+  }      
+}      
+
+function Cat(name){    
+  Animal.call(this, name);    
+}      
+
+/**
+ * Animal.call(this) 的意思就是使用this对象代替Animal对象，那么
+ * Cat中不就有Animal的所有属性和方法了吗，Cat对象就能够直接调用Animal的方法以及属性了
+ */
+var cat = new Cat("TONY");     
+cat.showName();          // TONY
+
+---
+// 多继承
+function Class1(a,b) {
+  this.showclass1 = function(a,b) {
+    console.log(`class1: ${a},${b}`);
+  }
+}
+
+function Class2(a,b) {
+  this.showclass2 = function(a,b) {
+    console.log(`class2: ${a},${b}`);
+  }
+}
+
+function Class3(a,b) {
+  Class1.call(this);
+  Class2.call(this);
+}
+
+let arr10 = [2, 3];
+let demo = new Class3();     // 生成实例的时候，使用 "new关键字"
+
+demo.showclass1.call(this,1);         // class1: 1,undefined
+demo.showclass1.call(this,1,2);       // class1: 1,1
+demo.showclass2.apply(this,arr10);    // class2: 2,2
+```
+
+### createNew() 继承，只要在前者的 createNew()方法中，调用后者的 createNew()方法即可
+
+**其定义在对象上的方法和属性，都是私有的。**
