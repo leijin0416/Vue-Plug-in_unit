@@ -8,11 +8,15 @@
 
 ## 改变this指向的方法
 
-- .call(),  call(thisScope, arg1, arg2, arg3...); **`需要把参数按顺序传递进去，立即调用`**;
+- .call(),  call(thisScope, arg1, arg2, arg3...); **`第一个参数是函数执行上下文的对象，后面的需要把参数按顺序传递进去，立即调用`**;
 
-- .apply(), apply(thisScope, [arg1, arg2, arg3...]); **`两个参数，且是把参数放在数组里，立即调用`**;
+- .apply(), apply(thisScope, [arg1, arg2, arg3...]); **`第一个参数是函数执行上下文的对象，后面的两个参数，且是把参数放在数组里，立即调用`**;
 
 - .bind()  bind(thisScope, arg1, arg2, arg3...); **`改变this的指向，返回的是函数，便于稍后调用`**;
+
+**注意：** 如果第一个参数不需要写，不需要改动函数上下文的对象的话，**记得写上 null值 来占位**。如上面例子中的 exp.apply(null, [' happy ',' every',' day'])写法。
+
+[call和apply常见的应用写法](https://www.jianshu.com/p/d04a7b51ee7b)
 
 ```js
 let obj = {
@@ -55,11 +59,11 @@ app.say.apply(banana); // My color is yellow  操作
 让 array1 具备 Array的push 方法;
 
 ```js
+// 数组的扩充
 var array1 = [12 , "foo" , {name "Joe"} , -2458];
 var array2 = ["Doe" , 555 , 100];
 
-// array1 值为 [12 , "foo" , {name "Joe"} , -2458 , "Doe" , 555 , 100]
-Array.prototype.push.apply(array1, array2);
+Array.prototype.push.apply(array1, array2); // array1 值为 [12 , "foo" , {name "Joe"} , -2458 , "Doe" , 555 , 100]
 
 ---
 
@@ -70,5 +74,3 @@ function log(){
 log(1); // 1
 log(1,2); // 1 2
 ```
-
-https://www.jianshu.com/p/d04a7b51ee7b
