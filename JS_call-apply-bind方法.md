@@ -77,6 +77,15 @@ function log(){
 };
 log(1); // 1
 log(1,2); // 1 2
+
+---
+function test(){
+  alert(this.color)
+}
+test()     //undefined   因为this指向window（全局对象）在window对象里面没有一个属性为color.
+
+var testMethod = {color:'red'}
+test.apply(testMethod)    //red   因为我们通过apply把this指向testMethod对象（默认this是指向window），即对象环境。这个时候test函数可以读取到color属性，函数里的this.color即是testMethod.color
 ```
 
 ### 【3】如何利用 call、apply 来做继承，或者 多继承
@@ -99,13 +108,13 @@ function Animal(name){
 function Cat(name){    
   Animal.call(this, name);    
 }      
-
 /**
- * Animal.call(this) 的意思就是使用this对象代替Animal对象，那么
+ * Animal.call(this) 的意思就是 使用this对象 代替 Animal对象，那么
  * Cat中不就有Animal的所有属性和方法了吗，Cat对象就能够直接调用Animal的方法以及属性了
+ *
  */
 var cat = new Cat("TONY");     
-cat.showName();          // TONY
+cat.showName();          // TONY  因为我们通过 call/apply 把this指向 Cat对象（默认this是指向window），即对象环境。这个时候Animal函数可以读取到name属性，函数里的this.name即是Cat.name
 
 ---
 // 对象继承2
