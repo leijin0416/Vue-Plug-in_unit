@@ -81,11 +81,11 @@ log(1,2); // 1 2
 
 ### 【3】如何利用 call、apply 来做继承，或者 多继承
 
-**构造函数法:** 它用构造函数模拟"类"，在其内部用 this关键字 指代 "实例对象"。而类的属性和方法，还可以定义在 构造函数的 prototype对象之上。
+**构造函数法:** 它用构造函数模拟"类"(创建类（new）)，在其内部用 `this关键字` **指代新创建的 "实例对象"**。而类的属性和方法，还可以定义在 构造函数的 prototype对象之上。
 
 Object.create()生成实例，不需要用到new。 IE9+
 
-[阮一峰的网络日志 -构造函数法](http://www.ruanyifeng.com/blog/2012/07/three_ways_to_define_a_javascript_class.html)
+[阮一峰的网络日志 -构造函数法 +++++](http://www.ruanyifeng.com/blog/2012/07/three_ways_to_define_a_javascript_class.html)
 
 ```js
 // 继承
@@ -106,6 +106,18 @@ function Cat(name){
  */
 var cat = new Cat("TONY");     
 cat.showName();          // TONY
+
+---
+// 对象继承2
+var Parent = function() {
+  this.name = "yjc";
+  this.age = 22;
+}
+var child = {};
+console.log(child);   // Object {} ,空对象
+
+Parent.call(child);
+console.log(child);   // Object {name: "yjc", age: 22}
 
 ---
 // 多继承
@@ -133,6 +145,8 @@ demo.showclass1.call(this,1);         // class1: 1,undefined
 demo.showclass1.call(this,1,2);       // class1: 1,1
 demo.showclass2.apply(this,arr10);    // class2: 2,2
 ```
+
+[知乎见解 +++++](https://www.zhihu.com/question/20289071/answer/93261557)
 
 ### createNew() 继承，只要在前者的 createNew()方法中，调用后者的 createNew()方法即可
 
