@@ -54,7 +54,7 @@ app.say.call(banana); // My color is yellow  操作
 app.say.apply(banana); // My color is yellow  操作
 ```
 
-### 相关问题
+### 相关问题使用的例子
 
 让 array1 具备 Array 的 push 方法;
 
@@ -79,7 +79,7 @@ log(1); // 1
 log(1,2); // 1 2
 ```
 
-### 如何利用 call、apply 来做继承，或者 多继承
+### 【3】如何利用 call、apply 来做继承，或者 多继承
 
 **构造函数法:** 它用构造函数模拟"类"，在其内部用 this关键字 指代 "实例对象"。而类的属性和方法，还可以定义在 构造函数的 prototype对象之上。
 
