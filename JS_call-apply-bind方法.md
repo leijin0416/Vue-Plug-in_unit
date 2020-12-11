@@ -148,7 +148,7 @@ function Class3(a,b) {
 }
 
 let arr10 = [2, 3];
-let demo = new Class3();     // 生成实例的时候，使用 "new关键字"
+let demo = new Class3(); // 创建类或生成实例的时候，使用 "new关键字"
 
 demo.showclass1.call(this,1);         // class1: 1,undefined
 demo.showclass1.call(this,1,2);       // class1: 1,1
