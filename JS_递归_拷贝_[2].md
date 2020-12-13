@@ -43,6 +43,8 @@
 [【segmentfault】多叉树原理-用到递归来实现数据格式化](https://segmentfault.com/a/1190000015813977?utm_source=tag-newest) | ——
 —— | [【segmentfault】递归权限思路](https://segmentfault.com/q/1010000021248164)
 [【掘金】 理解递归](https://juejin.im/post/6844903699584647176) | [【wintc博主】树结构操作: 查找、遍历 全](https://wintc.top/article/20)
+| ——
+| [【掘金】浅拷贝的技巧集合](https://juejin.cn/post/6903852199311310862)
 
 ```js
 let tree = [
