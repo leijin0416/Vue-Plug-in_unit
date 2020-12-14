@@ -55,3 +55,98 @@ async function asyncPrint(value, ms) {
 }
 asyncPrint('hello world', 50)  // 50毫秒以后，输出hello world
 ```
+
+---
+
+## Promise
+
+[Promise核心原理](https://mp.weixin.qq.com/s/sNhCOQqGPZTTndGHJHZYQA) --||-- [Promise 介绍](https://www.jianshu.com/p/5f49ac47ffba)
+
+Promise 是一个异步操作返回的对象，用来传递异步操作的消息。
+
+它有三种状态: Pending 初始态； Fulfilled 成功态； Rejected 失败态。
+
+首先要理解js语言的运行环境是单线程的，**也就是说一次只能完成一个任务，也就是一条流水线，如果有 “多个任务” 就 “必须排队”**，前面一个任务完成，再执行后面一个任务，以此类推。这与java的多线程环境截然不同。
+
+可以改变程序执行顺序的操作就可以**看成为是 “异步操作”**。
+
+**「概念：」** 利用 promise 可以**将异步操作以同步操作**的流程表达出来，**避免了层层嵌套的回调函数**。此外，promise对象提供统一的接口，使得控制异步操作更加容易。
+
+**Promise是一个构造函数，通过它，我们可以创建一个Promise实例对象。Promise对象上有 `then() , catch() , finally()` 方法。**
+
+但注意 promise 无法取消，一旦建立就会立即执行，**无法中途取消**。
+
+```js
+function loadImg(url) {
+  let img = new Image();
+  img.src = url;
+  // promise
+  return new Promise((resolve, reject) => {
+    img.onload = () => {
+      console.log(url);
+      resolve();
+    }
+    img.onerror = (e) => {
+      reject(e);
+    }
+  })
+}
+
+
+loadImg(url1).then(() => {
+  return loadImg(url2);
+}).then(() => {
+  return loadImg(url3);
+})
+```
+
+---
+
+## 宏任务和微任务
+
+**【宏任务】**：普通的script代码（同步代码），setTimeout，setInterval；
+
+**【微任务】**：process.nextTick，promise.then()；
+
+**【总体】** 来说就是：同步 > 微任务 > 宏任务；
+
+JS在执行完同步代码之后，会首先去执行微任务队列中待执行的代码，然后再去执行宏任务中的代码
+
+考察执行顺序：**按顺序执行代码, 当遇到await, 立即执行await后的函数, 然后将await之后的代码加入 “微任务”**
+
+```js
+// https://blog.csdn.net/weixin_43801564/article/details/89384255   -参考
+async function async1() {
+  console.log('async1 start');  // 2
+  await async2();
+  console.log('async1 end');    // 6
+}
+async function async2() {
+  console.log('async2');        // 3
+}
+console.log('script start');    // 1   同步流程
+
+setTimeout(function() {
+  console.log('setTimeout');    // 8   宏任务
+}, 0)
+
+async1();
+
+new Promise(function(resolve) {
+  console.log('promise1');      // 4
+  resolve();
+}).then(function() {
+  console.log('promise2');      // 7
+});
+
+console.log('script end');      // 5   同步流程
+
+// script start
+// async1 start
+// async2
+// promise1
+// script end
+// async1 end
+// promise2
+// setTimeout
+```
