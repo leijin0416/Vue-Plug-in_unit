@@ -60,7 +60,7 @@ asyncPrint('hello world', 50)  // 50毫秒以后，输出hello world
 
 ## Promise
 
-[Promise核心原理](https://mp.weixin.qq.com/s/sNhCOQqGPZTTndGHJHZYQA) --||-- [Promise 介绍](https://www.jianshu.com/p/5f49ac47ffba)
+[Promise核心原理 微信介绍](https://mp.weixin.qq.com/s/sNhCOQqGPZTTndGHJHZYQA) --||-- [Promise -async/await 简书介绍](https://www.jianshu.com/p/5f49ac47ffba)
 
 Promise 是一个异步操作返回的对象，用来传递异步操作的消息。
 
@@ -73,6 +73,8 @@ Promise 是一个异步操作返回的对象，用来传递异步操作的消息
 **「概念：」** 利用 promise 可以**将异步操作以同步操作**的流程表达出来，**避免了层层嵌套的回调函数**。此外，promise对象提供统一的接口，使得控制异步操作更加容易。
 
 **Promise是一个构造函数，通过它，我们可以创建一个Promise实例对象。Promise对象上有 `then() , catch() , finally()` 方法。**
+
+Promise 是一个构造函数，使用时我们需要先使用 new 创建一个 Promise 实例。
 
 但注意 promise 无法取消，一旦建立就会立即执行，**无法中途取消**。
 
@@ -149,4 +151,72 @@ console.log('script end');      // 5   同步流程
 // async1 end
 // promise2
 // setTimeout
+```
+
+假设一个业务，分多个步骤完成，每个步骤都是异步的，而且依赖于上一个步骤的结果。
+
+我们仍然用 setTimeout 来模拟异步操作：
+
+[红绿灯交替亮灯 案例知乎](https://zhuanlan.zhihu.com/p/26523836)
+
+```js
+/** https://www.jianshu.com/p/5f49ac47ffba   -简书参考
+ *
+ * 传入参数 n，表示这个函数执行的时间（毫秒）
+ * 执行的结果是 n + 200，这个值将用于下一步骤
+ */
+function takeLongTime(n) {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(n + 200), n);
+  });
+}
+
+function step1(n) {
+  console.log(`step1 with ${n}`);
+  return takeLongTime(n);
+}
+
+function step2(n) {
+  console.log(`step2 with ${n}`);
+  return takeLongTime(n);
+}
+
+function step3(n) {
+  console.log(`step3 with ${n}`);
+  return takeLongTime(n);
+}
+
+// 用 Promise 方式来实现
+function doIt() {
+  console.time("doIt");
+  const time1 = 300;
+  step1(time1)
+    .then(time2 => step2(time2))
+    .then(time3 => step3(time3))
+    .then(result => {
+      console.log(`result is ${result}`);
+      console.timeEnd("doIt");
+    });
+}
+doIt();
+
+// 用 async/await 来实现
+async function doIt() {
+  console.time("doIt");
+  const time1 = 300;
+  const time2 = await step1(time1);
+  const time3 = await step2(time2);
+  const result = await step3(time3);
+  console.log(`result is ${result}`);
+  console.timeEnd("doIt");
+}
+
+doIt();
+
+// 两者结果是一样的
+// step1 with 300
+// step2 with 500
+// step3 with 700
+// result is 900
+// doIt: 1507.251ms
 ```
