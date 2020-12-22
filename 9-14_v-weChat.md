@@ -10,9 +10,9 @@ Websocket 其实是一个新协议，跟HTTP协议基本没有关系，只是为
 
 标签|内容
 :-|:-:
-[【!!!！】WebSocket |知乎见解](https://www.zhihu.com/question/20215561) `--/--` [WebSocket介绍 |掘金](https://juejin.im/post/6876301731966713869) | [【!!!！】 滚动条自动置底](https://zhuanlan.zhihu.com/p/89906315) `--/--` [WebSocket 消息通知](https://blog.csdn.net/qq_37128049/article/details/96977671)
+[【!!!!】WebSocket / 知乎见解](https://www.zhihu.com/question/20215561) `--/--` [WebSocket介绍 / 掘金](https://juejin.im/post/6876301731966713869) | [【!!!!】 滚动条自动置底](https://zhuanlan.zhihu.com/p/89906315) `--/--` [WebSocket 消息通知](https://blog.csdn.net/qq_37128049/article/details/96977671)
  | ——
-[【!!!！】面试简介|特点](<https://www.cnblogs.com/fan-1994716/p/11875730.html>) |
+| [【!!!!】面试简介 / 特点](https://www.cnblogs.com/fan-1994716/p/11875730.html)
 
 ## 应用场景
 
