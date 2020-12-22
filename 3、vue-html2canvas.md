@@ -1,8 +1,11 @@
 # 分享海报和内容复制按钮
 
-html2canvas + clipboard npm插件
+**`html2canvas` 图片 + `clipboard` 复制**
 
-[html2canvas 使用概述](https://segmentfault.com/a/1190000007356836) --|-- [html2canvas 图片跨域问题](https://blog.csdn.net/feizhong_web/article/details/77067009?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param)
+标签|内容
+:-|:-:
+ | [【掘金】 方法介绍](https://juejin.cn/post/6908255717317148685)
+[html2canvas 方法概述](https://segmentfault.com/a/1190000007356836) | [【跨域】html2canvas 图片跨域问题](https://blog.csdn.net/feizhong_web/article/details/77067009?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param)
 
 ## 1> 下载安装npm
 

@@ -1,6 +1,6 @@
 # Websocket 即时通讯
 
-Websocket 是应用层第七层上的一个应用层协议，它必须**依赖【HTTP 协议进行一次握手】**  ，握手成功后，数据就直接从 TCP 通道传输，此后与 HTTP 无关了。
+Websocket 是应用层第七层上的一个应用层协议，它必须**依赖【HTTP 协议进行一次握手】** ，握手成功后，数据就直接从 TCP 通道传输，此后与 HTTP 无关了。
 
 即：Websocket **分为【握手】和【数据传输】阶段**，即进行了HTTP握手 + 双工的TCP连接。连接一旦建立，客户端和服务端之间实时可以进行双向数据传输。
 
@@ -10,7 +10,9 @@ Websocket 其实是一个新协议，跟HTTP协议基本没有关系，只是为
 
 标签|内容
 :-|:-:
-WebSocket | [WebSocket 知乎解释 看看看看！](https://www.zhihu.com/question/20215561) - [WebSocket滚动条自动置底](https://zhuanlan.zhihu.com/p/89906315) - [WebSocket消息通知](https://blog.csdn.net/qq_37128049/article/details/96977671) - [WebSocket介绍 jj](https://juejin.im/post/6876301731966713869)
+WebSocket | [WebSocket |知乎解释 看!!!！](https://www.zhihu.com/question/20215561) - [WebSocket 滚动条自动置底](https://zhuanlan.zhihu.com/p/89906315) - [WebSocket 消息通知](https://blog.csdn.net/qq_37128049/article/details/96977671) - [WebSocket介绍 |掘金](https://juejin.im/post/6876301731966713869)
+ | ——
+[面试简介|特点 -Websocket](https://www.cnblogs.com/fan-1994716/p/11875730.html) |
 
 ## 应用场景
 
