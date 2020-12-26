@@ -4,7 +4,7 @@
 :-|:-:
 [节流/防抖 -代码拆解分析](https://www.cnblogs.com/denghaopositive/p/12546645.html) —— [效果动图](https://www.cnblogs.com/smallpen/p/10289050.html) | 防抖和节流 都是为了 解决频繁触发某个事件 的情况造成的性能消耗
 [【微信】 介绍解析例子](https://mp.weixin.qq.com/s/_T1Z8PN-vMQRfSu3bzMU1A) | [【博客园】 12-23 this指向解析例子](https://www.cnblogs.com/cc-freiheit/p/10827372.html) --——-- [【博客园】 12-23 解析例子](https://www.cnblogs.com/Antwan-Dmy/p/10714445.html)
-12-24 | [【博客园】 this指向 评论总结](https://juejin.cn/post/6844903466427482120#heading-1)
+12-24 | [【博客园】 this指向 评论总结](https://juejin.cn/post/6844903466427482120#heading-1) [【简书】 this指向 例子](https://www.jianshu.com/p/f9f6b637fd6c)
  | ——
 【 防抖 】 | 重复执行操作，只执行最后一次。例如：在进行**搜索（百度搜索）**的时候，当用户停止输入后调用方法，节约请求资源
 【 节流 】 | 像玩射击游戏, 并不是你鼠标点的越快，射击的越快。节流和这一样，规定的时间内只执行一次。
