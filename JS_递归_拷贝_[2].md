@@ -45,6 +45,8 @@
 [【掘金】 理解递归](https://juejin.im/post/6844903699584647176) | [【wintc博主】树结构操作: 查找、遍历 全](https://wintc.top/article/20)
 | ——
 | [【掘金】浅拷贝的技巧集合](https://juejin.cn/post/6903852199311310862)
+| ——
+| [【掘金】 函数,正则等深拷贝](https://juejin.cn/post/6844904202674634765)
 
 ```js
 let tree = [
@@ -107,7 +109,7 @@ function treeForeach (tree, func) {
 
 // 拷贝 “obj 表示源对象”
 function DeepCopy(obj) {
-  if (obj == null) return null
+  if (obj === null) return null
   // 1 创造新盒子， newObjValue 表示目标对象
   let newObjValue = Array.isArray(obj) ? [] : {};
   if (obj || typeof obj === 'object') {
