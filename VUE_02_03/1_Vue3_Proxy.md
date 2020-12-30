@@ -41,7 +41,7 @@ console.log(dummy == 7)
 
 ![执行流程图](https://pic1.zhimg.com/80/v2-d4ca2f76d3e27ce71f94263afea1dd48_720w.jpg)
 
-## weackMap-targetMap 三维的数据结构
+## WeackMap-targetMap 三维的数据结构
 
 ```js
 const count = reactive({ num: 0 })
