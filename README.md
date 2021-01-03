@@ -61,7 +61,8 @@ function deepClone(obj) {
     return copy
 }
 
-/**-------------------- END --------------------*/
+/////////////////////// END ///////////////////////
+
 // 深度克隆/拷贝
 let copy = {a: 1, b: {x: 3}};
 function deepClone(obj) {
@@ -92,7 +93,8 @@ function deepClone(obj) {
 let objCopy = this.deepClone(copy);
 console.log(copy);
 
-/**-------------------- END --------------------*/
+/////////////////////// END ///////////////////////
+
 // JSON.stringify(this.man) === '{}'
 // -将json对象转化为json字符串，再判断该字符串是否为"{}"
 var man = {
