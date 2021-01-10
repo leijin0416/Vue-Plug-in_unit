@@ -86,7 +86,7 @@ function treeForeach (tree, func) {
   if (!tree) return []
   tree.forEach(data => {
     if(data.children) data.children && treeForeach(data.children, func) // 遍历子树
-    else func(data)
+    else return func(data)
   })
 }
 treeForeach(tree, node => { console.log(node.title) })
@@ -95,12 +95,12 @@ treeForeach(tree, node => { console.log(node.title) })
 
 // 递归
 function treeForeach (tree, func) {
-  if (!tree || typeof tree !== 'object') return null
+  if (!tree || typeof tree !== 'object') return []
   tree.forEach(data => {
     if (typeof data.children === 'object') {
-      treeForeach(data.children, func);   // 函数调用函数自身
+      treeForeach(data.children, func);  // 递归调用函数自身
     } else {
-      func(data);                         // 递归出口
+      return func(data);                 // 递归出口
     }
   })
 }
@@ -117,7 +117,8 @@ function DeepCopy(obj) {
     for (let key in obj) {
       // 2 剥离原型链数据，hasOwnProperty 判断某个对象是否含有指定的属性，会忽略掉那些从原型链上继承到的属性
       if (obj.hasOwnProperty(key)) {
-        if (obj[key] && typeof obj[key] === 'object') newObjValue[key] = deepCopy(obj[key])  // 3 判断元素类型是否为对象，是则递归复制
+        // 3 判断元素类型是否为对象，是则递归复制
+        if (obj[key] && typeof obj[key] === 'object') newObjValue[key] = deepCopy(obj[key])
         else newObjValue[key] = obj[key];  // 4 否则直接复制
       }
       console.log(key+':'+ obj[key]);
