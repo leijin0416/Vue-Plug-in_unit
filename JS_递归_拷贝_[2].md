@@ -117,7 +117,7 @@ function DeepCopy(obj) {
     for (let key in obj) {
       // 2 剥离原型链数据，hasOwnProperty 判断某个对象是否含有指定的属性，会忽略掉那些从原型链上继承到的属性
       if (obj.hasOwnProperty(key)) {
-        // 3 判断元素类型是否为对象，是则递归复制
+        // 3 判断元素类型是否为对象，是则继续 “递归复制”
         if (obj[key] && typeof obj[key] === 'object') newObjValue[key] = deepCopy(obj[key])
         else newObjValue[key] = obj[key];  // 4 否则直接复制
       }

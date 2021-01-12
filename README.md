@@ -13,6 +13,15 @@
 ## 解构
 
 ```js
+// ES5箭头函数写法
+let f = function(v){
+  return v
+}
+// ES6箭头函数写法
+let f = v => v
+
+/////////////////////// END ///////////////////////
+
 // 模板文本
 const db = 'http://' + host + ':' + port + '/' + database;
 // 简化后
@@ -68,9 +77,7 @@ let copy = {a: 1, b: {x: 3}};
 function deepClone(obj) {
     let objClone = obj instanceof Array ? [] : {};
     // 如果他是空的话, 因为 null,object,array 也是'object';
-    if (obj === null) {
-        objClone = null;
-    }
+    if (obj === null) objClone = null;
     if (obj && typeof(obj) === 'object') {
         for (key in obj) {
             // 判断对象里是否含有非继承属性 key，判断一个对象是否为空方法
@@ -78,18 +85,15 @@ function deepClone(obj) {
                 if (obj[key] && typeof(obj[key]) === 'object') {
                     objClone[key] = deepClone(obj[key]);
                     console.log('object');
-
                 } else {
                     objClone[key] = obj[key];
                     console.log('Array');
-
                 }
             }
         }
     }
     return objClone
 }
-
 let objCopy = this.deepClone(copy);
 console.log(copy);
 
