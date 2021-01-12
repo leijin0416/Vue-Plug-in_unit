@@ -10,14 +10,14 @@
 | ——
 [- Postbird博主 -let和const区别](http://www.ptbird.cn/es6-let-const-variable.html) <br> [- CSDN -PDD面试](https://blog.csdn.net/callmeCassie/article/details/103005686)
 
-## 解构
+## ES6解构
 
 ```js
-// ES5箭头函数写法
+// ES5【箭头】函数写法
 let f = function(v){
   return v
 }
-// ES6箭头函数写法
+// ES6【箭头】函数写法，没有this
 let f = v => v
 
 /////////////////////// END ///////////////////////
@@ -29,12 +29,12 @@ const db = `http://${host}:${port}/${database}`;
 
 /////////////////////// END ///////////////////////
 
-// 解构赋值
+// 【解构】赋值
 const { store, form, loading, errors, entity } = this.props;
 
 /////////////////////// END ///////////////////////
 
-// substr 获取第一个字符
+// 【substr】 获取第一个字符
 var str = "哈哈，我是一个字符串";
 var text = str.substr(0, 1);
 console.log("text:", text);  // 打印结果：哈
@@ -146,7 +146,8 @@ function uniq(array){
 var array = [1, 2, 2, 3, 5, 3, 6, 5];  // 只适用于数组项为字符串, 数字的一维数组
 console.log(uniq(array));
 
-/**-------------------- END --------------------*/
+/////////////////////// END ///////////////////////
+
 // 二维数组的排重 -递归大法
 var arr = [["aa","bb","cc"],["aa","bb","cc"],["b","b","v"]];  
 var hash = {};  
@@ -236,13 +237,16 @@ let arr7 = arr6.sort( (a, b) => {
 }).map(item => item)
 console.log(arr7);
 
-/**-------------------- END --------------------*/
+/////////////////////// END ///////////////////////
+
 // 不传参数，将不会按照数值大小排序，【按照字符编码】的顺序进行排序；
 var arr = ['General','Tom','Bob','John','Army'];
 var resArr = arr.sort();
 console.log(resArr);//输出 ["Army", "Bob", "General", "John", "Tom"]
 
-/**-------------------- END --------------------*/
+
+/////////////////////// END ///////////////////////
+
 // 截取子串
 var str = "abcdefg123456";
 var res1 = str.substring(3);   // defg123456
@@ -285,7 +289,8 @@ var testArr = ['a','b','c','d','e','f','g'];
 removeCurEle('c', testArr);
 console.log(testArr);      // ["a", "b", "d", "e", "f", "g"]
 
-/**-------------------- END --------------------*/
+/////////////////////// END ///////////////////////
+
 /**
  * vue3删除   -testArr 当前选中的删除数据
  */
