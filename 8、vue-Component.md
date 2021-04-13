@@ -1,10 +1,12 @@
-# require.context
+# require.context()
 
 一个 webpack 的api，通过执行 `require.context` 函数获取一个特定的上下文，**主要用来实现自动化导入模块**。
 
-官网介绍：https://www.html.cn/doc/webpack2/guides/dependency-management/
+[官网介绍](https://www.html.cn/doc/webpack2/guides/dependency-management)
 
-### require.context函数接受三个参数
+## require.context函数接受三个参数
+
+[参考文章 1](https://www.jianshu.com/p/c894ea00dfec)
 
 - directory {String} -读取文件的路径
 
@@ -14,11 +16,9 @@
 
 > 语法: require.context(directory, useSubdirectories = false, regExp = /^.//);
 
-参考文章：https://www.jianshu.com/p/c894ea00dfec
-
 ---
 
-# 1、优化全局组件注册
+## 【1】 优化全局组件注册
 
 创建全局.js文件管理全局组件
 
@@ -60,6 +60,9 @@ import global from './components/globalComponent'
 ```
 
 ### 3、最后，使用这类组件不再需要引入和注册，直接标签使用即可
+
+[参考文章 1](https://juejin.im/post/5e475829f265da57444ab10f)
+
 ```vue
 <template>
     <div>
@@ -69,19 +72,17 @@ import global from './components/globalComponent'
 </template>
 ```
 
-参考文章：https://juejin.im/post/5e475829f265da57444ab10f
-
 ---
 
-# 2、require.context() 创建路由分区
+## 【2】 require.context() 创建路由分区
 
 ```js
 // 总路由管理文件 
-    - index.js
+ - index.js
 
 // 分区路由
-    - index.routes.js
-    - login.routes.js
+ - index.routes.js
+ - login.routes.js
 ```
 
 ### 1、分区路由文件
