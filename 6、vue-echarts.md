@@ -1,23 +1,224 @@
 # Echart
 
+[介绍](https://www.jianshu.com/p/8cac22daca98) --|-- [详细](https://www.cnblogs.com/1ming/p/9547947.html) 
+
+[官方实例地址](https://www.echartsjs.com/examples/zh/index.html#chart-type-pie)
+
 - 用法：_that.$chart.lineChina('chart', newArr);
 
-[介绍](https://www.jianshu.com/p/8cac22daca98) --|-- [详细](https://www.cnblogs.com/1ming/p/9547947.html) --|-- [官方实例地址](https://www.echartsjs.com/examples/zh/index.html#chart-type-pie)
-
-## 1> 安装
-
-`npm install --s echarts`
-
-## 2> 组件局部引入
+## 安装
 
 ```js
-import echarts from 'echarts'
+npm install --s echarts
 
+// 组件局部引入
+import echarts from 'echarts'
 ```
 
-## 3> 组件使用方法
+---
 
-- **1、新建JS，引用 echarts官网 中具体的实例;**
+## 方式一
+
+```ts
+const echarts = require('echarts');
+
+/**
+ * 图标折叠
+ * @id 挂载的DIV标签
+ * @xAxisName 名称
+ * @xAxisData X轴数据
+ * @seriesFoldData 数据
+ */
+const install = function (Vue: any) {
+  Object.defineProperties(Vue.prototype, {
+    $chart: {
+      get() {
+        return {
+          lineFold: function (id: string, xAxisData: object, xAxisName: string, seriesFoldData: object) {  // 折线图
+            if (document.getElementById(id) == null) {
+              return
+            }
+            echarts.dispose(document.getElementById(id));
+            this.chart1 = echarts.init(document.getElementById(id));
+            this.chart1.clear();
+
+            const optionData = {
+              title: {
+                text: '',
+                x: 'center',
+                top: 0,
+              },
+              tooltip: { // 提示框
+                trigger: 'axis',
+                axisPointer: {
+                  type: 'cross',
+                  label: {
+                    backgroundColor: '#6a7985'
+                  }
+                }
+              },
+              legend: {
+                x: 'center',      // 可设定图例在左、右、居中
+                y: 'top',        // 可设定图例在上、下、居中,
+                top: 20,
+                data: [xAxisName]
+              },
+              toolbox: {
+                orient: 'horizontal',
+                show: false,      // 是否显示工具栏组件
+                x: 'left',
+                feature: {
+                  saveAsImage: {}
+                }
+              },
+              grid: {
+                left: '15px',
+                right: '15px',
+                bottom: '0%',
+                containLabel: true
+              },
+              xAxis: [
+                {
+                  type: 'category',
+                  boundaryGap: false,
+                  axisLabel: {
+                    show: true,
+                    textStyle: {
+                      color: '#899daf',  //更改坐标轴文字颜色
+                      fontSize: 12      //更改坐标轴文字大小
+                    }
+                  },
+                  axisTick: {
+                    show: true
+                  },
+                  axisLine: {
+                    lineStyle: {
+                      color: '#899daf' //更改坐标轴颜色
+                    }
+                  },
+                  data: xAxisData
+                }
+              ],
+              yAxis: [
+                {
+                  type: 'value',
+                  // interval: 200, // 设置左侧网格值
+                  splitLine: {    // 设置网格线颜色
+                    show: true,   // 隐藏网格线
+                    lineStyle: {
+                      color: ['rgb(235, 235, 235)'],
+                      width: 1,
+                      type: 'solid'
+                    }
+                  },
+                  axisLabel: {
+                    show: true,
+                    textStyle: {
+                      color: '#899daf',  //更改坐标轴文字颜色
+                      fontSize: 12      //更改坐标轴文字大小
+                    }
+                  },
+                  axisTick: {
+                    show: true
+                  },
+                  axisLine: {
+                    lineStyle: {
+                      color: '#899daf' //更改坐标轴颜色
+                    }
+                  }
+                }
+              ],
+              series: [  // 数据源
+                {
+                  name: xAxisName,
+                  type: 'line',
+                  stack: '总量',
+                  smooth: 0.3,    // 线条曲线
+                  itemStyle: {
+                    normal: {
+                      color: '#409eff',   // 改变折线点的颜色
+                      lineStyle: {
+                        color: '#409eff' // 改变折线颜色
+                      }
+                    }
+                  },
+                  areaStyle: {
+                    normal: { color: 'transparent', }  // 改变区域颜色
+                  },
+                  data: seriesFoldData
+                },
+              ]
+            };
+            this.chart1.setOption(optionData);
+            this.chart1.resize();
+          },
+          lineDoughnut: function (id: string, seriesFoldData: any) {  // 饼状图
+            if (document.getElementById(id) == null) {
+              return
+            }
+            echarts.dispose(document.getElementById(id));
+            this.chart = echarts.init(document.getElementById(id) as any);
+            this.chart.clear();
+
+            const optionData = {
+              tooltip: {
+                trigger: 'item'
+              },
+              legend: {
+                top: '5%',
+                left: 'center'
+              },
+              color : [ '#2d8bec', ],
+              series: [
+                {
+                  name: '平台数据',
+                  type: 'pie',
+                  radius: ['40%', '70%'],
+                  avoidLabelOverlap: false,
+                  label: {
+                    show: false,
+                    position: 'center'
+                  },
+                  emphasis: {
+                    label: {
+                      show: true,
+                      fontSize: '16',
+                      fontWeight: 'bold'
+                    }
+                  },
+                  labelLine: {
+                    show: false
+                  },
+                  data: seriesFoldData
+                }
+              ]
+            };
+            this.chart.setOption(optionData);
+          },
+        }
+      }
+    },
+  })
+}
+
+export default {
+  install
+}
+```
+
+### main 全局引入
+
+```js
+import myECharts from "./components/Echarts/echarts";   // 挂载图表
+
+Vue.use(myECharts);
+```
+
+---
+
+## 方式二
+
+### 1、新建cakechart.js，引用 echarts官网 中具体的实例
 
 ```js
 /**  新建 cakechart.js 饼状图
@@ -122,8 +323,8 @@ export const option = {
 
 <script>
 // 安装 echarts 后，直接引入库
-import echarts from 'echarts'
-import { option } from './cakechart'
+import echarts from 'echarts';
+import { option } from './cakechart';
 
 export default {
     data() {
@@ -137,8 +338,9 @@ export default {
         let that = this
         that.fetchData()
         setTimeout(() => {
-            let chartBox = document.getElementById('echartBox')
-            that.echartWidth = chartBox.offsetWidth
+            // 获取宽度
+            let chartBox = document.getElementById('echartBox');
+            that.echartWidth = chartBox.offsetWidth;
             console.log(chartBox.offsetWidth);  // 1920
         }, 300)
     },
