@@ -1,6 +1,6 @@
 # Echart
 
-[介绍](https://www.jianshu.com/p/8cac22daca98) --|-- [详细](https://www.cnblogs.com/1ming/p/9547947.html) 
+[介绍](https://www.jianshu.com/p/8cac22daca98) --|-- [详细](https://www.cnblogs.com/1ming/p/9547947.html)
 
 [官方实例地址](https://www.echartsjs.com/examples/zh/index.html#chart-type-pie)
 
