@@ -45,8 +45,7 @@ export default {
             loading: false
         }
     },
-    components: {
-    },
+    components: {},
     props: {
         excelsTableData: {
             type: Array,
@@ -80,18 +79,17 @@ export default {
     // 生命周期 - 创建完成（可以访问当前this实例）
     created() {},
     // 生命周期 - 挂载完成（可以访问DOM元素）
-    mounted() {
-    },
+    mounted() {},
     // 方法集合
     methods: {
         /**
          *  【 excel 导出 】
-         *  - 1、require() -引入 JS
-         *  - 2、excelsFilterVal -Excel 表格文件标题
-         *  - 2.1、excelsFilterVal -设置 Excel 的表格第一行的标题数据参数属性
-         *  - 3、list -拿到后台数据 excelsTableData
-         *  - 4、name -设置导出文件名称
-         *  - 5、export_json_to_excel -导出
+         *  @require - 利用 require() 引入 JS文件
+         *  @excelsFilterVal - Excel 表格文件标题
+         *  @excelsFilterVal - 设置 Excel 的表格第一行的标题数据参数属性
+         *  @list - 拿到后台数据 excelsTableData
+         *  @name - 设置导出文件名称
+         *  @export_json_to_excel - 导出
          */
         onExportExcel () {
             let _that = this;
