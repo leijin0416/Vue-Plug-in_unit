@@ -1,12 +1,17 @@
-## 1> 安装 
+# xlsx 安装
 
-```js
-npm install -S file-saver xlsx // 这里安装了2个依赖
+![excel.jpg](https://upload-images.jianshu.io/upload_images/15813774-7d154578b42271c4.png?imageMogr2/auto-orient/strip|imageView2/2/w/483/format/webp)
+
+下载地址： 百度网盘 181 ---|--- [参考文档](https://www.jianshu.com/p/73105a06951e)
+
+```html
+<!-- 安装2个依赖 -->
+npm install -S file-saver xlsx
 
 npm install -D script-loader
 ```
 
-## 2> 构建导出文件 js
+## 构建导出文件 js
 
 ```js
 /**
@@ -14,12 +19,10 @@ npm install -D script-loader
  */
 
 './excel/Blob.js'
-
 './excel/Export2Excel.js'
-
 ```
 
-## 3> 组件封装使用 exportExcels
+## 【1】 组件封装使用 exportExcels
 
 - 利用 props ，父组件向子组件传递所需要导出相关数据参数
 
@@ -121,12 +124,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
 ```
 
-### 引用组件
+## 【2】 引用组件
 
 ```vue
 <template>
@@ -170,9 +171,9 @@ export default {
 </template>
 
 <script>
-import exportExcels from "@/components/exportExcels/exportExcels"
-
 import { adminUserAssetsList } from '@/api/common'
+
+import exportExcels from "@/components/exportExcels/exportExcels"
 
 export default {
     data() {
@@ -206,16 +207,13 @@ export default {
     // 生命周期 - 创建完成（可以访问当前this实例）
     created() {
         this.adminDataApi()
-        this.$emit('getMessage', '1-2')
     },
     // 生命周期 - 挂载完成（可以访问DOM元素）
-    mounted() {
-    },
+    mounted() {},
     // 方法集合
     methods: {
         /**
          *  导出表格 -Start-
-         *  
          *  弹出对话框
          */
         onExprotModalClick () {
@@ -250,66 +248,10 @@ export default {
             _that.params.pageNum = 1;
             _that.params.pageSize = 12;
         },
-        /** 导出表格 -End-
-         *
-         *  搜索按钮
-         */
-        adminDataApi () {
-            let _that = this;
-            let data = _that.params;
-            let { phone } = data;
-            let { uid } = data;
-            let { pageNum } = data;
-            let { pageSize } = data;
-            // console.log(data);
-
-            adminUserAssetsList({
-                'phone': phone,
-                'uid': uid,
-                'pageNum': pageNum,
-                'pageSize': pageSize
-            }).then( res => {
-                if (res.data.code == 200) {
-                    _that.tableDataList = res.data.data.rows;
-                    _that.sumPage = res.data.data.totalRow;
-                }
-                // console.log(res);
-            })
-        },
-        // 翻页
-        handleCurrentChange (page) {
-            let _that = this;
-            _that.params.pageNum = page;
-            _that.adminDataApi();
-        }
+        /** 导出表格 -End- */
     }
 }
 </script>
 
-<style lang="scss" scoped>
-/deep/.ivu-modal {
-    .demo-drawer-footer{
-        width: 100%;
-        border-top: 1px solid #e8e8e8;
-        padding: 10px 16px 0;
-        text-align: left;
-        .btn {
-            min-width: 150px;
-            height: 38px;
-            padding: 0 20px;
-            text-align: center;
-            box-shadow: 2px 3px 6px #ddd;
-        }
-    }
-}
-</style>
-
+<style lang="scss" scoped></style>
 ```
-
-# 4> 效果图
-
-![excel.jpg](https://upload-images.jianshu.io/upload_images/15813774-7d154578b42271c4.png?imageMogr2/auto-orient/strip|imageView2/2/w/483/format/webp)
-
-下载地址： 百度网盘 181
-
-[参考文档](https://www.jianshu.com/p/73105a06951e)
