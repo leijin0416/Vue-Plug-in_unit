@@ -85,10 +85,10 @@ export default {
         /**
          *  【 excel 导出 】
          *  @require - 利用 require() 引入 JS文件
-         *  @excelsFilterVal - Excel 表格文件标题
-         *  @excelsFilterVal - 设置 Excel 的表格第一行的标题数据参数属性
-         *  @list - 拿到后台数据 excelsTableData
-         *  @name - 设置导出文件名称
+         *  @excelsTHeader   - Excel 表格头
+         *  @excelsFilterVal - Excel 表格头参数属性
+         *  @excelsTableData - 后台完整数据
+         *  @excelsName      - 设置导出文件名称
          *  @export_json_to_excel - 导出
          */
         onExportExcel () {
