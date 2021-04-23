@@ -4,9 +4,11 @@
 
 [官方实例地址](https://www.echartsjs.com/examples/zh/index.html#chart-type-pie)
 
-- 用法：_that.$chart.lineChina('chart', newArr);
+- **全局挂载用法：** `_that.$chart.lineChina('chart', newArr);`
 
 ## 安装
+
+打包文件过大，可按需引入
 
 ```js
 npm install --s echarts
