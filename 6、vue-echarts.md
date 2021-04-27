@@ -11,15 +11,27 @@
 打包文件过大，可按需引入
 
 ```js
-npm install --s echarts
+`npm install --s echarts`
 
-// 组件局部引入
+// 组件局部引入，CDN加速引用
 import echarts from 'echarts'
 ```
 
 ---
 
-## 方式一
+## 方式一，main 全局引入
+
+```js
+import myECharts from "./components/Echarts/echarts";   // 挂载图表
+
+Vue.use(myECharts);
+
+// 挂载
+_that.$chart.lineFold('myChart', newArrs, xAxisName, xAxisNameTwo);
+
+```
+
+### 实例JS
 
 ```ts
 const echarts = require('echarts');
@@ -206,14 +218,6 @@ const install = function (Vue: any) {
 export default {
   install
 }
-```
-
-### main 全局引入
-
-```js
-import myECharts from "./components/Echarts/echarts";   // 挂载图表
-
-Vue.use(myECharts);
 ```
 
 ---
