@@ -26,7 +26,7 @@ import myECharts from "./components/Echarts/echarts";   // 挂载图表
 
 Vue.use(myECharts);
 
-// 挂载
+// 挂载DOM
 _that.$chart.lineFold('myChart', newArrs, xAxisName, xAxisNameTwo);
 
 ```
