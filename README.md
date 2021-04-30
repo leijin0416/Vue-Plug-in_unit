@@ -8,7 +8,7 @@
 | ——
 0807 | [- 查API兼容](https://www.caniuse.com/#search=CSS%20Variables)
 | ——
-[- Postbird博主 -let和const区别](http://www.ptbird.cn/es6-let-const-variable.html) </br> [- CSDN -PDD面试](https://blog.csdn.net/callmeCassie/article/details/103005686)
+[- Postbird博主 -let和const区别；](http://www.ptbird.cn/es6-let-const-variable.html) </br> [- CSDN -PDD面试；](https://blog.csdn.net/callmeCassie/article/details/103005686)
 
 ## ES6解构
 
