@@ -2,9 +2,9 @@
 
 标签|内容
 :-|:-:
-0824 | [- 0824/Vue执行流程分析](https://juejin.im/post/6860430490302677006) </br> [- 0824/Vue主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) </br> [- 0824/闭包_this指向问题](https://juejin.im/post/6864378349512065038)
+0824 | [- 0824/Vue 执行流程分析](https://juejin.im/post/6860430490302677006) </br> [- 0824/Vue 主动刷新页面及列表数据删除后的刷新方法](https://www.cnblogs.com/mica/tag/Vue/) </br> [- 0824/闭包_this指向问题](https://juejin.im/post/6864378349512065038)
 | ——
-0830 | [- 0830/TypeScript时遇到的一些有趣的代码1](https://github.com/sl1673495?tab=repositories) </br> [- 0830/VUE3时遇到的一些有趣的代码2](https://github.com/sl1673495/vue-bookshelf) </br> [- 0830/九种 Vue 组件间通讯](https://juejin.im/post/6861547167358648327) </br> [- 0830/创建自己的Vue3文档](https://github.com/natee/build-your-own-vue-next)
+0830 | [- 0830/TypeScript 时遇到的一些有趣的代码1](https://github.com/sl1673495?tab=repositories) </br> [- 0830/VUE3 时遇到的一些有趣的代码2](https://github.com/sl1673495/vue-bookshelf) </br> [- 0830/九种 Vue 组件间通讯](https://juejin.im/post/6861547167358648327) </br> [- 0830/Vue3 创建自己的Vue3文档](https://github.com/natee/build-your-own-vue-next)
 | ——
 0807 | [- 查API兼容](https://www.caniuse.com/#search=CSS%20Variables)
 | ——
