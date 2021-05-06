@@ -17,7 +17,7 @@
 let f = function(v){
   return v
 }
-// ES6【箭头】函数写法，没有this
+// ES6【箭头】函数写法，没有 this
 let f = v => v
 
 //------------- END -------------//
