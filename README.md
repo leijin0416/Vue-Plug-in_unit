@@ -10,7 +10,7 @@
 | ——
 [- Postbird博主 -let和const区别；](http://www.ptbird.cn/es6-let-const-variable.html) </br> [- CSDN -PDD面试；](https://blog.csdn.net/callmeCassie/article/details/103005686)
 
-## ES6解构
+## ES6 解构、...扩展运算符
 
 ```js
 // ES5【箭头】函数写法
