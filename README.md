@@ -97,7 +97,7 @@ function deepClone(obj) {
 let objCopy = this.deepClone(copy);
 console.log(copy);
 
-/////////////////////// END ///////////////////////
+//------------- END -------------//
 
 // JSON.stringify(this.man) === '{}'
 // -将json对象转化为json字符串，再判断该字符串是否为"{}"
