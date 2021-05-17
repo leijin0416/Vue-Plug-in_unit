@@ -10,22 +10,21 @@
 | ——
 [- Postbird博主 -let和const区别；](http://www.ptbird.cn/es6-let-const-variable.html) </br> [- CSDN -PDD面试；](https://blog.csdn.net/callmeCassie/article/details/103005686)
 
-## ES6 解构、... 扩展运算符
+## ES6 解构、... 扩展运算符、reduce() 求和
 
 ```js
-// ES5【箭头】函数写法
-let f = function(v){
+let f = function(v){ // ES5【箭头】函数写法
   return v
 }
-// ES6【箭头】函数写法，没有 this
-let f = v => v
+
+let f = v => v   // ES6【箭头】函数写法，没有 this
 
 //------------- END -------------//
 
-// 模板文本
-const db = 'http://' + host + ':' + port + '/' + database;
-// 简化后
-const db = `http://${host}:${port}/${database}`;
+
+const db = 'http://' + host + ':' + port + '/' + database;  // 模板文本
+
+const db = `http://${host}:${port}/${database}`; // 简化后
 
 //------------- END -------------//
 
@@ -37,7 +36,17 @@ const { store, form, loading, errors, entity } = this.props;
 // 【substr】 获取第一个字符
 var str = "哈哈，我是一个字符串";
 var text = str.substr(0, 1);
-console.log("text:", text);  // 打印结果：哈
+console.log("text:", text);   // 打印结果：哈
+
+
+//------------- END -------------//
+
+var numbers = [3,5,9];
+var sumValue = numbers.reduce(function(sum, number){ // sum 前两个数的和，上一次调用回调时返回的累积值
+    console.log(sum)      // 1000 1003 1008
+    return sum + number;
+},1000 )  //第一次初始化时用1000 + 数组中的第一项
+console.log(sumValue) //1017
 ```
 
 [对于JS简写](https://zhuanlan.zhihu.com/p/111457373)
