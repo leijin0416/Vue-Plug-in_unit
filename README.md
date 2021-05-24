@@ -38,15 +38,15 @@ var str = "哈哈，我是一个字符串";
 var text = str.substr(0, 1);
 console.log("text:", text);   // 打印结果：哈
 
-
 //------------- END -------------//
 
-var numbers = [3,5,9];
+// 【reduce】 数组求和
+var numbers = [3, 5, 9];
 var sumValue = numbers.reduce( (sum, number) => { // sum 前两个数的和，上一次调用回调时返回的累积值
     console.log(sum)      // 1000 1003 1008
     return sum + number;
-},1000 )                 // 第一次初始化时用1000 + 数组中的第一项
-console.log(sumValue)   //1017
+}, 1000 )                 // 第一次初始化时用1000 + 数组中的第一项
+console.log(sumValue)   // 1017
 
 // reduce 还可以将数组中对象的某个属性抽离到另一个数组中
 var primaryColors = [
@@ -58,7 +58,7 @@ var colorsArr = primaryColors.reduce(function(arr, primaryColor){
     arr.push(primaryColor.color);
     return arr;
 },[]);
-console.log(colorsArr)    //["red", "yellow", "bule"]
+console.log(colorsArr)    // ["red", "yellow", "bule"]
 ```
 
 [对于JS简写](https://zhuanlan.zhihu.com/p/111457373)
